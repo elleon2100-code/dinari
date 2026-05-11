@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de Gastos Mensual Gratis | Dinari</title>
+<meta name="description" content="Registra tus ingresos y gastos mensuales. Descubre a dónde se va tu dinero con nuestro control de presupuesto visual y gratuito.">
+<link rel="canonical" href="https://dinari.app/control-gastos/">
+<meta property="og:title" content="Control de Gastos Mensual | Dinari">
+<meta property="og:description" content="Organiza tu presupuesto mensual sin complicaciones. Todo se guarda seguro en tu dispositivo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dinari.app/control-gastos/">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/simulator.css">
+<link rel="manifest" href="../manifest.json">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Inicio","item":"https://dinari.app/"},
+        {"@type":"ListItem","position":2,"name":"Control de Gastos","item":"https://dinari.app/control-gastos/"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "name":"Control de Gastos Mensual",
+      "applicationCategory":"FinanceApplication",
+      "operatingSystem":"Web",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"MXN"},
+      "description":"Herramienta para registrar ingresos, categorizar gastos y visualizar tu presupuesto mensual. Privacidad total (datos locales)."
+    }
+  ]
+}
+</script>
+<style>
+  /* Extra styles specific to the tracker MVP */
+  .expense-list {
+    margin-top: var(--sp-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  .expense-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--sp-3);
+    background-color: var(--white);
+    border: 1px solid var(--stone-200);
+    border-radius: var(--radius-sm);
+  }
+  .expense-item__cat {
+    font-size: var(--text-sm);
+    color: var(--stone-500);
+  }
+  .expense-item__name {
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+  .expense-item__amount {
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+  .expense-item__delete {
+    color: var(--stone-400);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    padding: 0 var(--sp-2);
+  }
+  .expense-item__delete:hover {
+    color: var(--danger-500);
+  }
+</style>
+</head>
+<body>
+
+<header>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="../" class="navbar__logo" aria-label="Dinari - Inicio">
+        <span class="navbar__logo-mark" aria-hidden="true">D</span>
+        Dinari
+      </a>
+      <ul class="navbar__nav" role="list">
+        <li><a href="../simulador-deudas/" class="navbar__link">Simulador</a></li>
+        <li><a href="../calculadora-intereses/" class="navbar__link">Calculadora</a></li>
+        <li><a href="../como-salir-de-deudas/" class="navbar__link">Guías</a></li>
+      </ul>
+      <div class="navbar__cta">
+        <a href="../simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+  <a href="../" class="mobile-menu__link">Inicio</a>
+  <a href="../simulador-deudas/" class="mobile-menu__link">Simulador de Deudas</a>
+  <a href="../control-gastos/" class="mobile-menu__link">Control de Gastos</a>
+</div>
+</header>
+
+<main id="main-content">
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container">
+    <nav class="page-hero__breadcrumb" aria-label="Ruta de navegación">
+      <a href="../">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <span>Control de Gastos</span>
+    </nav>
+    <div class="page-hero__eyebrow">
+      <span class="badge badge--cream">📊 Control Presupuestal</span>
+    </div>
+    <h1 class="display-2 page-hero__title" id="page-title">
+      Control de Gastos
+    </h1>
+    <p class="body-lg page-hero__subtitle">
+      Anota tus ingresos y gastos para descubrir exactamente a dónde se va tu dinero. 100% privado en tu dispositivo.
+    </p>
+  </div>
+</section>
+
+<section class="container" aria-label="Herramienta de control de gastos">
+  <div class="simulator-layout">
+
+    <!-- PANEL IZQUIERDO: INPUTS -->
+    <aside aria-label="Ingreso de datos">
+      <div class="sim-panel" style="margin-bottom:var(--sp-6);">
+        <div class="sim-panel__header" style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:var(--sp-4);">
+          <div>
+            <p class="sim-panel__title">Tus Ingresos</p>
+            <p class="sim-panel__subtitle">¿Cuánto dinero entra este mes?</p>
+          </div>
+          <div class="currency-selector-wrap">
+            <label for="currency-selector" class="sr-only">Moneda</label>
+            <select id="currency-selector" class="currency-selector" aria-label="Seleccionar moneda">
+              <option value="DOP">DOP (RD$)</option>
+              <option value="USD">USD ($)</option>
+              <option value="MXN" selected>MXN ($)</option>
+              <option value="COP">COP ($)</option>
+              <option value="ARS">ARS ($)</option>
+              <option value="CLP">CLP ($)</option>
+              <option value="PEN">PEN (S/)</option>
+              <option value="EUR">EUR (€)</option>
+            </select>
+          </div>
+        </div>
+        <div class="sim-panel__body">
+          <div class="field">
+            <label class="field__label" for="income-amount">Ingreso Total Mensual</label>
+            <div class="field__prefix-wrap">
+              <span class="field__prefix currency-symbol">$</span>
+              <input class="field__input field__input--prefixed" type="number" id="income-amount" placeholder="Ej. 20000" min="0" inputmode="numeric">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sim-panel">
+        <div class="sim-panel__header">
+          <p class="sim-panel__title">Tus Gastos</p>
+          <p class="sim-panel__subtitle">Agrega en qué gastas tu dinero.</p>
+        </div>
+        <div class="sim-panel__body">
+          
+          <form id="expense-form" style="display:grid; grid-template-columns: 1fr 1fr; gap:var(--sp-3); align-items:end;">
+            <div class="field" style="grid-column: span 2; margin-bottom:0;">
+              <label class="field__label" for="exp-name">Concepto</label>
+              <input class="field__input" type="text" id="exp-name" placeholder="Ej. Supermercado, Renta, Netflix" required>
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label class="field__label" for="exp-cat">Categoría</label>
+              <select id="exp-cat" class="field__input" required>
+                <option value="Vivienda">Vivienda</option>
+                <option value="Comida">Comida</option>
+                <option value="Transporte">Transporte</option>
+                <option value="Servicios">Servicios (Luz, Agua)</option>
+                <option value="Deudas">Deudas</option>
+                <option value="Ocio">Ocio / Entretenimiento</option>
+                <option value="Otros">Otros</option>
+              </select>
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label class="field__label" for="exp-amount">Monto</label>
+              <div class="field__prefix-wrap">
+                <span class="field__prefix currency-symbol">$</span>
+                <input class="field__input field__input--prefixed" type="number" id="exp-amount" placeholder="0" min="1" required inputmode="numeric">
+              </div>
+            </div>
+            <button type="submit" class="btn btn--sage" style="grid-column: span 2; margin-top:var(--sp-2);">+ Agregar Gasto</button>
+          </form>
+
+          <div id="expense-list" class="expense-list" role="list">
+            <!-- Gastos dinámicos -->
+          </div>
+
+        </div>
+      </div>
+    </aside>
+
+    <!-- PANEL DERECHO: RESULTADOS -->
+    <div class="results-panel" role="region" aria-label="Resumen de presupuesto">
+      <div id="results-container" style="display:flex; flex-direction:column; gap:var(--sp-6);">
+
+        <!-- KPIs -->
+        <div class="kpi-grid" role="list">
+          <div class="kpi-card kpi-card--sage" role="listitem">
+            <p class="kpi-card__label">Presupuesto Inicial</p>
+            <p class="kpi-card__value kpi-card__value--sage" id="kpi-income">$0</p>
+            <p class="kpi-card__sub">Ingreso total</p>
+          </div>
+          <div class="kpi-card kpi-card--danger" role="listitem">
+            <p class="kpi-card__label">Gastos Totales</p>
+            <p class="kpi-card__value kpi-card__value--danger" id="kpi-expenses">$0</p>
+            <p class="kpi-card__sub">Suma de salidas</p>
+          </div>
+          <div class="kpi-card kpi-card--stone" role="listitem" style="grid-column: span 2;">
+            <p class="kpi-card__label">Dinero Disponible</p>
+            <p class="kpi-card__value" id="kpi-remaining" style="font-size:1.5rem;">$0</p>
+            <p class="kpi-card__sub">Lo que sobra para ahorro o deudas</p>
+          </div>
+        </div>
+
+        <!-- GRÁFICO DONA -->
+        <div class="chart-card">
+          <div class="chart-card__header">
+            <div>
+              <p class="chart-card__title">🍩 ¿En qué gastas?</p>
+              <p class="chart-card__subtitle">Distribución por categoría</p>
+            </div>
+            <button type="button" id="btn-clear-data" class="btn btn--outline btn--sm" style="color:var(--danger-600); border-color:var(--danger-200);">Limpiar todo</button>
+          </div>
+          <div class="chart-container" style="height:250px;">
+            <canvas id="chart-expenses" role="img" aria-label="Gráfico de distribución de gastos"></canvas>
+          </div>
+        </div>
+
+        <div style="padding:var(--sp-4); background-color:var(--white); border-radius:var(--radius-md); font-size:var(--text-sm); color:var(--stone-600); border:1px solid var(--stone-200);">
+          🔒 <strong>Privacidad Total:</strong> Los datos de tus gastos se guardan únicamente en el almacenamiento local de tu navegador (LocalStorage). Dinari no envía esta información a ningún servidor de internet.
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
+          Dinari
+        </div>
+        <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Herramientas</p>
+        <ul class="footer__links">
+          <li><a href="../simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="../calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
+          <li><a href="../control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__links">
+          <li><a href="../privacidad/index.html" class="footer__link">Privacidad</a></li>
+          <li><a href="../cookies/index.html" class="footer__link">Cookies</a></li>
+          <li><a href="../terminos/index.html" class="footer__link">Términos</a></li>
+          <li><a href="../contacto/index.html" class="footer__link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
+      <p>Los cálculos son orientativos. Consulta con un asesor financiero.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+<script src="../js/tracker.js" defer></script>
+</body>
+</html>

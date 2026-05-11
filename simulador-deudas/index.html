@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador de Deudas Gratis | Bola de Nieve y Avalancha | Dinari</title>
+<meta name="description" content="Calcula exactamente cuándo saldrás de deudas. Compara el método bola de nieve vs avalancha. Simulador gratuito, sin registro, en español.">
+<link rel="canonical" href="https://dinari.app/simulador-deudas/">
+<meta property="og:title" content="Simulador de Deudas | Dinari">
+<meta property="og:description" content="Descubre cuándo serás libre de deudas con nuestro simulador gratuito.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dinari.app/simulador-deudas/">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/simulator.css">
+<link rel="manifest" href="../manifest.json">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Inicio","item":"https://dinari.app/"},
+        {"@type":"ListItem","position":2,"name":"Simulador de Deudas","item":"https://dinari.app/simulador-deudas/"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "name":"Simulador Inteligente de Deudas",
+      "applicationCategory":"FinanceApplication",
+      "operatingSystem":"Web",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"MXN"},
+      "description":"Herramienta gratuita para calcular el plan de pago óptimo para tus deudas usando el método bola de nieve o avalancha."
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"¿Qué es el método bola de nieve?","acceptedAnswer":{"@type":"Answer","text":"El método bola de nieve consiste en pagar primero la deuda con el saldo más pequeño, independientemente de su tasa de interés. Al liquidar cada deuda, el pago mínimo liberado se suma al pago de la siguiente deuda."}},
+        {"@type":"Question","name":"¿Qué es el método avalancha?","acceptedAnswer":{"@type":"Answer","text":"El método avalancha prioriza la deuda con la tasa de interés más alta. Matemáticamente ahorra más dinero en intereses que el método bola de nieve."}},
+        {"@type":"Question","name":"¿Cuál método es mejor para salir de deudas?","acceptedAnswer":{"@type":"Answer","text":"El método avalancha es matemáticamente superior y ahorra más dinero. El método bola de nieve puede ser mejor psicológicamente al dar victorias rápidas. Usa nuestro simulador para comparar ambos con tus deudas específicas."}},
+        {"@type":"Question","name":"¿Cuánto extra debo pagar para salir más rápido de deudas?","acceptedAnswer":{"@type":"Answer","text":"Incluso $500 o $1,000 MXN adicionales al mes pueden reducir tu tiempo de pago en años. Usa el campo 'Pago extra mensual' en el simulador para ver el impacto inmediato."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="../" class="navbar__logo" aria-label="Dinari - Inicio">
+        <span class="navbar__logo-mark" aria-hidden="true">D</span>
+        Dinari
+      </a>
+      <ul class="navbar__nav" role="list">
+        <li><a href="../simulador-deudas/" class="navbar__link" aria-current="page">Simulador</a></li>
+        <li><a href="../calculadora-intereses/" class="navbar__link">Calculadora</a></li>
+        <li><a href="../como-salir-de-deudas/" class="navbar__link">Guías</a></li>
+      </ul>
+      <div class="navbar__cta">
+        <a href="../simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+  <a href="../" class="mobile-menu__link">Inicio</a>
+  <a href="../simulador-deudas/" class="mobile-menu__link">Simulador de Deudas</a>
+  <a href="../calculadora-intereses/" class="mobile-menu__link">Calculadora de Intereses</a>
+  <a href="../como-salir-de-deudas/" class="mobile-menu__link">Cómo salir de deudas</a>
+</div>
+</header>
+
+<!-- HERO -->
+<main id="main-content">
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container">
+    <nav class="page-hero__breadcrumb" aria-label="Ruta de navegación">
+      <a href="../">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <span>Simulador de Deudas</span>
+    </nav>
+    <div class="page-hero__eyebrow">
+      <span class="badge badge--sage">🆓 Gratis · Sin registro</span>
+    </div>
+    <h1 class="display-2 page-hero__title" id="page-title">
+      Simulador Inteligente de Deudas
+    </h1>
+    <p class="body-lg page-hero__subtitle">
+      Ingresa tus deudas y descubre exactamente <strong>cuándo serás libre</strong>. Compara el método bola de nieve vs avalancha y encuentra el plan óptimo para ti.
+    </p>
+  </div>
+</section>
+
+<!-- SIMULADOR -->
+<section class="container" aria-label="Herramienta simulador de deudas">
+  <div class="simulator-layout">
+
+    <!-- PANEL IZQUIERDO: INPUTS -->
+    <aside aria-label="Formulario de deudas">
+      <div class="sim-panel">
+        <div class="sim-panel__header" style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:var(--sp-4);">
+          <div>
+            <p class="sim-panel__title">Tus deudas</p>
+            <p class="sim-panel__subtitle">Ingresa hasta 8 deudas. Puedes editarlas en cualquier momento.</p>
+          </div>
+          <div class="currency-selector-wrap">
+            <label for="currency-selector" class="sr-only">Moneda</label>
+            <select id="currency-selector" class="currency-selector" aria-label="Seleccionar moneda">
+              <option value="DOP">DOP (RD$)</option>
+              <option value="USD">USD ($)</option>
+              <option value="MXN">MXN ($)</option>
+              <option value="COP">COP ($)</option>
+              <option value="ARS">ARS ($)</option>
+              <option value="CLP">CLP ($)</option>
+              <option value="PEN">PEN (S/)</option>
+              <option value="EUR">EUR (€)</option>
+            </select>
+          </div>
+        </div>
+        <div class="sim-panel__body">
+
+          <!-- LISTA DE DEUDAS -->
+          <div id="debt-list" class="debt-list" role="list" aria-label="Lista de deudas"></div>
+
+          <!-- BOTÓN AGREGAR -->
+          <button class="add-debt-btn" id="add-debt-btn" type="button" aria-label="Agregar otra deuda">
+            <span aria-hidden="true">＋</span> Agregar otra deuda
+          </button>
+
+          <!-- PAGO EXTRA GLOBAL -->
+          <div class="global-extra" style="margin-top:var(--sp-5);">
+            <p class="global-extra__label">💡 Pago extra mensual (opcional)</p>
+            <div class="field__prefix-wrap">
+              <span class="field__prefix currency-symbol">$</span>
+              <input
+                class="field__input field__input--prefixed"
+                type="number"
+                id="extra-payment"
+                placeholder="0"
+                min="0"
+                step="100"
+                inputmode="numeric"
+                aria-label="Pago extra mensual adicional"
+              />
+            </div>
+            <p class="global-extra__hint">Dinero extra que puedes destinar cada mes para pagar más rápido.</p>
+          </div>
+
+          <!-- BOTÓN CALCULAR -->
+          <button class="calculate-btn" id="calculate-btn" type="button">
+            <span aria-hidden="true">📊</span> Ver mi plan de pago
+          </button>
+
+        </div>
+      </div>
+    </aside>
+
+    <!-- PANEL DERECHO: RESULTADOS -->
+    <div class="results-panel" role="region" aria-label="Resultados del simulador" aria-live="polite">
+
+      <!-- ESTADO VACÍO -->
+      <div class="results-empty" id="results-empty" role="status">
+        <span class="results-empty__icon" aria-hidden="true">📋</span>
+        <p class="results-empty__title">Ingresa tus deudas para comenzar</p>
+        <p class="body-sm">Los resultados aparecerán aquí automáticamente mientras escribes.</p>
+      </div>
+
+      <!-- RESULTADOS (ocultos al inicio) -->
+      <div id="results-container" style="display:none; flex-direction:column; gap:var(--sp-6);">
+
+        <!-- KPIs -->
+        <div class="kpi-grid" role="list" aria-label="Métricas principales">
+          <div class="kpi-card kpi-card--sage" role="listitem">
+            <p class="kpi-card__label">Libre de deudas en</p>
+            <p class="kpi-card__value kpi-card__value--sage" id="kpi-free-date">—</p>
+            <p class="kpi-card__sub" id="kpi-free-date-sub"></p>
+          </div>
+          <div class="kpi-card kpi-card--danger" role="listitem">
+            <p class="kpi-card__label">Total en intereses</p>
+            <p class="kpi-card__value kpi-card__value--danger" id="kpi-total-interest">—</p>
+            <p class="kpi-card__sub">Costo real de tus deudas</p>
+          </div>
+          <div class="kpi-card kpi-card--stone" role="listitem">
+            <p class="kpi-card__label">Total pagado</p>
+            <p class="kpi-card__value" id="kpi-total-paid">—</p>
+            <p class="kpi-card__sub">Capital + intereses</p>
+          </div>
+          <div class="kpi-card kpi-card--success" role="listitem">
+            <p class="kpi-card__label">Pago mensual total</p>
+            <p class="kpi-card__value" id="kpi-monthly">—</p>
+            <p class="kpi-card__sub">Mínimos + extra</p>
+          </div>
+        </div>
+
+        <!-- COMPARADOR DE MÉTODOS -->
+        <div class="method-toggle" role="region" aria-label="Comparador de métodos de pago">
+          <p class="method-toggle__title">Elige tu estrategia de pago</p>
+          <div class="method-tabs" role="tablist" aria-label="Métodos de pago">
+            <button class="method-tab" role="tab" data-method="avalanche" aria-selected="false" id="tab-avalanche">🏔️ Avalancha</button>
+            <button class="method-tab active" role="tab" data-method="snowball" aria-selected="true" id="tab-snowball">⛄ Bola de Nieve</button>
+          </div>
+
+          <div class="method-detail" id="detail-avalanche" role="tabpanel" aria-labelledby="tab-avalanche">
+            <div class="method-detail__savings">
+              <span class="method-detail__savings-icon" aria-hidden="true">💰</span>
+              <p class="method-detail__savings-text" id="method-savings">Calculando ahorros...</p>
+            </div>
+            <div class="method-steps">
+              <div class="method-step"><span class="method-step__num" aria-hidden="true">1</span><p class="method-step__text">Paga el mínimo en <strong>todas</strong> tus deudas.</p></div>
+              <div class="method-step"><span class="method-step__num" aria-hidden="true">2</span><p class="method-step__text">Destina el dinero extra a la deuda con la <strong>tasa más alta</strong>.</p></div>
+              <div class="method-step"><span class="method-step__num" aria-hidden="true">3</span><p class="method-step__text">Al liquidarla, mueve ese pago a la siguiente de mayor tasa.</p></div>
+            </div>
+            <p class="body-sm" style="margin-top:var(--sp-4);">✅ Ahorra más dinero en intereses. Ideal si tienes disciplina financiera.</p>
+          </div>
+
+          <div class="method-detail active" id="detail-snowball" role="tabpanel" aria-labelledby="tab-snowball">
+            <div class="method-detail__savings">
+              <span class="method-detail__savings-icon" aria-hidden="true">🎯</span>
+              <p class="method-detail__savings-text" id="method-savings-sb">Calculando ahorros...</p>
+            </div>
+            <div class="method-steps">
+              <div class="method-step"><span class="method-step__num" aria-hidden="true">1</span><p class="method-step__text">Paga el mínimo en <strong>todas</strong> tus deudas.</p></div>
+              <div class="method-step"><span class="method-step__num" aria-hidden="true">2</span><p class="method-step__text">Destina el dinero extra a la deuda con el <strong>saldo más pequeño</strong>.</p></div>
+              <div class="method-step"><span class="method-step__num" aria-hidden="true">3</span><p class="method-step__text">Al liquidarla, mueve ese pago a la siguiente deuda más pequeña.</p></div>
+            </div>
+            <p class="body-sm" style="margin-top:var(--sp-4);">✅ Victorias rápidas. Ideal si necesitas motivación para mantener el plan.</p>
+          </div>
+
+          <!-- Orden de pago -->
+          <div style="margin-top:var(--sp-5);">
+            <p class="sim-panel__subtitle" style="margin-bottom:var(--sp-3);">Orden recomendado de pago:</p>
+            <div id="debt-order-list" class="order-list" aria-label="Orden de pago de deudas"></div>
+          </div>
+        </div>
+
+        <!-- GRÁFICO LÍNEA DE TIEMPO -->
+        <div class="chart-card">
+          <div class="chart-card__header">
+            <div>
+              <p class="chart-card__title">📈 Evolución de tu deuda total</p>
+              <p class="chart-card__subtitle">Comparación entre métodos mes a mes</p>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-timeline" role="img" aria-label="Gráfico de evolución de deuda"></canvas>
+          </div>
+        </div>
+
+        <!-- GRÁFICO DONA -->
+        <div class="chart-card">
+          <div class="chart-card__header">
+            <div>
+              <p class="chart-card__title">🍩 Distribución de tus deudas</p>
+              <p class="chart-card__subtitle">Porcentaje del saldo total por deuda</p>
+            </div>
+          </div>
+          <div class="chart-container" style="height:200px;">
+            <canvas id="chart-donut" role="img" aria-label="Gráfico de distribución de deudas"></canvas>
+          </div>
+        </div>
+
+        <!-- TABLA AMORTIZACIÓN -->
+        <div class="amort-section">
+          <button class="amort-toggle-btn" id="amort-toggle" type="button" aria-expanded="false" aria-controls="amort-body">
+            <span>📅 Ver tabla de amortización mes a mes</span>
+            <span class="amort-toggle-btn__icon" aria-hidden="true">▾</span>
+          </button>
+          <div class="amort-body" id="amort-body" role="region" aria-label="Tabla de amortización">
+            <table class="amort-table" aria-label="Tabla de pagos mensuales">
+              <thead>
+                <tr>
+                  <th scope="col">Periodo</th>
+                  <th scope="col">Interés</th>
+                  <th scope="col">Capital</th>
+                  <th scope="col">Saldo restante</th>
+                </tr>
+              </thead>
+              <tbody id="amort-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- AD SLOT 1 -->
+        <div class="ad-slot" role="complementary" aria-label="Espacio publicitario">
+          <!-- AdSense: ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXX" data-ad-slot="XXXXXX" data-ad-format="auto" -->
+        </div>
+
+        <!-- CTA EMAIL CAPTURE -->
+        <div class="cta-result" role="complementary" aria-label="Guardar plan de pago">
+          <h2 class="cta-result__title">¿Quieres guardar tu plan?</h2>
+          <p class="cta-result__subtitle">Recibe tu plan personalizado de pago de deudas directo en tu correo, gratis.</p>
+          <form class="cta-result__email" action="#" aria-label="Formulario de suscripción">
+            <input
+              class="cta-result__email-input"
+              type="email"
+              placeholder="tu@correo.com"
+              aria-label="Tu correo electrónico"
+              autocomplete="email"
+              required
+            />
+            <button type="submit" class="btn btn--white">Enviarme →</button>
+          </form>
+          <p style="font-size:var(--text-xs);opacity:0.6;margin-top:var(--sp-3);">Sin spam. Puedes cancelar cuando quieras.</p>
+        </div>
+
+      </div><!-- /results-container -->
+    </div><!-- /results-panel -->
+  </div><!-- /simulator-layout -->
+</section>
+
+<!-- AD SLOT 2: Entre herramienta y FAQs -->
+<div class="container">
+  <div class="ad-slot" role="complementary" aria-label="Espacio publicitario">
+    <!-- AdSense banner horizontal 728x90 -->
+  </div>
+</div>
+
+<!-- FAQs -->
+<section class="faq-section container" aria-labelledby="faq-title">
+  <div class="section-header">
+    <h2 class="heading-1" id="faq-title">Preguntas frecuentes</h2>
+    <p class="body-lg" style="max-width:500px;margin-inline:auto;">Todo lo que necesitas saber sobre el simulador y los métodos de pago de deudas.</p>
+  </div>
+  <div class="faq-list" role="list">
+    <div class="faq-item" role="listitem">
+      <button class="faq-item__question" aria-expanded="false">
+        ¿Qué es el método bola de nieve?
+        <i class="faq-item__icon" aria-hidden="true">+</i>
+      </button>
+      <div class="faq-item__answer">
+        <p class="faq-item__answer-inner">
+          El método bola de nieve consiste en pagar primero la deuda con el <strong>saldo más pequeño</strong>, independientemente de la tasa de interés. Al liquidarla, el pago mínimo que liberaste se suma al pago de la siguiente deuda, creando un efecto de "bola de nieve" que crece con el tiempo. Es ideal para personas que necesitan motivación y victorias rápidas.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-item__question" aria-expanded="false">
+        ¿Qué es el método avalancha y por qué ahorra más?
+        <i class="faq-item__icon" aria-hidden="true">+</i>
+      </button>
+      <div class="faq-item__answer">
+        <p class="faq-item__answer-inner">
+          El método avalancha prioriza la deuda con la <strong>tasa de interés más alta</strong>. Al atacar primero la deuda más costosa, pagas menos intereses en total y terminas antes. Matemáticamente es superior al bola de nieve, aunque las victorias iniciales tardan más en llegar.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-item__question" aria-expanded="false">
+        ¿Cuánto extra debo pagar para salir más rápido?
+        <i class="faq-item__icon" aria-hidden="true">+</i>
+      </button>
+      <div class="faq-item__answer">
+        <p class="faq-item__answer-inner">
+          Incluso <strong>$500 o $1,000 MXN adicionales</strong> al mes pueden reducir tu tiempo de liquidación en varios años y ahorrarte miles en intereses. Usa el campo "Pago extra mensual" en el simulador y ajusta la cantidad para ver el impacto en tiempo real.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-item__question" aria-expanded="false">
+        ¿Los datos que ingreso son seguros?
+        <i class="faq-item__icon" aria-hidden="true">+</i>
+      </button>
+      <div class="faq-item__answer">
+        <p class="faq-item__answer-inner">
+          Sí. <strong>Todos los cálculos ocurren en tu navegador</strong>. Tus datos nunca se envían a ningún servidor. No almacenamos ninguna información financiera tuya. Puedes usar el simulador con total confianza y privacidad.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-item__question" aria-expanded="false">
+        ¿Puedo usar el simulador para tarjetas de crédito?
+        <i class="faq-item__icon" aria-hidden="true">+</i>
+      </button>
+      <div class="faq-item__answer">
+        <p class="faq-item__answer-inner">
+          Sí. Ingresa el saldo actual de tu tarjeta, la tasa de interés anual (normalmente entre 36% y 80% en México), y el pago mínimo que te exige el banco. El simulador calculará exactamente cuánto pagarás si solo haces el mínimo, y cuánto ahorrarías pagando más.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENLAZADO INTERNO -->
+<section class="container" style="padding-block:var(--sp-12);" aria-labelledby="related-title">
+  <h2 class="heading-2" id="related-title" style="margin-bottom:var(--sp-6);text-align:center;">Aprende más sobre el pago de deudas</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--sp-4);">
+    <a href="../como-salir-de-deudas/" class="tool-card" style="text-decoration:none;">
+      <div class="tool-card__icon tool-card__icon--sage">📖</div>
+      <p class="tool-card__name">Cómo salir de deudas</p>
+      <p class="tool-card__description">Guía completa con estrategias probadas para eliminar tus deudas paso a paso.</p>
+      <span class="tool-card__arrow">Leer guía →</span>
+    </a>
+    <a href="../metodo-bola-de-nieve/" class="tool-card" style="text-decoration:none;">
+      <div class="tool-card__icon tool-card__icon--cream">⛄</div>
+      <p class="tool-card__name">Método Bola de Nieve</p>
+      <p class="tool-card__description">El método preferido por Dave Ramsey para mantener la motivación mientras pagas.</p>
+      <span class="tool-card__arrow">Aprender →</span>
+    </a>
+    <a href="../calculadora-intereses/" class="tool-card" style="text-decoration:none;">
+      <div class="tool-card__icon tool-card__icon--stone">🧮</div>
+      <p class="tool-card__name">Calculadora de Intereses</p>
+      <p class="tool-card__description">Calcula exactamente cuánto pagarás en intereses por cualquier préstamo.</p>
+      <span class="tool-card__arrow">Calcular →</span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
+          Dinari
+        </div>
+        <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Herramientas</p>
+        <ul class="footer__links">
+          <li><a href="../simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="../calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
+          <li><a href="../control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__links">
+          <li><a href="../privacidad/index.html" class="footer__link">Privacidad</a></li>
+          <li><a href="../cookies/index.html" class="footer__link">Cookies</a></li>
+          <li><a href="../terminos/index.html" class="footer__link">Términos</a></li>
+          <li><a href="../contacto/index.html" class="footer__link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
+      <p>Los cálculos son orientativos. Consulta con un asesor financiero.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+<script src="../js/simulator.js" defer></script>
+</body>
+</html>

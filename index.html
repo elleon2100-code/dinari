@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dinari — Organiza tus deudas y toma control de tus finanzas</title>
+<meta name="description" content="Herramientas gratuitas para calcular, organizar y eliminar tus deudas. Simulador de deudas, calculadoras financieras y guías en español. Sin registro.">
+<link rel="canonical" href="https://dinari.app/">
+<meta property="og:title" content="Dinari — Finanzas Personales en Español">
+<meta property="og:description" content="Herramientas gratuitas para organizar tus deudas y finanzas personales.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dinari.app/">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/landing.css">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"Dinari",
+  "url":"https://dinari.app",
+  "description":"Plataforma de herramientas financieras gratuitas en español",
+  "inLanguage":"es",
+  "potentialAction":{"@type":"SearchAction","target":"https://dinari.app/buscar?q={search_term_string}","query-input":"required name=search_term_string"}
+}
+</script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="/" class="navbar__logo" aria-label="Dinari - Inicio">
+        <span class="navbar__logo-mark" aria-hidden="true">D</span>
+        Dinari
+      </a>
+      <ul class="navbar__nav" role="list">
+        <li><a href="simulador-deudas/index.html" class="navbar__link">Simulador de Deudas</a></li>
+        <li><a href="calculadora-intereses/index.html" class="navbar__link">Calculadora</a></li>
+        <li><a href="como-salir-de-deudas/index.html" class="navbar__link">Guías</a></li>
+      </ul>
+      <div class="navbar__cta">
+        <a href="simulador-deudas/index.html" class="btn btn--sage btn--sm">Calcular mi deuda →</a>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+  <a href="simulador-deudas/index.html" class="mobile-menu__link">Simulador de Deudas</a>
+  <a href="calculadora-intereses/index.html" class="mobile-menu__link">Calculadora de Intereses</a>
+  <a href="como-salir-de-deudas/index.html" class="mobile-menu__link">Cómo salir de deudas</a>
+  <a href="simulador-deudas/index.html" class="btn btn--sage" style="margin-top:var(--sp-4);">Calcular mi deuda →</a>
+</div>
+</header>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__eyebrow" aria-label="Herramientas gratuitas">
+          ✦ Herramientas gratuitas · Sin registro
+        </div>
+        <h1 class="hero__title" id="hero-title">
+          Descubre cuándo serás <em>libre de deudas</em>
+        </h1>
+        <p class="hero__subtitle">
+          Ingresa tus deudas, elige cómo quieres pagarlas y obtén una fecha exacta de liquidación. Sin hojas de cálculo, sin registrarte, sin trampa.
+        </p>
+        <div class="hero__cta">
+          <a href="simulador-deudas/index.html" class="btn btn--sage btn--lg">
+            📊 Ver mi plan ahora
+          </a>
+          <a href="#herramientas" class="btn btn--outline btn--lg">
+            Ver todas las herramientas
+          </a>
+        </div>
+        <div class="hero__trust" aria-label="Garantías del servicio">
+          <span class="hero__trust-item">✅ 100% gratuito</span>
+          <span class="hero__trust-item">🔒 Tus datos no salen de tu celular</span>
+          <span class="hero__trust-item">📱 Hecho para móvil</span>
+        </div>
+      </div>
+
+      <!-- FLOATING CARDS -->
+      <div class="hero__visual" aria-hidden="true">
+        <div class="float-card float-card--1">
+          <p class="float-card__label">Deuda total</p>
+          <p class="float-card__value float-card__value--danger">$85,000</p>
+          <p class="float-card__sub">3 deudas activas</p>
+          <div class="float-card__bar">
+            <div class="float-card__bar-fill float-card__bar-fill--danger"></div>
+          </div>
+        </div>
+        <div class="float-card float-card--2">
+          <p class="float-card__label">Libre de deudas en</p>
+          <p class="float-card__value float-card__value--success">2 años</p>
+          <p class="float-card__sub">Con $1,500 extra/mes</p>
+          <div class="float-card__bar">
+            <div class="float-card__bar-fill float-card__bar-fill--success"></div>
+          </div>
+        </div>
+        <div class="float-card float-card--3">
+          <p class="float-card__label">Ahorro con Avalancha</p>
+          <p class="float-card__value float-card__value--success">$12,400</p>
+          <p class="float-card__sub">vs. pago mínimo solamente</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTADÍSTICAS -->
+<section class="stats-strip" aria-labelledby="stats-title">
+  <h2 id="stats-title" class="sr-only">Estadísticas de deuda en México</h2>
+  <div class="container">
+    <div class="stats-grid">
+      <div class="reveal">
+        <p class="stat__value">
+          <span data-counter="78" data-suffix="%">78%</span>
+        </p>
+        <p class="stat__label">de mexicanos tiene al menos una deuda activa hoy</p>
+      </div>
+      <div class="reveal reveal--delay-1">
+        <p class="stat__value">
+          <span data-counter="4.2" data-suffix="x">4.2x</span>
+        </p>
+        <p class="stat__label">más terminas pagando si solo abonás el mínimo cada mes</p>
+      </div>
+      <div class="reveal reveal--delay-2">
+        <p class="stat__value">
+          <span data-counter="3" data-suffix=" años">3 años</span>
+        </p>
+        <p class="stat__label">es lo que tarda en promedio salir de deudas con un plan real</p>
+      </div>
+      <div class="reveal reveal--delay-3">
+        <p class="stat__value">
+          <span data-counter="100" data-suffix="% gratis">100%</span>
+        </p>
+        <p class="stat__label">gratis. Sin registro, sin suscripción, sin letra chica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HERRAMIENTAS -->
+<section class="tools-section" id="herramientas" aria-labelledby="tools-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-header__eyebrow">
+        <span class="badge badge--sage">Herramientas</span>
+      </div>
+      <h2 class="section-header__title" id="tools-title">Las herramientas que nadie te enseñó a usar</h2>
+      <p class="section-header__subtitle">Calculadoras pensadas para entender tu dinero, no para impresionarte con jerga financiera.</p>
+    </div>
+
+    <div class="tools-grid">
+      <a href="simulador-deudas/index.html" class="tool-card tool-card--featured reveal" aria-label="Ir al Simulador Inteligente de Deudas">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div class="tool-card__icon tool-card__icon--sage">💳</div>
+          <span class="badge badge--sage tool-card__badge">⭐ Popular</span>
+        </div>
+        <p class="tool-card__name">Simulador Inteligente de Deudas</p>
+        <p class="tool-card__description">Ingresa todas tus deudas y descubre exactamente cuándo serás libre. Compara el método bola de nieve vs avalancha.</p>
+        <span class="tool-card__arrow">Usar ahora →</span>
+      </a>
+
+      <a href="calculadora-intereses/index.html" class="tool-card reveal reveal--delay-1" aria-label="Ir a la Calculadora de Intereses">
+        <div class="tool-card__icon tool-card__icon--cream">🧮</div>
+        <p class="tool-card__name">Calculadora de Intereses</p>
+        <p class="tool-card__description">Calcula el costo real de cualquier préstamo o crédito. Descubre cuánto pagas realmente de interés.</p>
+        <span class="tool-card__arrow">Calcular →</span>
+      </a>
+
+      <a href="control-gastos/index.html" class="tool-card reveal reveal--delay-2" aria-label="Ir al Control de Gastos">
+        <div class="tool-card__icon tool-card__icon--stone">📊</div>
+        <p class="tool-card__name">Control de Gastos</p>
+        <p class="tool-card__description">Registra y visualiza tus gastos mensuales. Identifica en segundos dónde se va tu dinero.</p>
+        <span class="tool-card__arrow">Comenzar →</span>
+      </a>
+
+      <a href="metodo-bola-de-nieve/index.html" class="tool-card reveal" aria-label="Aprender sobre el método bola de nieve">
+        <div class="tool-card__icon tool-card__icon--sage">⛄</div>
+        <p class="tool-card__name">Método Bola de Nieve</p>
+        <p class="tool-card__description">La estrategia favorita de Dave Ramsey. Pequeñas victorias que generan impulso para pagar todas tus deudas.</p>
+        <span class="tool-card__arrow">Aprender →</span>
+      </a>
+
+      <a href="como-salir-de-deudas/index.html" class="tool-card reveal reveal--delay-1" aria-label="Leer guía sobre cómo salir de deudas">
+        <div class="tool-card__icon tool-card__icon--cream">📖</div>
+        <p class="tool-card__name">Guía: Cómo salir de deudas</p>
+        <p class="tool-card__description">La guía definitiva con pasos concretos, estrategias probadas y errores que debes evitar al pagar deudas.</p>
+        <span class="tool-card__arrow">Leer guía →</span>
+      </a>
+
+      <div class="tool-card reveal reveal--delay-2" style="opacity:0.6;cursor:default;" aria-label="Asesor financiero, próximamente">
+        <div class="tool-card__icon tool-card__icon--stone">🤖</div>
+        <p class="tool-card__name">Asesor Financiero</p>
+        <p class="tool-card__description">Respuestas personalizadas a tus preguntas financieras. Diseñado para tu situación específica.</p>
+        <span class="badge badge--cream">Próximamente</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="howto-section" aria-labelledby="howto-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-header__eyebrow">
+        <span class="badge badge--cream">Simple</span>
+      </div>
+      <h2 class="section-header__title" id="howto-title">De cero a un plan real en 3 pasos</h2>
+      <p class="section-header__subtitle">No hace falta saber de finanzas. Solo tener los números a la mano.</p>
+    </div>
+    <div class="howto-steps">
+      <div class="howto-step reveal">
+        <div class="howto-step__number" aria-hidden="true">1</div>
+        <h3 class="howto-step__title">Agrega tus deudas</h3>
+        <p class="howto-step__text">El nombre, el saldo y la tasa de interés que te cobra el banco. Nada más.</p>
+      </div>
+      <div class="howto-step reveal reveal--delay-1">
+        <div class="howto-step__number" aria-hidden="true">2</div>
+        <h3 class="howto-step__title">Elige cómo atacarlas</h3>
+        <p class="howto-step__text">Bola de Nieve o Avalancha. El simulador te muestra el impacto de cada una en segundos.</p>
+      </div>
+      <div class="howto-step reveal reveal--delay-2">
+        <div class="howto-step__number" aria-hidden="true">3</div>
+        <h3 class="howto-step__title">Sigue el mapa</h3>
+        <p class="howto-step__text">Ves exactamente cuánto pagar cada mes y en qué fecha cierras tu última deuda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonials-section" aria-labelledby="testimonials-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-header__title" id="testimonials-title">Lo que la gente descubre al usarlo</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-card__stars" aria-label="5 estrellas">★★★★★</div>
+        <blockquote class="testimonial-card__quote">
+          "Por fin entiendo cuánto me cuestan mis tarjetas. El simulador me mostró que pagando $800 extra al mes, salgo de deudas 3 años antes. Increíble."
+        </blockquote>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar" aria-hidden="true">👩</div>
+          <div>
+            <p class="testimonial-card__name">Mariana R.</p>
+            <p class="testimonial-card__meta">Guadalajara · 2 tarjetas de crédito</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal--delay-1">
+        <div class="testimonial-card__stars" aria-label="5 estrellas">★★★★★</div>
+        <blockquote class="testimonial-card__quote">
+          "Tenía 4 deudas y no sabía por cuál empezar. El método avalancha me ahorró $18,000 en intereses. No lo hubiera calculado sin Dinari."
+        </blockquote>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar" aria-hidden="true">👨</div>
+          <div>
+            <p class="testimonial-card__name">Carlos M.</p>
+            <p class="testimonial-card__meta">CDMX · Préstamo + 3 tarjetas</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal--delay-2">
+        <div class="testimonial-card__stars" aria-label="5 estrellas">★★★★★</div>
+        <blockquote class="testimonial-card__quote">
+          "Súper fácil de usar. En 5 minutos tenía mi plan completo. Lo mejor es que corre en mi celular perfecto y no me pide nada."
+        </blockquote>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar" aria-hidden="true">👩</div>
+          <div>
+            <p class="testimonial-card__name">Sofía L.</p>
+            <p class="testimonial-card__meta">Monterrey · Freelancer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section container" aria-labelledby="cta-title">
+  <div class="cta-box reveal">
+    <h2 class="cta-box__title" id="cta-title">¿Cuándo será tu último pago?</h2>
+    <p class="cta-box__subtitle">Calcula tu plan en 2 minutos. Gratis, sin registro, sin anuncios que interrumpan.</p>
+    <div class="cta-box__actions">
+      <a href="simulador-deudas/index.html" class="btn btn--white btn--lg">
+        📊 Ver mi plan ahora
+      </a>
+      <a href="como-salir-de-deudas/index.html" class="btn btn--ghost btn--lg" style="color:rgba(255,255,255,0.8);">
+        Leer la guía →
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
+          Dinari
+        </div>
+        <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Herramientas</p>
+        <ul class="footer__links">
+          <li><a href="simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
+          <li><a href="control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__links">
+          <li><a href="privacidad/index.html" class="footer__link">Privacidad</a></li>
+          <li><a href="cookies/index.html" class="footer__link">Cookies</a></li>
+          <li><a href="terminos/index.html" class="footer__link">Términos</a></li>
+          <li><a href="contacto/index.html" class="footer__link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
+      <p>Los cálculos son orientativos. No constituyen asesoría financiera profesional.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

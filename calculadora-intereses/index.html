@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Intereses de Préstamos Gratis | Dinari</title>
+<meta name="description" content="Calcula exactamente cuánto pagarás de interés por tu préstamo, crédito hipotecario o personal. Simulador de tabla de amortización gratuito.">
+<link rel="canonical" href="https://dinari.app/calculadora-intereses/">
+<meta property="og:title" content="Calculadora de Intereses | Dinari">
+<meta property="og:description" content="Calcula el costo real de tu préstamo con nuestra calculadora de intereses y amortización.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dinari.app/calculadora-intereses/">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/simulator.css">
+<link rel="manifest" href="../manifest.json">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Inicio","item":"https://dinari.app/"},
+        {"@type":"ListItem","position":2,"name":"Calculadora de Intereses","item":"https://dinari.app/calculadora-intereses/"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "name":"Calculadora de Intereses",
+      "applicationCategory":"FinanceApplication",
+      "operatingSystem":"Web",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"MXN"},
+      "description":"Calcula cuotas mensuales, amortización y costo total de préstamos."
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"¿Qué es el interés compuesto en un préstamo?","acceptedAnswer":{"@type":"Answer","text":"Es cuando los intereses se calculan sobre el capital inicial más los intereses acumulados previamente. La mayoría de los préstamos bancarios (hipotecarios, personales, vehiculares) usan sistemas de amortización (como el francés) donde calculas el interés sobre el saldo insoluto restante."}},
+        {"@type":"Question","name":"¿Cuál es la diferencia entre tasa mensual y anual?","acceptedAnswer":{"@type":"Answer","text":"La tasa anual (CAT o TAE) indica el costo total del crédito en un año. Para saber cuánto interés se cobra cada mes, los bancos dividen esta tasa anual entre 12. Por ejemplo, una tasa anual del 24% equivale a un 2% mensual sobre el saldo restante."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="../" class="navbar__logo" aria-label="Dinari - Inicio">
+        <span class="navbar__logo-mark" aria-hidden="true">D</span>
+        Dinari
+      </a>
+      <ul class="navbar__nav" role="list">
+        <li><a href="../simulador-deudas/" class="navbar__link">Simulador</a></li>
+        <li><a href="../calculadora-intereses/" class="navbar__link" aria-current="page">Calculadora</a></li>
+        <li><a href="../como-salir-de-deudas/" class="navbar__link">Guías</a></li>
+      </ul>
+      <div class="navbar__cta">
+        <a href="../simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+  <a href="../" class="mobile-menu__link">Inicio</a>
+  <a href="../simulador-deudas/" class="mobile-menu__link">Simulador de Deudas</a>
+  <a href="../calculadora-intereses/" class="mobile-menu__link">Calculadora de Intereses</a>
+  <a href="../como-salir-de-deudas/" class="mobile-menu__link">Cómo salir de deudas</a>
+</div>
+</header>
+
+<!-- HERO -->
+<main id="main-content">
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container">
+    <nav class="page-hero__breadcrumb" aria-label="Ruta de navegación">
+      <a href="../">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <span>Calculadora de Intereses</span>
+    </nav>
+    <div class="page-hero__eyebrow">
+      <span class="badge badge--cream">🧮 Herramienta Financiera</span>
+    </div>
+    <h1 class="display-2 page-hero__title" id="page-title">
+      Calculadora de Préstamos
+    </h1>
+    <p class="body-lg page-hero__subtitle">
+      Descubre exactamente de cuánto será tu cuota mensual y cuánto terminarás pagando de interés por ese préstamo o crédito.
+    </p>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="container" aria-label="Herramienta calculadora">
+  <div class="simulator-layout">
+
+    <!-- PANEL IZQUIERDO: INPUTS -->
+    <aside aria-label="Formulario de cálculo">
+      <div class="sim-panel">
+        <div class="sim-panel__header" style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:var(--sp-4);">
+          <div>
+            <p class="sim-panel__title">Datos del Préstamo</p>
+            <p class="sim-panel__subtitle">Ingresa los detalles para generar la amortización.</p>
+          </div>
+          <div class="currency-selector-wrap">
+            <label for="currency-selector" class="sr-only">Moneda</label>
+            <select id="currency-selector" class="currency-selector" aria-label="Seleccionar moneda">
+              <option value="DOP">DOP (RD$)</option>
+              <option value="USD" selected>USD ($)</option>
+              <option value="MXN">MXN ($)</option>
+              <option value="COP">COP ($)</option>
+              <option value="ARS">ARS ($)</option>
+              <option value="CLP">CLP ($)</option>
+              <option value="PEN">PEN (S/)</option>
+              <option value="EUR">EUR (€)</option>
+            </select>
+          </div>
+        </div>
+        <div class="sim-panel__body">
+          
+          <div class="debt-card" style="animation:none;">
+            <div class="debt-card__grid">
+              
+              <!-- MONTO -->
+              <div class="field debt-card__grid--full">
+                <label class="field__label" for="calc-amount">Monto del préstamo</label>
+                <div class="field__prefix-wrap">
+                  <span class="field__prefix currency-symbol">$</span>
+                  <input
+                    class="field__input field__input--prefixed"
+                    type="number"
+                    id="calc-amount"
+                    placeholder="Ej. 50000"
+                    value="50000"
+                    min="1"
+                    inputmode="numeric"
+                  />
+                </div>
+              </div>
+
+              <!-- TASA ANUAL -->
+              <div class="field debt-card__grid--full">
+                <label class="field__label" for="calc-rate">Tasa de interés anual (%)</label>
+                <div class="slider-wrap">
+                  <div class="slider-row">
+                    <input
+                      type="range"
+                      class="slider"
+                      id="calc-rate"
+                      min="1"
+                      max="150"
+                      step="0.5"
+                      value="24"
+                    />
+                    <span class="slider__value" id="calc-rate-val">24%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PLAZO -->
+              <div class="field debt-card__grid--full">
+                <label class="field__label" for="calc-term">Plazo</label>
+                <div style="display:flex; gap:var(--sp-2);">
+                  <input
+                    class="field__input"
+                    type="number"
+                    id="calc-term"
+                    value="24"
+                    min="1"
+                    style="flex:1;"
+                    inputmode="numeric"
+                  />
+                  <select id="calc-term-type" class="field__input" style="flex:1;">
+                    <option value="months">Meses</option>
+                    <option value="years">Años</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div style="margin-top:var(--sp-4); padding:var(--sp-3); background-color:var(--sage-50); border-radius:var(--radius-sm); border:1px solid var(--sage-200);">
+            <p class="body-sm" style="color:var(--sage-700);">
+              <strong>💡 Sistema Francés:</strong> Esta calculadora utiliza el sistema de amortización francés (cuotas fijas mensuales), que es el estándar utilizado por bancos para préstamos personales, vehiculares e hipotecarios.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </aside>
+
+    <!-- PANEL DERECHO: RESULTADOS -->
+    <div class="results-panel" role="region" aria-label="Resultados del préstamo" aria-live="polite">
+      
+      <div id="results-container" style="display:flex; flex-direction:column; gap:var(--sp-6);">
+
+        <!-- KPIs -->
+        <div class="kpi-grid" role="list">
+          <div class="kpi-card kpi-card--sage" role="listitem">
+            <p class="kpi-card__label">Cuota mensual fija</p>
+            <p class="kpi-card__value kpi-card__value--sage" id="kpi-monthly-payment">—</p>
+            <p class="kpi-card__sub">Pago cada mes</p>
+          </div>
+          <div class="kpi-card kpi-card--danger" role="listitem">
+            <p class="kpi-card__label">Total de intereses</p>
+            <p class="kpi-card__value kpi-card__value--danger" id="kpi-total-interest">—</p>
+            <p class="kpi-card__sub">Costo de financiamiento</p>
+          </div>
+          <div class="kpi-card kpi-card--stone" role="listitem">
+            <p class="kpi-card__label">Total a pagar</p>
+            <p class="kpi-card__value" id="kpi-total-paid">—</p>
+            <p class="kpi-card__sub">Capital + Intereses</p>
+          </div>
+          <div class="kpi-card kpi-card--success" role="listitem">
+            <p class="kpi-card__label">Fecha de término</p>
+            <p class="kpi-card__value" id="kpi-payoff-date" style="font-size:1.25rem;">—</p>
+            <p class="kpi-card__sub">Fin de la deuda</p>
+          </div>
+        </div>
+
+        <!-- GRÁFICO DONA -->
+        <div class="chart-card">
+          <div class="chart-card__header">
+            <div>
+              <p class="chart-card__title">🍩 Composición del préstamo</p>
+              <p class="chart-card__subtitle">Proporción de capital prestado vs intereses</p>
+            </div>
+          </div>
+          <div class="chart-container" style="height:220px;">
+            <canvas id="chart-loan-donut" role="img" aria-label="Gráfico de composición del préstamo"></canvas>
+          </div>
+        </div>
+
+        <!-- TABLA AMORTIZACIÓN -->
+        <div class="amort-section">
+          <button class="amort-toggle-btn open" id="amort-toggle" type="button" aria-expanded="true" aria-controls="amort-body">
+            <span>📅 Ver tabla de amortización detallada</span>
+            <span class="amort-toggle-btn__icon" aria-hidden="true" style="transform:rotate(180deg);">▾</span>
+          </button>
+          <div class="amort-body open" id="amort-body" role="region" aria-label="Tabla de amortización">
+            <table class="amort-table" aria-label="Desglose mensual de pagos">
+              <thead>
+                <tr>
+                  <th scope="col">Mes</th>
+                  <th scope="col">Cuota</th>
+                  <th scope="col">Interés</th>
+                  <th scope="col">A Capital</th>
+                  <th scope="col">Saldo</th>
+                </tr>
+              </thead>
+              <tbody id="amort-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AD SLOT -->
+<div class="container" style="margin-top:var(--sp-8);">
+  <div class="ad-slot" role="complementary" aria-label="Espacio publicitario">
+    <!-- AdSense banner -->
+  </div>
+</div>
+
+<!-- FAQs -->
+<section class="faq-section container" aria-labelledby="faq-title">
+  <div class="section-header">
+    <h2 class="heading-1" id="faq-title">Preguntas frecuentes sobre préstamos</h2>
+  </div>
+  <div class="faq-list" role="list">
+    <div class="faq-item" role="listitem">
+      <button class="faq-item__question" aria-expanded="false">
+        ¿Cómo se calcula el pago mensual de un préstamo?
+        <i class="faq-item__icon" aria-hidden="true">+</i>
+      </button>
+      <div class="faq-item__answer">
+        <p class="faq-item__answer-inner">
+          Utilizamos el sistema de <strong>amortización francés</strong>. Consiste en una fórmula matemática que asegura que tu pago mensual (cuota) sea siempre fijo durante todo el plazo del crédito. Al principio, la mayor parte de tu cuota se va a pagar intereses, y al final, casi todo se va a reducir el capital prestado.
+        </p>
+      </div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-item__question" aria-expanded="false">
+        ¿Qué significa "Saldo" en la tabla de amortización?
+        <i class="faq-item__icon" aria-hidden="true">+</i>
+      </button>
+      <div class="faq-item__answer">
+        <p class="faq-item__answer-inner">
+          El <strong>saldo o saldo insoluto</strong> es la cantidad de dinero que aún le debes al banco, sin contar los intereses futuros. Si quisieras liquidar tu préstamo de golpe en el mes 12, esa es aproximadamente la cantidad que tendrías que pagar (sin contar posibles penalizaciones).
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENLAZADO INTERNO -->
+<section class="container" style="padding-block:var(--sp-12);" aria-labelledby="related-title">
+  <h2 class="heading-2" id="related-title" style="margin-bottom:var(--sp-6);text-align:center;">Otras herramientas</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--sp-4);">
+    <a href="../simulador-deudas/" class="tool-card" style="text-decoration:none;">
+      <div class="tool-card__icon tool-card__icon--sage">💳</div>
+      <p class="tool-card__name">Simulador de Deudas</p>
+      <p class="tool-card__description">Compara el método bola de nieve vs avalancha y ahorra dinero.</p>
+      <span class="tool-card__arrow">Usar simulador →</span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER (Se mantiene igual, se asume incluido en el sitio) -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
+          Dinari
+        </div>
+        <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Herramientas</p>
+        <ul class="footer__links">
+          <li><a href="../simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="../calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
+          <li><a href="../control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__links">
+          <li><a href="../privacidad/index.html" class="footer__link">Privacidad</a></li>
+          <li><a href="../cookies/index.html" class="footer__link">Cookies</a></li>
+          <li><a href="../terminos/index.html" class="footer__link">Términos</a></li>
+          <li><a href="../contacto/index.html" class="footer__link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
+      <p>Los cálculos son orientativos. Consulta con un asesor financiero.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+<script src="../js/calculator.js" defer></script>
+</body>
+</html>

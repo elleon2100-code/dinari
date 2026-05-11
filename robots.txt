@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Bloquear recursos internos
+Disallow: /drafts/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://dinari.app/sitemap.xml
