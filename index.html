@@ -41,7 +41,8 @@
         Dinari
       </a>
       <ul class="navbar__nav" role="list">
-        <li><a href="simulador-deudas/index.html" class="navbar__link">Simulador de Deudas</a></li>
+        <li><a href="simulador-deudas/index.html" class="navbar__link">Simulador</a></li>
+        <li><a href="simulador-pago-minimo/" class="navbar__link">Pago Mínimo</a></li>
         <li><a href="calculadora-intereses/index.html" class="navbar__link">Calculadora</a></li>
         <li><a href="guias/index.html" class="navbar__link">Guías</a></li>
       </ul>
@@ -56,6 +57,7 @@
 </nav>
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
   <a href="simulador-deudas/index.html" class="mobile-menu__link">Simulador de Deudas</a>
+  <a href="simulador-pago-minimo/" class="mobile-menu__link">Simulador de Pago Mínimo</a>
   <a href="calculadora-intereses/index.html" class="mobile-menu__link">Calculadora de Intereses</a>
   <a href="guias/index.html" class="mobile-menu__link">Guías</a>
   <a href="simulador-deudas/index.html" class="btn btn--sage" style="margin-top:var(--sp-4);">Calcular mi deuda →</a>
@@ -177,7 +179,17 @@
         <span class="tool-card__arrow">Usar ahora →</span>
       </a>
 
-      <a href="calculadora-intereses/index.html" class="tool-card reveal reveal--delay-1" aria-label="Ir a la Calculadora de Intereses">
+      <a href="simulador-pago-minimo/" class="tool-card reveal reveal--delay-1" aria-label="Ir al Simulador de Pago Mínimo">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div class="tool-card__icon" style="color:var(--danger); background:rgba(220,38,38,0.1);">💳</div>
+          <span class="badge" style="background:rgba(220,38,38,0.1);color:#dc2626;">¡Nuevo!</span>
+        </div>
+        <p class="tool-card__name">Simulador de Pago Mínimo</p>
+        <p class="tool-card__description">Descubre cuánto tiempo y dinero perderás si solo pagas el mínimo de tu tarjeta. Impactante y revelador.</p>
+        <span class="tool-card__arrow">Calcular →</span>
+      </a>
+
+      <a href="calculadora-intereses/index.html" class="tool-card reveal reveal--delay-2" aria-label="Ir a la Calculadora de Intereses">
         <div class="tool-card__icon tool-card__icon--cream">🧮</div>
         <p class="tool-card__name">Calculadora de Intereses</p>
         <p class="tool-card__description">Calcula el costo real de cualquier préstamo o crédito. Descubre cuánto pagas realmente de interés.</p>
@@ -328,6 +340,7 @@
         <p class="footer__heading">Herramientas</p>
         <ul class="footer__links">
           <li><a href="simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="simulador-pago-minimo/" class="footer__link">Simulador de Pago Mínimo</a></li>
           <li><a href="calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
           <li><a href="control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
         </ul>

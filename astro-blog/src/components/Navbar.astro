@@ -31,6 +31,13 @@ function isActive(path: string): boolean {
           </li>
           <li>
             <a
+              href="/simulador-pago-minimo/"
+              class="navbar__link"
+              aria-current={isActive('/simulador-pago-minimo') ? 'page' : undefined}
+            >Pago Mínimo</a>
+          </li>
+          <li>
+            <a
               href="/calculadora-intereses/"
               class="navbar__link"
               aria-current={isActive('/calculadora-intereses') ? 'page' : undefined}
@@ -63,6 +70,7 @@ function isActive(path: string): boolean {
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
     <a href="/" class="mobile-menu__link">Inicio</a>
     <a href="/simulador-deudas/" class="mobile-menu__link">Simulador de Deudas</a>
+    <a href="/simulador-pago-minimo/" class="mobile-menu__link">Simulador de Pago Mínimo</a>
     <a href="/calculadora-intereses/" class="mobile-menu__link">Calculadora de Intereses</a>
     <a href="/guias/" class="mobile-menu__link">Guías</a>
     <a href="/simulador-deudas/" class="btn btn--sage" style="margin-top:var(--sp-4);">Calcular mi deuda →</a>

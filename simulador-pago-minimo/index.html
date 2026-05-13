@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador de Pago Mínimo | Descubre cuánto pagarás realmente | Dinari</title>
+<meta name="description" content="Calcula cuánto tiempo tardarás en pagar tu deuda si solo haces el pago mínimo. Descubre cuánto dinero perderás en intereses y cómo salir antes.">
+<link rel="canonical" href="https://dinari.app/simulador-pago-minimo/">
+<meta property="og:title" content="Simulador de Pago Mínimo | Dinari">
+<meta property="og:description" content="Calcula cuánto tiempo tardarás en pagar tu deuda si solo haces el pago mínimo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dinari.app/simulador-pago-minimo/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="El verdadero costo del pago mínimo | Dinari">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/minimum-payment.css">
+<link rel="manifest" href="../manifest.json">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Inicio","item":"https://dinari.app/"},
+        {"@type":"ListItem","position":2,"name":"Simulador de Pago Mínimo","item":"https://dinari.app/simulador-pago-minimo/"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "name":"Simulador de Pago Mínimo de Tarjetas de Crédito",
+      "applicationCategory":"FinanceApplication",
+      "operatingSystem":"Web",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"DOP"},
+      "description":"Herramienta gratuita para calcular el costo real de hacer solo el pago mínimo en tarjetas de crédito."
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"¿Por qué el pago mínimo es tan peligroso?","acceptedAnswer":{"@type":"Answer","text":"El pago mínimo de una tarjeta de crédito suele ser apenas el 2% o 3% de tu deuda total, o un monto fijo muy bajo. Como el banco primero se cobra los intereses mensuales, tu deuda original baja una cantidad insignificante."}},
+        {"@type":"Question","name":"¿Cómo se calculan los intereses del pago mínimo?","acceptedAnswer":{"@type":"Answer","text":"Utilizamos la fórmula de amortización estándar para préstamos revolving. Multiplicamos el balance por la tasa de interés anual dividida en 12 meses. Lo que sobra de tu pago mínimo después de cubrir el interés es lo que reduce tu deuda."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="../" class="navbar__logo" aria-label="Dinari - Inicio">
+        <span class="navbar__logo-mark" aria-hidden="true">D</span>
+        Dinari
+      </a>
+      <ul class="navbar__nav" role="list">
+        <li><a href="../simulador-deudas/index.html" class="navbar__link">Simulador Deudas</a></li>
+        <li><a href="../simulador-pago-minimo/" class="navbar__link" aria-current="page">Pago Mínimo</a></li>
+        <li><a href="../calculadora-intereses/index.html" class="navbar__link">Calculadora</a></li>
+        <li><a href="../guias/index.html" class="navbar__link">Guías</a></li>
+      </ul>
+      <div class="navbar__cta">
+        <a href="../simulador-deudas/index.html" class="btn btn--sage btn--sm">Calcular mi deuda</a>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+  <a href="../" class="mobile-menu__link">Inicio</a>
+  <a href="../simulador-deudas/index.html" class="mobile-menu__link">Simulador de Deudas</a>
+  <a href="../simulador-pago-minimo/" class="mobile-menu__link">Simulador de Pago Mínimo</a>
+  <a href="../calculadora-intereses/index.html" class="mobile-menu__link">Calculadora de Intereses</a>
+  <a href="../guias/index.html" class="mobile-menu__link">Guías</a>
+</div>
+</header>
+
+<main class="minpay-page" id="main-content">
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container">
+    <nav class="page-hero__breadcrumb" aria-label="Ruta de navegación">
+      <a href="../">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <span>Pago Mínimo</span>
+    </nav>
+    <div class="page-hero__eyebrow">
+      <span class="badge badge--danger" style="background:rgba(220,38,38,0.1);color:#dc2626;">Herramienta Financiera</span>
+    </div>
+    <h1 class="display-2 page-hero__title" id="page-title">
+      Descubre cuánto tiempo te atrapará el pago mínimo
+    </h1>
+    <p class="body-lg page-hero__subtitle">
+      Calcula cuánto terminarás pagando realmente si solo haces el pago mínimo de tu tarjeta y descubre el costo real de tu deuda.
+    </p>
+  </div>
+</section>
+
+<section class="container" aria-label="Herramienta simulador de pago mínimo">
+  <div class="minpay-layout">
+
+    <!-- PANEL IZQUIERDO: INPUTS -->
+    <aside aria-label="Formulario del simulador">
+      <div class="sim-panel">
+        <div class="sim-panel__header" style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:var(--sp-4);">
+          <div>
+            <p class="sim-panel__title">Ingresa los datos</p>
+            <p class="sim-panel__subtitle">Simulación en tiempo real</p>
+          </div>
+          <div class="currency-selector-wrap">
+            <label for="mp-currency" class="sr-only">Moneda</label>
+            <select id="mp-currency" class="currency-selector" aria-label="Seleccionar moneda">
+              <option value="DOP">DOP (RD$)</option>
+              <option value="MXN">MXN ($)</option>
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="COP">COP ($)</option>
+            </select>
+          </div>
+        </div>
+        <div class="sim-panel__body">
+          
+          <div class="field">
+            <label class="field__label" for="mp-debt">Deuda actual de la tarjeta</label>
+            <div class="field__prefix-wrap">
+              <span class="field__prefix currency-symbol">$</span>
+              <input class="field__input field__input--prefixed" type="number" id="mp-debt" placeholder="100000" min="0" step="100" inputmode="numeric">
+            </div>
+          </div>
+
+          <div class="slider-wrap">
+            <label class="field__label" for="mp-rate-input">Tasa de interés anual (%)</label>
+            <div class="slider-row">
+              <input type="range" class="slider" id="mp-rate-slider" min="5" max="120" value="60" step="1" aria-label="Deslizar tasa de interés">
+              <input type="number" class="slider__value" id="mp-rate-input" value="60" min="5" max="120" aria-label="Tasa de interés numérico">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="mp-min-pay">Pago mínimo mensual</label>
+            <div class="field__prefix-wrap">
+              <span class="field__prefix currency-symbol">$</span>
+              <input class="field__input field__input--prefixed" type="number" id="mp-min-pay" placeholder="2500" min="0" step="100" inputmode="numeric">
+            </div>
+          </div>
+
+          <div class="field" style="margin-top:var(--sp-2);">
+            <label class="field__label" for="mp-alt-pay">
+              Pago alternativo (Opcional)
+              <span style="font-size:10px; opacity:0.6;">Para comparar</span>
+            </label>
+            <div class="field__prefix-wrap">
+              <span class="field__prefix currency-symbol">$</span>
+              <input class="field__input field__input--prefixed" type="number" id="mp-alt-pay" placeholder="Por ej: 5000" min="0" step="100" inputmode="numeric" style="border-color:var(--sage-300);">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </aside>
+
+    <!-- PANEL DERECHO: RESULTADOS -->
+    <div class="results-panel" role="region" aria-label="Resultados de la simulación" aria-live="polite">
+      
+      <!-- ESTADO VACÍO -->
+      <div class="results-empty" id="results-empty">
+        <span class="results-empty__icon" aria-hidden="true">💳</span>
+        <p class="results-empty__title">Completa los campos para ver tu realidad</p>
+        <p class="body-sm">Ingresa el monto de tu deuda, la tasa y tu pago mínimo para descubrir cuánto te tomará liquidarla.</p>
+      </div>
+
+      <!-- RESULTADOS ACTIVOS -->
+      <div id="results-container">
+        
+        <!-- KPIs Principales -->
+        <div class="kpi-grid">
+          <div class="kpi-card kpi-card--hero">
+            <p class="kpi-card__label">Tiempo atrapado pagando el mínimo</p>
+            <p class="kpi-card__value" id="kpi-time">—</p>
+            <p class="kpi-card__sub" id="kpi-date">—</p>
+          </div>
+          <div class="kpi-card kpi-card--danger">
+            <p class="kpi-card__label">Dinero regalado en intereses</p>
+            <p class="kpi-card__value kpi-card__value--danger" id="kpi-interest">—</p>
+            <p class="kpi-card__sub">Beneficio neto para el banco</p>
+          </div>
+          <div class="kpi-card">
+            <p class="kpi-card__label">Total que terminarás pagando</p>
+            <p class="kpi-card__value" id="kpi-total">—</p>
+            <p class="kpi-card__sub">Deuda original + Intereses</p>
+          </div>
+        </div>
+
+        <!-- Sección Psicológica -->
+        <div class="psy-section">
+          <h2 class="psy-title">¿A dónde se va realmente tu dinero?</h2>
+          <p class="psy-subtitle">En tu primer mes de pago, así se divide tu dinero:</p>
+          
+          <div class="psy-bar-container">
+            <div class="psy-bar">
+              <div class="psy-bar__interest" id="psy-bar-interest" style="width:0%"></div>
+              <div class="psy-bar__principal" id="psy-bar-principal" style="width:0%"></div>
+            </div>
+          </div>
+          
+          <div class="psy-legend">
+            <div class="psy-legend__item" style="border-bottom: 2px solid var(--danger);">
+              <span class="psy-legend__label"><span class="psy-legend__color psy-legend__color--danger"></span>Intereses del mes</span>
+              <span class="psy-legend__value" id="psy-interest-val">$0</span>
+              <span class="psy-legend__sub">Se esfuman. No bajan tu deuda.</span>
+            </div>
+            <div class="psy-legend__item" style="border-bottom: 2px solid var(--success);">
+              <span class="psy-legend__label"><span class="psy-legend__color psy-legend__color--success"></span>Abono a capital</span>
+              <span class="psy-legend__value" id="psy-principal-val">$0</span>
+              <span class="psy-legend__sub">Lo único que te acerca a la libertad.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Caja de Comparativa (Ahorro) -->
+        <div class="alt-pay-box" id="alt-pay-box" style="display:none;">
+          <p class="alt-pay-box__title"><span>💡</span> Si haces el Pago Alternativo:</p>
+          <div class="alt-pay-box__grid">
+            <div>
+              <p class="alt-kpi__val" id="alt-saved">$0</p>
+              <p class="alt-kpi__label">Ahorrarás en intereses</p>
+            </div>
+            <div>
+              <p class="alt-kpi__val" id="alt-time" style="color:var(--charcoal);">0 meses</p>
+              <p class="alt-kpi__label">Saldrás de deudas antes en</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ad Slot Post Resultados -->
+        <div class="ad-slot" role="complementary" aria-label="Espacio publicitario">
+          <!-- AdSense reserved slot -->
+        </div>
+
+        <!-- Gráficos -->
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:var(--sp-6);">
+          <div class="chart-card">
+            <div class="chart-card__header">
+              <p class="chart-card__title">Distribución de tu deuda</p>
+              <p class="chart-card__subtitle">Capital vs Intereses</p>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-doughnut" aria-label="Gráfico Dona de Intereses"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card__header">
+              <p class="chart-card__title">Tu deuda en el tiempo</p>
+              <p class="chart-card__subtitle">Proyección hasta saldar</p>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-timeline" aria-label="Gráfico de línea temporal"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabla Amortización -->
+        <div class="amort-section">
+          <button class="amort-toggle-btn" id="amort-toggle" type="button" aria-expanded="false" aria-controls="amort-body">
+            <span>📅 Ver tabla de amortización mes a mes</span>
+            <span class="amort-toggle-btn__icon" aria-hidden="true">▾</span>
+          </button>
+          <div class="amort-body" id="amort-body" role="region" aria-label="Tabla de amortización">
+            <table class="amort-table">
+              <thead>
+                <tr>
+                  <th scope="col">Periodo</th>
+                  <th scope="col">Pago</th>
+                  <th scope="col">Interés cobrado</th>
+                  <th scope="col">Abono real</th>
+                  <th scope="col">Balance restante</th>
+                </tr>
+              </thead>
+              <tbody id="amort-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- /results-container -->
+    </div><!-- /results-panel -->
+
+  </div><!-- /minpay-layout -->
+</section>
+
+<div class="container">
+  <div class="ad-slot" role="complementary" aria-label="Espacio publicitario" style="margin-block:var(--sp-8);">
+    <!-- Banner AdSense -->
+  </div>
+</div>
+
+<!-- CONTENIDO SEO -->
+<section class="container" style="max-width:800px; padding-bottom:var(--sp-12);">
+  
+  <article class="article-content">
+    <h2>¿Por qué el pago mínimo es tan peligroso?</h2>
+    <p>La trampa del pago mínimo es una de las más rentables para los bancos y las instituciones financieras. Cuando recibes tu estado de cuenta, el "Pago Mínimo" suele estar resaltado. Tu cerebro, al verlo, asume que es la cantidad recomendada para mantener tu cuenta en orden.</p>
+    <p>Sin embargo, el pago mínimo suele calcularse como apenas el <strong>2% al 5% de tu saldo total</strong>, o una pequeña tarifa fija. Esto genera un problema grave:</p>
+    <ul>
+      <li>El banco siempre se cobra los intereses del mes primero.</li>
+      <li>Al ser un pago tan bajo, casi todo tu dinero se va en cubrir esos intereses.</li>
+      <li>Tu deuda original (el dinero que realmente pediste prestado) apenas baja unos pocos pesos.</li>
+    </ul>
+
+    <h2>¿Qué pasa si aumentas tu pago mensual?</h2>
+    <p>Como habrás notado al usar el campo de "Pago alternativo" en el simulador, añadir una cantidad extra, aunque parezca pequeña, tiene un efecto desproporcionado a tu favor.</p>
+    <p>Al pagar más del mínimo, ese dinero extra va <strong>100% directo a reducir tu capital</strong> (la deuda raíz). Al bajar la deuda raíz, al mes siguiente el banco te cobrará intereses sobre un monto menor, lo que acelera dramáticamente tu salida de las deudas.</p>
+    
+    <div style="background-color:var(--sage-50); border:1px solid var(--sage-200); padding:var(--sp-6); border-radius:var(--radius-lg); margin-block:var(--sp-8);">
+      <h3 style="margin-top:0; color:var(--sage-900);">Da el siguiente paso hacia tu libertad</h3>
+      <p style="margin-bottom:var(--sp-4);">Si estás atrapado en el ciclo del pago mínimo, necesitas una estrategia real para salir. Aprende a priorizar y destruir tus deudas creando un plan personalizado.</p>
+      <a href="../simulador-deudas/" class="btn btn--sage">Crear un plan completo de pago →</a>
+    </div>
+
+    <h2>Preguntas frecuentes sobre la tarjeta de crédito</h2>
+    
+    <h3>¿Qué pasa si solo pago el mínimo?</h3>
+    <p>Mantienes tu tarjeta "al día" y evitas reportes negativos en el buró de crédito a corto plazo, pero terminas pagando tu compra varias veces debido a la acumulación de intereses, alargando tu deuda por años o incluso décadas.</p>
+    
+    <h3>¿Por qué mi deuda no baja aunque pago puntualmente?</h3>
+    <p>Esto se debe a las altas tasas de interés. Si la tasa anual es del 60% (un 5% mensual) y tu pago mínimo apenas cubre el 5.5% de tu deuda, casi todo tu dinero se esfuma en intereses. Revisa la gráfica de "A dónde se va tu dinero" en el simulador para verlo visualmente.</p>
+    
+    <h3>¿Debería consolidar mi deuda?</h3>
+    <p>Si la tasa de interés de tu tarjeta es muy alta y no puedes pagar más del mínimo, pedir un préstamo personal con una tasa significativamente más baja para liquidar la tarjeta puede ser una excelente decisión, siempre y cuando no vuelvas a usar la tarjeta de crédito.</p>
+
+  </article>
+</section>
+
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
+          Dinari
+        </div>
+        <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Herramientas</p>
+        <ul class="footer__links">
+          <li><a href="../simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="../simulador-pago-minimo/" class="footer__link">Simulador de Pago Mínimo</a></li>
+          <li><a href="../calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
+          <li><a href="../control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__links">
+          <li><a href="../privacidad/index.html" class="footer__link">Privacidad</a></li>
+          <li><a href="../cookies/index.html" class="footer__link">Cookies</a></li>
+          <li><a href="../terminos/index.html" class="footer__link">Términos</a></li>
+          <li><a href="../contacto/index.html" class="footer__link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
+      <p>Los cálculos son orientativos. Consulta con un asesor financiero.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+<script src="../js/minimum-payment.js" defer></script>
+</body>
+</html>
