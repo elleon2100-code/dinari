@@ -1,0 +1,277 @@
+{
+  "$ref": "#/definitions/guias",
+  "definitions": {
+    "guias": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 70
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "canonical": {
+          "type": "string",
+          "format": "uri"
+        },
+        "robots": {
+          "type": "string",
+          "default": "index, follow"
+        },
+        "ogTitle": {
+          "type": "string"
+        },
+        "ogDescription": {
+          "type": "string"
+        },
+        "ogType": {
+          "type": "string",
+          "enum": [
+            "article",
+            "website"
+          ],
+          "default": "article"
+        },
+        "ogImage": {
+          "type": "string",
+          "format": "uri"
+        },
+        "heroTitle": {
+          "type": "string"
+        },
+        "heroSubtitle": {
+          "type": "string"
+        },
+        "heroBadge": {
+          "type": "string",
+          "default": "Guía"
+        },
+        "heroColor": {
+          "type": "string",
+          "enum": [
+            "sage",
+            "charcoal",
+            "stone"
+          ],
+          "default": "sage"
+        },
+        "publishDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "updatedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "author": {
+          "type": "string",
+          "default": "Dinari"
+        },
+        "category": {
+          "type": "string",
+          "default": "Finanzas Personales"
+        },
+        "readTime": {
+          "type": "number"
+        },
+        "breadcrumbs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "schemaType": {
+          "type": "string",
+          "enum": [
+            "Article",
+            "HowTo",
+            "FAQPage",
+            "Article+FAQ"
+          ],
+          "default": "Article"
+        },
+        "faqItems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string"
+              },
+              "answer": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "question",
+              "answer"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "howToSteps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "sidebarCta": {
+          "type": "object",
+          "properties": {
+            "icon": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "desc": {
+              "type": "string"
+            },
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "href": {
+                    "type": "string"
+                  },
+                  "variant": {
+                    "type": "string",
+                    "enum": [
+                      "sage",
+                      "outline",
+                      "ghost"
+                    ],
+                    "default": "sage"
+                  }
+                },
+                "required": [
+                  "text",
+                  "href"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "icon",
+            "title",
+            "desc",
+            "links"
+          ],
+          "additionalProperties": false
+        },
+        "adSlots": {
+          "type": "object",
+          "properties": {
+            "afterIntro": {
+              "type": "string"
+            },
+            "midArticle": {
+              "type": "string"
+            },
+            "beforeConclusion": {
+              "type": "string"
+            },
+            "sidebar": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "relatedArticles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "href": {
+                "type": "string"
+              },
+              "badge": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "href"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "canonical",
+        "heroTitle",
+        "heroSubtitle",
+        "publishDate",
+        "breadcrumbs"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

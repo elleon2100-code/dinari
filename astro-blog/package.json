@@ -1,0 +1,19 @@
+{
+  "name": "dinari-blog",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Sistema de blog Markdown/MDX para Dinari",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "astro build && node scripts/deploy.mjs",
+    "deploy:preview": "astro build && node scripts/deploy.mjs --preview"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "astro": "^5.0.0"
+  }
+}

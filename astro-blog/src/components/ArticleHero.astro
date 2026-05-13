@@ -1,0 +1,74 @@
+---
+/**
+ * ArticleHero.astro — Hero section para artículos.
+ * Recibe datos desde el frontmatter a través del layout.
+ */
+interface Props {
+  badge:     string;
+  title:     string;
+  subtitle:  string;
+  color:     'sage' | 'charcoal' | 'stone';
+  breadcrumbs: Array<{ name: string; url: string }>;
+}
+
+const { badge, title, subtitle, color, breadcrumbs } = Astro.props;
+
+const bgMap = {
+  sage:     'var(--sage-700)',
+  charcoal: 'var(--charcoal)',
+  stone:    'var(--stone-600)',
+};
+
+const badgeBgMap = {
+  sage:     'rgba(255,255,255,0.1)',
+  charcoal: 'rgba(92,128,96,0.2)',
+  stone:    'rgba(255,255,255,0.1)',
+};
+
+const badgeColorMap = {
+  sage:     'var(--cream-100)',
+  charcoal: 'var(--sage-400)',
+  stone:    'var(--cream-100)',
+};
+---
+
+<section
+  class="article-hero"
+  style={`background-color:${bgMap[color]};`}
+  aria-labelledby="article-main-title"
+>
+  <div class="container">
+    <!-- Breadcrumbs -->
+    <nav
+      class="page-hero__breadcrumb"
+      aria-label="Ruta de navegación"
+      style="justify-content:center; color:rgba(255,255,255,0.7); margin-bottom:var(--sp-6);"
+    >
+      {breadcrumbs.map((crumb, i) => (
+        <>
+          {i > 0 && <span aria-hidden="true">›</span>}
+          {i < breadcrumbs.length - 1
+            ? <a href={crumb.url} style="color:inherit;">{crumb.name}</a>
+            : <span>{crumb.name}</span>
+          }
+        </>
+      ))}
+    </nav>
+
+    <!-- Badge -->
+    <span
+      class="article-hero__badge"
+      style={`background-color:${badgeBgMap[color]}; color:${badgeColorMap[color]};`}
+    >
+      {badge}
+    </span>
+
+    <!-- H1 -->
+    <h1 class="display-2 article-hero__title" id="article-main-title">
+      {title}
+    </h1>
+
+    <!-- Subtítulo -->
+    <p class="article-hero__subtitle">{subtitle}</p>
+  </div>
+</section>

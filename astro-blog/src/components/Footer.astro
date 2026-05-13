@@ -1,0 +1,49 @@
+---
+/**
+ * Footer.astro — Footer global de Dinari.
+ * Idéntico al HTML actual, con rutas absolutas.
+ */
+const year = new Date().getFullYear();
+---
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span
+            style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;"
+            aria-hidden="true">D</span>
+          Dinari
+        </div>
+        <p class="footer__description">
+          Herramientas financieras gratuitas para ayudarte a organizar tus deudas
+          y tomar control de tu dinero.
+        </p>
+      </div>
+
+      <div>
+        <p class="footer__heading">Herramientas</p>
+        <ul class="footer__links">
+          <li><a href="/simulador-deudas/" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="/calculadora-intereses/" class="footer__link">Calculadora de Intereses</a></li>
+          <li><a href="/control-gastos/" class="footer__link">Control de Gastos</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__links">
+          <li><a href="/privacidad/" class="footer__link">Privacidad</a></li>
+          <li><a href="/cookies/" class="footer__link">Cookies</a></li>
+          <li><a href="/terminos/" class="footer__link">Términos</a></li>
+          <li><a href="/contacto/" class="footer__link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; {year} Dinari. Todos los derechos reservados.</p>
+      <p>Los cálculos son orientativos. Consulta con un asesor financiero.</p>
+    </div>
+  </div>
+</footer>

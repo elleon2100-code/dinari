@@ -1,0 +1,87 @@
+---
+/**
+ * AdSlot.astro — Espacio publicitario para AdSense.
+ *
+ * Estado actual: PLACEHOLDER (sin publisher ID real).
+ * Cuando AdSense esté listo para activarse:
+ *  1. Reemplazar ADSENSE_PUBLISHER_ID en ArticleLayout.astro con tu ca-pub-XXXXXXXX
+ *  2. Pasar el slotId real en el frontmatter de cada artículo (campo adSlots)
+ *  3. Cambiar ADSENSE_ACTIVE = true en este componente
+ *
+ * Uso en MDX:
+ *   <AdSlot position="mid-article" slotId="1234567890" />
+ *
+ * Uso en Layout (automático desde frontmatter):
+ *   <AdSlot position="after-intro" slotId={adSlots?.afterIntro} />
+ */
+
+// ─── CONFIGURACIÓN GLOBAL DE ADSENSE ────────────────────────────────────────
+// Cambiar a true cuando el publisher ID esté configurado en ArticleLayout.astro
+const ADSENSE_ACTIVE = false;
+// ────────────────────────────────────────────────────────────────────────────
+
+interface Props {
+  position?: 'after-intro' | 'mid-article' | 'before-conclusion' | 'sidebar' | string;
+  slotId?:   string;
+  format?:   'auto' | 'rectangle' | 'horizontal' | 'vertical';
+  label?:    string;
+}
+
+const {
+  position = 'mid-article',
+  slotId,
+  format   = 'auto',
+  label    = 'Publicidad',
+} = Astro.props;
+
+const isLive = ADSENSE_ACTIVE && !!slotId && slotId !== 'REPLACE_WITH_SLOT_ID';
+---
+
+{isLive ? (
+  <!-- AdSense activo -->
+  <div class="ad-slot ad-slot--live" aria-label={label} data-ad-position={position}>
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-REPLACE_WITH_PUBLISHER_ID"
+      data-ad-slot={slotId}
+      data-ad-format={format}
+      data-full-width-responsive="true"
+    ></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+) : (
+  <!-- Placeholder (modo desarrollo / AdSense no activado) -->
+  <div
+    class="ad-slot ad-slot--placeholder"
+    aria-label={label}
+    data-ad-position={position}
+    role="complementary"
+  >
+    <small>
+      📢 Espacio publicitario
+      {slotId && slotId !== 'REPLACE_WITH_SLOT_ID'
+        ? ` · Slot: ${slotId}`
+        : ` · ${position}`
+      }
+    </small>
+  </div>
+)}
+
+<style>
+  .ad-slot--placeholder {
+    border-style: dashed;
+    cursor: default;
+  }
+  .ad-slot--placeholder small {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--stone-400);
+  }
+  .ad-slot--live {
+    border: none;
+    background: transparent;
+    min-height: 0;
+  }
+</style>

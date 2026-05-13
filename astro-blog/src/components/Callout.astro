@@ -1,0 +1,34 @@
+---
+/**
+ * Callout.astro — Bloque destacado de contenido.
+ *
+ * Tipos:
+ *  - tip     → borde sage (💡 Consejos, pasos, info positiva)
+ *  - warning → borde warning (⚠️ Advertencias moderadas)
+ *  - danger  → borde danger (🚨 Errores críticos, alertas urgentes)
+ *  - info    → borde info (ℹ️ Información neutral)
+ *
+ * Uso en MDX:
+ *   <Callout type="tip" title="💡 Los 4 pasos:">
+ *     Contenido...
+ *   </Callout>
+ */
+interface Props {
+  type?:  'tip' | 'warning' | 'danger' | 'info';
+  title?: string;
+}
+
+const { type = 'tip', title } = Astro.props;
+
+const styleMap = {
+  tip:     'border-left-color: var(--sage-500);  background-color: var(--cream-100);',
+  warning: 'border-left-color: var(--warning);   background-color: var(--warning-light);',
+  danger:  'border-left-color: var(--danger);    background-color: var(--danger-light);',
+  info:    'border-left-color: var(--info);      background-color: var(--info-light);',
+};
+---
+
+<div class="article-callout" style={styleMap[type]}>
+  {title && <p class="article-callout__title">{title}</p>}
+  <slot />
+</div>

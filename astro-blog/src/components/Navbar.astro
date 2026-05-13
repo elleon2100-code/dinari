@@ -1,0 +1,70 @@
+---
+/**
+ * Navbar.astro — Navbar global de Dinari.
+ * Idéntico al HTML actual. Usa rutas absolutas para funcionar
+ * desde cualquier profundidad de URL.
+ */
+interface Props {
+  currentPath?: string; // e.g. '/metodo-bola-de-nieve/'
+}
+const { currentPath = '' } = Astro.props;
+
+function isActive(path: string): boolean {
+  return currentPath.startsWith(path);
+}
+---
+<header>
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="/" class="navbar__logo" aria-label="Dinari - Inicio">
+          <span class="navbar__logo-mark" aria-hidden="true">D</span>
+          Dinari
+        </a>
+        <ul class="navbar__nav" role="list">
+          <li>
+            <a
+              href="/simulador-deudas/"
+              class="navbar__link"
+              aria-current={isActive('/simulador-deudas') ? 'page' : undefined}
+            >Simulador</a>
+          </li>
+          <li>
+            <a
+              href="/calculadora-intereses/"
+              class="navbar__link"
+              aria-current={isActive('/calculadora-intereses') ? 'page' : undefined}
+            >Calculadora</a>
+          </li>
+          <li>
+            <a
+              href="/guias/"
+              class="navbar__link"
+              aria-current={isActive('/guias') ? 'page' : undefined}
+            >Guías</a>
+          </li>
+        </ul>
+        <div class="navbar__cta">
+          <a href="/simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a>
+          <button
+            class="navbar__toggle"
+            id="nav-toggle"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+    <a href="/" class="mobile-menu__link">Inicio</a>
+    <a href="/simulador-deudas/" class="mobile-menu__link">Simulador de Deudas</a>
+    <a href="/calculadora-intereses/" class="mobile-menu__link">Calculadora de Intereses</a>
+    <a href="/guias/" class="mobile-menu__link">Guías</a>
+    <a href="/simulador-deudas/" class="btn btn--sage" style="margin-top:var(--sp-4);">Calcular mi deuda →</a>
+  </div>
+</header>

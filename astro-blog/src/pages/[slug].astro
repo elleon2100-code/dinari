@@ -1,0 +1,36 @@
+---
+/**
+ * [slug].astro — Ruta dinámica que genera una página HTML estática
+ * por cada artículo en src/content/guias/.
+ *
+ * Output: dist/[slug]/index.html
+ * Ejemplo: dist/metodo-bola-de-nieve/index.html
+ *
+ * Para agregar un artículo nuevo:
+ *  1. Crear src/content/guias/mi-articulo.mdx
+ *  2. Llenar el frontmatter completo (ver content/config.ts)
+ *  3. npm run build → genera la ruta automáticamente
+ *  4. Agregar el slug en scripts/deploy.mjs → ARTICLE_SLUGS
+ *  5. npm run deploy → copia a la raíz de Dinari
+ */
+
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('guias');
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props:  { article },
+  }));
+}
+
+const { article }      = Astro.props;
+const { Content }      = await render(article);
+const slug             = article.id;
+const frontmatter      = article.data;
+---
+
+<ArticleLayout frontmatter={frontmatter} slug={slug}>
+  <Content />
+</ArticleLayout>

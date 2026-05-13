@@ -1,0 +1,60 @@
+---
+/**
+ * Sidebar.astro — CTA lateral sticky de artículos.
+ *
+ * Uso en MDX (automático desde frontmatter.sidebarCta).
+ * También se puede usar directamente:
+ *
+ *   <Sidebar
+ *     icon="💳"
+ *     title="¿Cuál método te conviene?"
+ *     desc="El simulador compara ambos con tus deudas reales."
+ *     links={[{ text: 'Ver mi comparativa', href: '/simulador-deudas/', variant: 'sage' }]}
+ *   />
+ */
+interface SidebarLink {
+  text:    string;
+  href:    string;
+  variant: 'sage' | 'outline' | 'ghost';
+}
+
+interface Props {
+  icon?:  string;
+  title:  string;
+  desc:   string;
+  links:  SidebarLink[];
+  adSlotId?: string; // para AdSense sidebar (futuro)
+}
+
+const { icon = '💡', title, desc, links, adSlotId } = Astro.props;
+---
+
+<aside role="complementary">
+  <div class="sidebar-cta">
+    {icon && <div class="sidebar-cta__icon">{icon}</div>}
+    <h3 class="sidebar-cta__title">{title}</h3>
+    <p class="sidebar-cta__desc">{desc}</p>
+
+    {links.map((link) => (
+      <a
+        href={link.href}
+        class={`btn btn--${link.variant}`}
+        style="width:100%; margin-bottom:var(--sp-2);"
+      >
+        {link.text}
+      </a>
+    ))}
+  </div>
+
+  {adSlotId && (
+    <div style="margin-top: var(--sp-6);">
+      <!-- AdSense sidebar slot — activar cuando publisher ID esté listo -->
+      <!-- <AdSlot position="sidebar" slotId={adSlotId} /> -->
+      <div class="ad-slot" style="min-height:250px; margin-top:var(--sp-6);" aria-label="Publicidad sidebar">
+        <small style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--stone-400);">
+          Publicidad
+        </small>
+      </div>
+    </div>
+  )}
+</aside>

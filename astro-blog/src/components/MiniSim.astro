@@ -1,0 +1,225 @@
+---
+/**
+ * MiniSim.astro — Mini simulador interactivo Bola de Nieve vs Avalancha.
+ *
+ * Componente reutilizable de alta interactividad.
+ * Conecta el contenido editorial con la herramienta real del simulador.
+ *
+ * Objetivos:
+ *  - Aumentar engagement y tiempo en página
+ *  - Mostrar el valor diferencial de Dinari vs artículos financieros estáticos
+ *  - Crear puente natural hacia el simulador completo
+ *
+ * Uso en MDX:
+ *   <MiniSim />
+ *   <MiniSim title="Compara tus deudas ahora" showAvalancheLink={true} />
+ */
+interface Props {
+  title?:             string;
+  subtitle?:          string;
+  showAvalancheLink?: boolean;
+  showSimulatorCta?:  boolean;
+}
+
+const {
+  title             = 'Compara tus dos deudas ahora',
+  subtitle          = 'Pon un saldo y una tasa en cada deuda y el método te dirá cuál atacar primero.',
+  showAvalancheLink = true,
+  showSimulatorCta  = true,
+} = Astro.props;
+
+// ID único por instancia para soportar múltiples MiniSim en la misma página
+const uid = `ms-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class="mini-sim" data-mini-sim={uid}>
+  <h3 class="mini-sim__header" style="margin-top:0;">{title}</h3>
+  <p class="body-sm" style="text-align:center; margin-bottom:var(--sp-6);">
+    {subtitle}
+  </p>
+
+  <!-- Deuda A -->
+  <div class="mini-sim__row">
+    <div class="field" style="flex:1; margin-bottom:0;">
+      <label class="field__label" for={`${uid}-debt1-bal`}>Deuda A (Saldo)</label>
+      <div class="field__prefix-wrap">
+        <span class="field__prefix">$</span>
+        <input
+          class="field__input field__input--prefixed"
+          type="number"
+          id={`${uid}-debt1-bal`}
+          value="5000"
+          min="0"
+          inputmode="numeric"
+        />
+      </div>
+    </div>
+    <div class="field" style="flex:1; margin-bottom:0;">
+      <label class="field__label" for={`${uid}-debt1-rate`}>Interés A (%)</label>
+      <input
+        class="field__input"
+        type="number"
+        id={`${uid}-debt1-rate`}
+        value="15"
+        min="0"
+        max="999"
+        step="0.5"
+        inputmode="decimal"
+      />
+    </div>
+  </div>
+
+  <!-- Deuda B -->
+  <div class="mini-sim__row">
+    <div class="field" style="flex:1; margin-bottom:0;">
+      <label class="field__label" for={`${uid}-debt2-bal`}>Deuda B (Saldo)</label>
+      <div class="field__prefix-wrap">
+        <span class="field__prefix">$</span>
+        <input
+          class="field__input field__input--prefixed"
+          type="number"
+          id={`${uid}-debt2-bal`}
+          value="12000"
+          min="0"
+          inputmode="numeric"
+        />
+      </div>
+    </div>
+    <div class="field" style="flex:1; margin-bottom:0;">
+      <label class="field__label" for={`${uid}-debt2-rate`}>Interés B (%)</label>
+      <input
+        class="field__input"
+        type="number"
+        id={`${uid}-debt2-rate`}
+        value="48"
+        min="0"
+        max="999"
+        step="0.5"
+        inputmode="decimal"
+      />
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="btn btn--sage"
+    style="width:100%; margin-top:var(--sp-4);"
+    data-mini-sim-btn={uid}
+  >
+    Analizar →
+  </button>
+
+  <div
+    id={`${uid}-result`}
+    class="mini-sim__result"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+  {showSimulatorCta && (
+    <p class="body-sm" style="text-align:center; margin-top:var(--sp-4); margin-bottom:0;">
+      ¿Tienes más de 2 deudas?
+      <a href="/simulador-deudas/" style="color:var(--sage-600); font-weight:600; text-decoration:underline;">
+        Usa el simulador completo →
+      </a>
+    </p>
+  )}
+</div>
+
+<script>
+  /**
+   * MiniSim: lógica cliente del mini simulador.
+   * Soporta múltiples instancias en la misma página.
+   */
+  document.querySelectorAll<HTMLElement>('[data-mini-sim]').forEach((container) => {
+    const uid = container.dataset.miniSim!;
+    const btn = document.querySelector<HTMLButtonElement>(`[data-mini-sim-btn="${uid}"]`);
+    const res = document.getElementById(`${uid}-result`);
+    if (!btn || !res) return;
+
+    btn.addEventListener('click', () => {
+      const bal1  = parseFloat((document.getElementById(`${uid}-debt1-bal`)  as HTMLInputElement)?.value) || 0;
+      const rate1 = parseFloat((document.getElementById(`${uid}-debt1-rate`) as HTMLInputElement)?.value) || 0;
+      const bal2  = parseFloat((document.getElementById(`${uid}-debt2-bal`)  as HTMLInputElement)?.value) || 0;
+      const rate2 = parseFloat((document.getElementById(`${uid}-debt2-rate`) as HTMLInputElement)?.value) || 0;
+
+      if (bal1 <= 0 || bal2 <= 0) {
+        res.innerHTML = '⚠️ Ingresa saldos mayores a cero en ambas deudas.';
+        res.style.display = 'block';
+        return;
+      }
+
+      // ── Bola de Nieve (menor saldo primero)
+      const snowballTarget = bal1 <= bal2 ? 'A' : 'B';
+      // ── Avalancha (mayor tasa primero)
+      const avalancheTarget = rate1 >= rate2 ? 'A' : 'B';
+
+      const formatMoney = (n: number) =>
+        n.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
+
+      let html = `<strong>⛄ Bola de Nieve</strong>: ataca primero la Deuda <strong>${snowballTarget}</strong>
+        (saldo más bajo: ${formatMoney(snowballTarget === 'A' ? bal1 : bal2)}).`;
+
+      if (snowballTarget !== avalancheTarget) {
+        html += `<br><br><span style="font-size:0.875em; color:var(--charcoal-soft);">
+          📉 <strong>Avalancha</strong>: atacaría primero la Deuda ${avalancheTarget}
+          (interés más alto: ${avalancheTarget === 'A' ? rate1 : rate2}% anual).
+          Eso te ahorraría más dinero en intereses, pero puede ser más difícil de sostener.
+        </span>`;
+      } else {
+        html += `<br><br><span style="font-size:0.875em; color:var(--charcoal-soft);">
+          ✅ La Avalancha coincide: la Deuda ${snowballTarget} también tiene la tasa más alta.
+          Ambos métodos apuntan al mismo objetivo — ¡ideal para empezar!
+        </span>`;
+      }
+
+      res.innerHTML = html;
+      res.style.display = 'block';
+    });
+  });
+</script>
+
+<style>
+  /* Estilos de campo no incluidos en article.css */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-4);
+  }
+  .field__label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--charcoal-soft);
+  }
+  .field__input {
+    width: 100%;
+    padding: var(--sp-3) var(--sp-4);
+    border: 1.5px solid var(--cream-300);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    color: var(--charcoal);
+    font-size: var(--text-base);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .field__input:focus {
+    outline: none;
+    border-color: var(--sage-500);
+    box-shadow: 0 0 0 3px rgba(122,158,126,0.15);
+  }
+  .field__prefix-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .field__prefix {
+    position: absolute;
+    left: var(--sp-3);
+    font-weight: 600;
+    color: var(--stone-500);
+    pointer-events: none;
+  }
+  .field__input--prefixed {
+    padding-left: calc(var(--sp-3) + 1ch + var(--sp-2));
+  }
+</style>

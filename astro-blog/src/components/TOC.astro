@@ -1,0 +1,67 @@
+---
+/**
+ * TOC.astro — Tabla de contenidos para artículos largos.
+ *
+ * Uso en MDX:
+ *   <TOC items={[
+ *     { href: '#paso-1', text: 'Paso 1: El número real' },
+ *     { href: '#paso-2', text: 'Paso 2: Para el sangrado' },
+ *   ]} />
+ */
+interface TocItem {
+  href:  string;
+  text:  string;
+}
+
+interface Props {
+  title?: string;
+  items:  TocItem[];
+}
+
+const { title = 'En esta guía', items } = Astro.props;
+---
+
+<nav class="toc" aria-label="Tabla de contenidos">
+  <p class="toc__title">{title}</p>
+  <ol class="toc__list">
+    {items.map((item) => (
+      <li class="toc__item">
+        <a href={item.href} class="toc__link">{item.text}</a>
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .toc {
+    background: var(--cream-200);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-6);
+    margin-block: var(--sp-8);
+  }
+  .toc__title {
+    font-weight: 700;
+    font-size: var(--text-base);
+    color: var(--charcoal);
+    margin-bottom: var(--sp-4);
+  }
+  .toc__list {
+    list-style: decimal;
+    padding-left: var(--sp-6);
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  .toc__link {
+    color: var(--sage-700);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .toc__link:hover {
+    color: var(--sage-600);
+    text-decoration: underline;
+  }
+</style>
