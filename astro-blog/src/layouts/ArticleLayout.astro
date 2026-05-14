@@ -50,10 +50,7 @@ const {
 } = frontmatter;
 
 // ── ADSENSE ────────────────────────────────────────────────────────────────
-// Cuando tu publisher ID esté listo:
-//  1. Reemplaza el string vacío con: 'ca-pub-XXXXXXXXXXXXXXXXX'
-//  2. Cambia ADSENSE_ACTIVE a true en AdSlot.astro
-const ADSENSE_PUBLISHER_ID = ''; // TODO: 'ca-pub-XXXXXXXXXXXXXXXXX'
+const ADSENSE_PUBLISHER_ID = 'ca-pub-3422421858882439';
 
 // ── SCHEMA.ORG JSON-LD ─────────────────────────────────────────────────────
 const schemaGraph: object[] = [];
@@ -122,6 +119,11 @@ const currentPath = `/${slug}/`;
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script
+    async
+    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUBLISHER_ID}`}
+    crossorigin="anonymous"
+  ></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -163,15 +165,6 @@ const currentPath = `/${slug}/`;
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json" set:html={jsonLd} />
-
-  <!-- AdSense script (inactivo — activar cuando publisher ID esté listo) -->
-  {ADSENSE_PUBLISHER_ID && (
-    <script
-      async
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUBLISHER_ID}`}
-      crossorigin="anonymous"
-    ></script>
-  )}
 </head>
 
 <body>
