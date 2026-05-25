@@ -35,7 +35,13 @@ const guias = defineCollection({
     publishDate:  z.coerce.date(),
     updatedDate:  z.coerce.date().optional(),
     author:       z.string().default('Dinari'),
-    category:     z.string().default('Finanzas Personales'),
+    category:     z.enum([
+      'Tarjetas de crédito y pago mínimo',
+      'Métodos para salir de deudas',
+      'Score crediticio',
+      'Finanzas personales reales',
+      'Psicología financiera'
+    ]).default('Finanzas personales reales'),
     readTime:     z.number().optional(), // minutos
 
     // ── Breadcrumbs ─────────────────────────────────────────────────────────

@@ -95,7 +95,14 @@
         },
         "category": {
           "type": "string",
-          "default": "Finanzas Personales"
+          "enum": [
+            "Tarjetas de crédito y pago mínimo",
+            "Métodos para salir de deudas",
+            "Score crediticio",
+            "Finanzas personales reales",
+            "Psicología financiera"
+          ],
+          "default": "Finanzas personales reales"
         },
         "readTime": {
           "type": "number"
