@@ -1,16 +1,17 @@
 
 export default new Map([
-["src/content/guias/consolidar-deudas.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fconsolidar-deudas.mdx&astroContentModuleFlag=true")],
 ["src/content/guias/como-salir-de-deudas.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fcomo-salir-de-deudas.mdx&astroContentModuleFlag=true")],
+["src/content/guias/cancelar-tarjeta-de-credito.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fcancelar-tarjeta-de-credito.mdx&astroContentModuleFlag=true")],
+["src/content/guias/consolidar-deudas.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fconsolidar-deudas.mdx&astroContentModuleFlag=true")],
 ["src/content/guias/crear-un-presupuesto.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fcrear-un-presupuesto.mdx&astroContentModuleFlag=true")],
 ["src/content/guias/fondo-de-emergencia.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Ffondo-de-emergencia.mdx&astroContentModuleFlag=true")],
-["src/content/guias/el-peligro-del-pago-minimo.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fel-peligro-del-pago-minimo.mdx&astroContentModuleFlag=true")],
-["src/content/guias/cancelar-tarjeta-de-credito.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fcancelar-tarjeta-de-credito.mdx&astroContentModuleFlag=true")],
-["src/content/guias/interes-compuesto-en-contra.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Finteres-compuesto-en-contra.mdx&astroContentModuleFlag=true")],
-["src/content/guias/metodo-bola-de-nieve.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fmetodo-bola-de-nieve.mdx&astroContentModuleFlag=true")],
-["src/content/guias/hoja-de-ruta-financiera.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fhoja-de-ruta-financiera.mdx&astroContentModuleFlag=true")],
 ["src/content/guias/endeudamiento-emocional.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fendeudamiento-emocional.mdx&astroContentModuleFlag=true")],
-["src/content/guias/sesgos-psicologicos-bancos.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fsesgos-psicologicos-bancos.mdx&astroContentModuleFlag=true")],
+["src/content/guias/el-peligro-del-pago-minimo.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fel-peligro-del-pago-minimo.mdx&astroContentModuleFlag=true")],
+["src/content/guias/hoja-de-ruta-financiera.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fhoja-de-ruta-financiera.mdx&astroContentModuleFlag=true")],
+["src/content/guias/gastos-hormiga.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fgastos-hormiga.mdx&astroContentModuleFlag=true")],
+["src/content/guias/interes-compuesto-en-contra.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Finteres-compuesto-en-contra.mdx&astroContentModuleFlag=true")],
+["src/content/guias/por-que-baja-mi-score-crediticio.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fpor-que-baja-mi-score-crediticio.mdx&astroContentModuleFlag=true")],
+["src/content/guias/metodo-bola-de-nieve.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fmetodo-bola-de-nieve.mdx&astroContentModuleFlag=true")],
 ["src/content/guias/retiro-tardio.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fretiro-tardio.mdx&astroContentModuleFlag=true")],
-["src/content/guias/por-que-baja-mi-score-crediticio.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fpor-que-baja-mi-score-crediticio.mdx&astroContentModuleFlag=true")]]);
+["src/content/guias/sesgos-psicologicos-bancos.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fguias%2Fsesgos-psicologicos-bancos.mdx&astroContentModuleFlag=true")]]);
 		
