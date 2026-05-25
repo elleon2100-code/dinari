@@ -16,6 +16,8 @@
 
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../layouts/ArticleLayout.astro';
+import RelatedTools from '../components/RelatedTools.astro';
+import StickyCTA from '../components/StickyCTA.astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('guias');
@@ -33,4 +35,6 @@ const frontmatter      = article.data;
 
 <ArticleLayout frontmatter={frontmatter} slug={slug}>
   <Content />
+  <RelatedTools />
+  <StickyCTA />
 </ArticleLayout>

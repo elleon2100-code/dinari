@@ -1,0 +1,64 @@
+---
+/**
+ * StickyCTA.astro
+ * Botón flotante que aparece en móviles después de cierto scroll en los artículos.
+ */
+---
+<div class="sticky-cta-mobile" aria-hidden="true">
+  <a href="/simulador-deudas/" class="btn btn--sage btn--lg sticky-cta-btn">
+    📊 Calcular mi deuda gratis
+  </a>
+</div>
+
+<style>
+  .sticky-cta-mobile {
+    display: none;
+  }
+
+  /* Solo en móviles */
+  @media (max-width: 768px) {
+    .sticky-cta-mobile {
+      display: block;
+      position: fixed;
+      bottom: -100px; /* Oculto inicialmente */
+      left: 0;
+      width: 100%;
+      padding: var(--sp-4);
+      background: linear-gradient(to top, rgba(255,255,255,1) 60%, rgba(255,255,255,0));
+      z-index: 50;
+      transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none; /* Para que el gradiente no bloquee clics detrás, excepto en el botón */
+    }
+
+    .sticky-cta-mobile.visible {
+      bottom: 0;
+    }
+
+    .sticky-cta-btn {
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(92,128,96,0.4);
+      pointer-events: auto; /* Reactivar clics en el botón */
+    }
+  }
+</style>
+
+<script>
+  // Mostrar el botón flotante después de hacer scroll de 500px hacia abajo
+  document.addEventListener('DOMContentLoaded', () => {
+    const stickyCta = document.querySelector('.sticky-cta-mobile');
+    if (!stickyCta) return;
+
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+      // Mostrar si se scrolleó más de 500px
+      if (window.scrollY > 500) {
+        stickyCta.classList.add('visible');
+        stickyCta.setAttribute('aria-hidden', 'false');
+      } else {
+        stickyCta.classList.remove('visible');
+        stickyCta.setAttribute('aria-hidden', 'true');
+      }
+    }, { passive: true });
+  });
+</script>

@@ -24,6 +24,22 @@ crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/article.css">
 <link rel="manifest" href="../manifest.json">
+
+      <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@graph":[
+          {
+            "@type":"BreadcrumbList",
+            "itemListElement":[
+              {"@type":"ListItem","position":1,"name":"Inicio","item":"https://dinari.app/"},
+              {"@type":"ListItem","position":2,"name":"Contacto","item":"https://dinari.app/contacto/"}
+            ]
+          }
+        ]
+      }
+      </script>
+      
 </head>
 <body>
 
@@ -39,6 +55,7 @@ crossorigin="anonymous"></script>
         <li><a href="../simulador-deudas/" class="navbar__link">Simulador</a></li>
         <li><a href="../calculadora-intereses/" class="navbar__link">Calculadora</a></li>
         <li><a href="../como-salir-de-deudas/" class="navbar__link">Guías</a></li>
+        <li><a href="../sobre-dinari/index.html" class="navbar__link">Sobre Dinari</a></li>
       </ul>
       <div class="navbar__cta">
         <a href="../simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a>
@@ -56,6 +73,13 @@ crossorigin="anonymous"></script>
   
 <section class="article-hero" style="background-color:var(--charcoal); padding-block:var(--sp-12);">
   <div class="container">
+
+    <nav class="page-hero__breadcrumb" aria-label="Ruta de navegación" style="margin-bottom: var(--sp-6);">
+      <a href="../" style="color: var(--sage-600); text-decoration: none; font-size: var(--text-sm); font-weight: 600;">Inicio</a>
+      <span aria-hidden="true" style="color: var(--stone-400); margin-inline: var(--sp-2);">›</span>
+      <span style="color: var(--stone-500); font-size: var(--text-sm);">Contacto</span>
+    </nav>
+    
     <h1 class="display-2 article-hero__title" style="margin-bottom:0;">Contacto</h1>
     <p class="article-hero__subtitle" style="font-size:var(--text-lg); margin-top:var(--sp-2);">Estamos aquí para escucharte.</p>
   </div>
@@ -102,6 +126,13 @@ crossorigin="anonymous"></script>
           <li><a href="../simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
           <li><a href="../calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
           <li><a href="../control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Dinari</p>
+        <ul class="footer__links">
+          <li><a href="../sobre-dinari/index.html" class="footer__link">Sobre Dinari</a></li>
+          <li><a href="../guias/index.html" class="footer__link">Guías Financieras</a></li>
         </ul>
       </div>
       <div>

@@ -1,0 +1,38 @@
+---
+/**
+ * RelatedTools.astro
+ * Componente que muestra 2-3 herramientas destacadas al final de los artículos.
+ */
+---
+<section class="related-tools" style="margin-block: var(--sp-12); padding-top: var(--sp-8); border-top: 1px solid var(--cream-300);">
+  <div style="margin-bottom: var(--sp-6);">
+    <h2 style="font-size: var(--text-xl); font-weight: 700; color: var(--charcoal); margin-bottom: var(--sp-2);">
+      Pasa a la acción
+    </h2>
+    <p style="color: var(--stone-500);">Utiliza nuestras herramientas gratuitas para poner en práctica lo aprendido.</p>
+  </div>
+  
+  <div class="tools-grid" style="display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+    <!-- Simulador de Deudas -->
+    <a href="/simulador-deudas/" class="tool-card" style="border: 1px solid var(--cream-300); padding: var(--sp-5); border-radius: var(--radius-lg); text-decoration: none; display: flex; flex-direction: column; gap: var(--sp-3); background: var(--white); transition: transform 0.2s, box-shadow 0.2s;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="font-size: 1.5rem; background: var(--sage-100); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md);">💳</div>
+        <span class="badge badge--sage" style="font-size: 0.7rem; padding: 2px 8px; border-radius: 99px; background: var(--sage-100); color: var(--sage-700);">Popular</span>
+      </div>
+      <h3 style="font-size: var(--text-base); font-weight: 600; color: var(--charcoal); margin: 0;">Simulador de Deudas</h3>
+      <p style="font-size: var(--text-sm); color: var(--stone-500); margin: 0; line-height: 1.5;">Calcula tu fecha de salida y compara el método bola de nieve vs avalancha.</p>
+      <span style="font-size: var(--text-sm); font-weight: 600; color: var(--sage-600); margin-top: auto;">Usar ahora &rarr;</span>
+    </a>
+
+    <!-- Simulador de Pago Mínimo -->
+    <a href="/simulador-pago-minimo/" class="tool-card" style="border: 1px solid var(--cream-300); padding: var(--sp-5); border-radius: var(--radius-lg); text-decoration: none; display: flex; flex-direction: column; gap: var(--sp-3); background: var(--white); transition: transform 0.2s, box-shadow 0.2s;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="font-size: 1.5rem; background: rgba(220,38,38,0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md);">⏳</div>
+        <span class="badge badge--danger" style="font-size: 0.7rem; padding: 2px 8px; border-radius: 99px; background: rgba(220,38,38,0.1); color: #dc2626;">¡Nuevo!</span>
+      </div>
+      <h3 style="font-size: var(--text-base); font-weight: 600; color: var(--charcoal); margin: 0;">Simulador de Pago Mínimo</h3>
+      <p style="font-size: var(--text-sm); color: var(--stone-500); margin: 0; line-height: 1.5;">Descubre cuánto tiempo y dinero pierdes si solo pagas el mínimo mensual.</p>
+      <span style="font-size: var(--text-sm); font-weight: 600; color: #dc2626; margin-top: auto;">Calcular &rarr;</span>
+    </a>
+  </div>
+</section>
