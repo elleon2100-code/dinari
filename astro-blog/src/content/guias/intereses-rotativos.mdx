@@ -1,0 +1,139 @@
+---
+title: "Cómo funcionan los intereses rotativos (El asesino silencioso)"
+description: "Los bancos ganan millones porque nadie entiende cómo se calcula el interés rotativo. Aprende la matemática oculta detrás del Saldo Promedio Diario."
+heroTitle: "Interés Rotativo: La Trampa Matemática de tu Tarjeta"
+heroSubtitle: "Si dejas RD$1 sin pagar en tu fecha límite, el banco no te cobrará intereses sobre RD$1. Te cobrará intereses sobre todo lo que compraste. Descubre cómo funciona la estafa legal más grande del mundo."
+heroBadge: "Tarjetas de Crédito"
+heroColor: "charcoal"
+publishDate: "2026-05-28"
+category: "Tarjetas de crédito y pago mínimo"
+readTime: 12
+canonical: "https://dinari.app/intereses-rotativos/"
+breadcrumbs:
+  - name: "Guías"
+    url: "https://dinari.app/guias/"
+  - name: "Intereses Rotativos"
+    url: "https://dinari.app/intereses-rotativos/"
+schemaType: "Article+FAQ"
+---
+
+import RelatedTools from '../../components/RelatedTools.astro';
+import StickyCTA from '../../components/StickyCTA.astro';
+
+Existe un mito financiero tan peligroso que probablemente le ha costado miles de millones de pesos a la clase media en América Latina. Y casi todo el mundo lo cree.
+
+El mito dice así: *"Si el saldo total de mi tarjeta este mes es de RD$10,000, y solo me alcanza para pagar RD$9,500, el banco solo me va a cobrar intereses sobre los RD$500 que faltaron por pagar"*.
+
+**Falso. Peligrosamente falso.**
+
+Esa lógica aplicaría si las tarjetas de crédito fueran préstamos simples. Pero no lo son. Las tarjetas de crédito operan bajo un sistema llamado **Interés Rotativo (Revolving Credit)** basado en el **Saldo Promedio Diario**. 
+
+Si dejas RD$500 (o un solo centavo) sin pagar en tu fecha límite de pago, perdiste tu periodo de gracia. El banco no te cobrará intereses sobre los RD$500. El banco te cobrará intereses sobre cada uno de los RD$10,000 que gastaste, desde el día exacto en que pasaste la tarjeta en el supermercado.
+
+En esta guía, vamos a desarmar el motor que genera las mayores ganancias de la industria financiera mundial, para que nunca más vuelvas a caer en su trampa.
+
+---
+
+## 1. El Periodo de Gracia: Tu único escudo
+
+Cuando usas una tarjeta de crédito y la pagas en su totalidad antes de la fecha límite (el famoso "Pago Total para no generar intereses"), el banco no te cobra ni un centavo. Es como si te hubieran prestado dinero gratis por 30 o 45 días.
+
+A ese margen de tiempo se le llama **Periodo de Gracia**. 
+
+Es un escudo invisible que protege todas tus compras del interés del 60% anual. Pero este escudo tiene un interruptor de "Todo o Nada". Si pagas el 100% de la factura, el escudo se mantiene. Si pagas el 99.9%, el escudo se desactiva instantáneamente y de forma retroactiva.
+
+<RelatedTools 
+  title="Mira los intereses en acción"
+  description="No adivines cuánto te van a cobrar. Usa nuestra calculadora para ver el impacto real de los intereses antes de dejar un saldo pendiente."
+  tools={[
+    { name: 'Calculadora de Intereses', url: '/calculadora-intereses/', emoji: '🧮', highlight: true }
+  ]}
+/>
+
+---
+
+## 2. La trampa del Saldo Promedio Diario
+
+Si rompes tu Periodo de Gracia, el banco saca la calculadora de **Saldo Promedio Diario**. Así es como te extraen el dinero, paso a paso:
+
+### El escenario de los RD$10,000
+1. El día 5 del mes, compras un televisor de RD$10,000.
+2. Tu "Fecha de Corte" es el día 30 del mes. Tu estado de cuenta dice: Deuda Total RD$10,000.
+3. Tu "Fecha Límite de Pago" es el día 20 del mes siguiente.
+4. Llega el día 20. Decides abonar **RD$9,500** y dejas **RD$500** pendientes.
+
+### La matemática brutal
+Tú crees que en tu próximo estado de cuenta verás RD$500 de deuda + intereses (quizás unos RD$30). 
+
+Pero lo que el banco hace es esto:
+- Toma los RD$10,000 del televisor y dice: *"El cliente tuvo esta deuda de RD$10,000 desde el día 5 hasta el día 20 (45 días en total)"*.
+- El banco calcula el interés diario del 60% anual (60% / 360 días = 0.16% diario).
+- Aplica el 0.16% diario a los RD$10,000 durante esos 45 días. Esto da **RD$720** de interés.
+- Luego, desde el día 21 hasta tu próximo corte, aplica el interés sobre los RD$500 restantes (ej. RD$8).
+
+Tu próximo estado de cuenta no llegará de RD$530. Llegará de **RD$1,228** (RD$500 de capital pendiente + RD$728 de intereses generados por todo el mes + posibles comisiones). 
+
+Por dejar de pagar RD$500, acabas de regalarle al banco RD$728. Pagaste más de intereses que de deuda real pendiente.
+
+---
+
+## 3. El Efecto Cascada (Cuando tus compras nuevas están contaminadas)
+
+El horror del Interés Rotativo no termina ahí.
+
+Cuando pierdes tu Periodo de Gracia (porque no pagaste el 100% de la tarjeta el mes pasado), **tu tarjeta queda "contaminada"**. 
+
+Esto significa que, al mes siguiente, cualquier compra que hagas (un café, gasolina, el supermercado) empezará a generar intereses **desde el mismo segundo en que pasas la tarjeta**. Ya no tienes los 30 días de gracia gratis.
+
+Si tienes un balance rotativo del mes anterior y hoy compras una pizza con la tarjeta, a partir de mañana te cobrarán el 60% anual sobre esa pizza. Estás pagando la comida más cara del mundo.
+
+### ¿Cómo descontaminar la tarjeta?
+La única forma de recuperar el Periodo de Gracia y detener el Efecto Cascada es hacer un **Pago Total a Saldo Cero** y mantener la tarjeta sin saldos pendientes durante todo un ciclo de facturación (un mes completo).
+
+---
+
+## 4. La diferencia entre Tasa Mensual y Anual
+
+Los bancos en Latinoamérica aman hablarte en "Tasa Mensual" para que el número parezca pequeño e inofensivo.
+
+*"Su tarjeta solo tiene un 5% de interés mensual"*, te dice el vendedor con una sonrisa. 
+
+Un 5% suena muy razonable. Suena como algo que cualquiera puede pagar. Pero el interés rotativo es compuesto y se capitaliza. Un 5% mensual significa que la Tasa de Interés Anual (la que realmente importa) es de un asombroso **60%**.
+
+Para ponerlo en perspectiva:
+- Si inviertes tu dinero en el banco, te pagan un **6% AL AÑO**.
+- Si te financias con la tarjeta de crédito, tú les pagas un **60% AL AÑO**. 
+
+Es una transferencia masiva y legal de riqueza desde la clase media trabajadora hacia las corporaciones bancarias. Y todo depende de que tú no pagues el 100% de tu saldo el día límite.
+
+<StickyCTA 
+  title="Escapa del Interés Rotativo"
+  description="Si ya estás atrapado en el sistema rotativo, necesitas una estrategia de salida agresiva. El Simulador de Deudas es tu mejor arma."
+  buttonText="Crear Plan de Salida"
+  buttonUrl="/simulador-deudas/"
+/>
+
+---
+
+## Conclusión: La Regla Binaria
+
+Las tarjetas de crédito son las herramientas transaccionales más eficientes y seguras del mundo moderno, si se usan bajo una sola regla inflexible y binaria:
+
+**Si usas tarjeta de crédito, tu presupuesto de pago es SIEMPRE el 100% del balance adeudado.** 
+
+No existe el 90%. No existe el 99%. No existe el "Pago Mínimo". Financiar tu estilo de vida usando el interés rotativo de una tarjeta de crédito no es una estrategia; es un suicidio matemático a fuego lento.
+
+Asegúrate de pagar el total antes de la fecha límite y el banco trabajará para ti (dándote puntos, millas y 45 días de liquidez gratis). Deja un peso de saldo, y tú empezarás a trabajar para el banco.
+
+---
+
+## Preguntas Frecuentes sobre Intereses de Tarjetas
+
+### ¿Qué pasa si hago una "Compra de Balance" o "Intrafinanciamiento"?
+Un intrafinanciamiento es diferente al crédito rotativo. El banco toma una porción de tu deuda y la aísla en una cuota fija mensual con una tasa más baja. El problema es que, como explicamos en otras guías, si usas la tarjeta para compras normales mientras tienes ese financiamiento activo, tus abonos se irán al capital más barato, dejando la deuda rotativa cara intacta y generando intereses. Nunca uses una tarjeta que tenga un financiamiento interno activo.
+
+### Si retiro efectivo del cajero automático con la tarjeta de crédito, ¿tengo periodo de gracia?
+**NO.** Esta es la transacción más cara que puedes hacer en el sistema financiero. Los retiros de efectivo (avances de efectivo) en tarjetas de crédito NUNCA tienen periodo de gracia. Comienzan a generar el interés máximo (ej. 60% anual) desde el mismo segundo en que el billete sale del cajero automático, además de cobrarte una comisión fija inmediata por el retiro (usualmente el 6.25% del monto retirado). Nunca retires efectivo de una tarjeta de crédito a menos que sea una emergencia de vida o muerte.
+
+### ¿El interés se cobra sobre las comisiones y moras?
+Sí. A esto se le llama "Capitalización de intereses". Si no pagas y el banco te cobra RD$1,000 de penalidad por mora, esos RD$1,000 se suman a tu balance total (el capital). Al mes siguiente, el banco calculará el 60% de interés sobre tu deuda original MÁS la mora y MÁS los intereses del mes anterior. Es decir, te están cobrando intereses sobre los intereses. Por eso las deudas se duplican en cuestión de meses si dejas de pagar.
