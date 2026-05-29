@@ -40,7 +40,7 @@ const dinariStaticPlugin = {
 };
 
 export default defineConfig({
-  site: 'https://dinari.app',
+  site: 'https://midinari.com',
   output: 'static',
   integrations: [
     mdx(),

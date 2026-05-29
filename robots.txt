@@ -6,4 +6,4 @@ Disallow: /drafts/
 Disallow: /admin/
 
 # Sitemap
-Sitemap: https://dinari.app/sitemap.xml
+Sitemap: https://midinari.com/sitemap.xml

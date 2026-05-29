@@ -33,8 +33,8 @@ Object.entries(toolsDict).forEach(([file, name]) => {
           {
             "@type":"BreadcrumbList",
             "itemListElement":[
-              {"@type":"ListItem","position":1,"name":"Inicio","item":"https://dinari.app/"},
-              {"@type":"ListItem","position":2,"name":"${name}","item":"https://dinari.app/${folder}/"}
+              {"@type":"ListItem","position":1,"name":"Inicio","item":"https://midinari.com/"},
+              {"@type":"ListItem","position":2,"name":"${name}","item":"https://midinari.com/${folder}/"}
             ]
           }
         ]

@@ -1,421 +1,55 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W986LMBCEN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-W986LMBCEN');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3422421858882439"
-crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dinari — Organiza tus deudas y toma control de tus finanzas</title>
-<meta name="description" content="Herramientas gratuitas para calcular, organizar y eliminar tus deudas. Simulador de deudas, calculadoras financieras y guías en español. Sin registro.">
-<link rel="canonical" href="https://dinari.app/">
-<meta property="og:title" content="Dinari — Finanzas Personales en Español">
-<meta property="og:description" content="Herramientas gratuitas para organizar tus deudas y finanzas personales.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://dinari.app/">
-<meta name="robots" content="index, follow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/landing.css">
-<link rel="manifest" href="manifest.json">
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebSite",
-  "name":"Dinari",
-  "url":"https://dinari.app",
-  "description":"Plataforma de herramientas financieras gratuitas en español",
-  "inLanguage":"es",
-  "potentialAction":{"@type":"SearchAction","target":"https://dinari.app/buscar?q={search_term_string}","query-input":"required name=search_term_string"}
-}
-</script>
-</head>
-<body>
-
-<!-- NAVBAR -->
-<header>
-<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
-  <div class="container">
-    <div class="navbar__inner">
-      <a href="/" class="navbar__logo" aria-label="Dinari - Inicio">
-        <span class="navbar__logo-mark" aria-hidden="true">D</span>
-        Dinari
-      </a>
-      <ul class="navbar__nav" role="list">
-        <li><a href="simulador-deudas/index.html" class="navbar__link">Simulador</a></li>
-        <li><a href="simulador-pago-minimo/" class="navbar__link">Pago Mínimo</a></li>
-        <li><a href="calculadora-intereses/index.html" class="navbar__link">Calculadora</a></li>
-        <li><a href="guias/index.html" class="navbar__link">Guías</a></li>
-        <li><a href="sobre-dinari/index.html" class="navbar__link">Sobre Dinari</a></li>
-      </ul>
-      <div class="navbar__cta">
-        <a href="simulador-deudas/index.html" class="btn btn--sage btn--sm">Calcular mi deuda →</a>
-        <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
-  <a href="simulador-deudas/index.html" class="mobile-menu__link">Simulador de Deudas</a>
-  <a href="simulador-pago-minimo/" class="mobile-menu__link">Simulador de Pago Mínimo</a>
-  <a href="calculadora-intereses/index.html" class="mobile-menu__link">Calculadora de Intereses</a>
-  <a href="guias/index.html" class="mobile-menu__link">Guías</a>
-  <a href="sobre-dinari/index.html" class="mobile-menu__link">Sobre Dinari</a>
-  <a href="simulador-deudas/index.html" class="btn btn--sage" style="margin-top:var(--sp-4);">Calcular mi deuda →</a>
-</div>
-</header>
-
-<main id="main-content">
-
-<!-- HERO -->
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero__bg" aria-hidden="true"></div>
-  <div class="container">
-    <div class="hero__inner">
-      <div class="hero__content">
-        <div class="hero__eyebrow" aria-label="Herramientas gratuitas">
-          ✦ Herramientas gratuitas · Sin registro
-        </div>
-        <h1 class="hero__title" id="hero-title">
-          Descubre cuándo serás <em>libre de deudas</em>
-        </h1>
-        <p class="hero__subtitle">
-          Ingresa tus deudas, elige cómo quieres pagarlas y obtén una fecha exacta de liquidación. Sin hojas de cálculo, sin registrarte, sin trampa.
-        </p>
-        <div class="hero__cta">
-          <a href="simulador-deudas/index.html" class="btn btn--sage btn--lg">
-            📊 Ver mi plan ahora
-          </a>
-          <a href="#herramientas" class="btn btn--outline btn--lg">
-            Ver todas las herramientas
-          </a>
-        </div>
-        <div class="hero__trust" aria-label="Garantías del servicio">
-          <span class="hero__trust-item">✅ 100% gratuito</span>
-          <span class="hero__trust-item">🔒 Tus datos no salen de tu celular</span>
-          <span class="hero__trust-item">📱 Hecho para móvil</span>
-        </div>
-      </div>
-
-      <!-- FLOATING CARDS -->
-      <div class="hero__visual" aria-hidden="true">
-        <div class="float-card float-card--1">
-          <p class="float-card__label">Deuda total</p>
-          <p class="float-card__value float-card__value--danger">$85,000</p>
-          <p class="float-card__sub">3 deudas activas</p>
-          <div class="float-card__bar">
-            <div class="float-card__bar-fill float-card__bar-fill--danger"></div>
-          </div>
-        </div>
-        <div class="float-card float-card--2">
-          <p class="float-card__label">Libre de deudas en</p>
-          <p class="float-card__value float-card__value--success">2 años</p>
-          <p class="float-card__sub">Con $1,500 extra/mes</p>
-          <div class="float-card__bar">
-            <div class="float-card__bar-fill float-card__bar-fill--success"></div>
-          </div>
-        </div>
-        <div class="float-card float-card--3">
-          <p class="float-card__label">Ahorro con Avalancha</p>
-          <p class="float-card__value float-card__value--success">$12,400</p>
-          <p class="float-card__sub">vs. pago mínimo solamente</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ESTADÍSTICAS -->
-<section class="stats-strip" aria-labelledby="stats-title">
-  <h2 id="stats-title" class="sr-only">Estadísticas de deuda en México</h2>
-  <div class="container">
-    <div class="stats-grid">
-      <div class="reveal">
-        <p class="stat__value">
-          <span data-counter="78" data-suffix="%">78%</span>
-        </p>
-        <p class="stat__label">de mexicanos tiene al menos una deuda activa hoy</p>
-      </div>
-      <div class="reveal reveal--delay-1">
-        <p class="stat__value">
-          <span data-counter="4.2" data-suffix="x">4.2x</span>
-        </p>
-        <p class="stat__label">más terminas pagando si solo abonás el mínimo cada mes</p>
-      </div>
-      <div class="reveal reveal--delay-2">
-        <p class="stat__value">
-          <span data-counter="3" data-suffix=" años">3 años</span>
-        </p>
-        <p class="stat__label">es lo que tarda en promedio salir de deudas con un plan real</p>
-      </div>
-      <div class="reveal reveal--delay-3">
-        <p class="stat__value">
-          <span data-counter="100" data-suffix="% gratis">100%</span>
-        </p>
-        <p class="stat__label">gratis. Sin registro, sin suscripción, sin letra chica.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HERRAMIENTAS -->
-<section class="tools-section" id="herramientas" aria-labelledby="tools-title">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-header__eyebrow">
-        <span class="badge badge--sage">Herramientas</span>
-      </div>
-      <h2 class="section-header__title" id="tools-title">Herramientas más usadas</h2>
-      <p class="section-header__subtitle">Calculadoras pensadas para entender tu dinero, no para impresionarte con jerga financiera.</p>
-    </div>
-
-    <div class="tools-grid">
-      <a href="simulador-deudas/index.html" class="tool-card tool-card--featured reveal" aria-label="Ir al Simulador Inteligente de Deudas">
-        <div style="display:flex;align-items:center;justify-content:space-between;">
-          <div class="tool-card__icon tool-card__icon--sage">💳</div>
-          <span class="badge badge--sage tool-card__badge">⭐ Popular</span>
-        </div>
-        <p class="tool-card__name">Simulador Inteligente de Deudas</p>
-        <p class="tool-card__description">Ingresa todas tus deudas y descubre exactamente cuándo serás libre. Compara el método bola de nieve vs avalancha.</p>
-        <span class="tool-card__arrow">Usar ahora →</span>
-      </a>
-
-      <a href="simulador-pago-minimo/" class="tool-card reveal reveal--delay-1" aria-label="Ir al Simulador de Pago Mínimo">
-        <div style="display:flex;align-items:center;justify-content:space-between;">
-          <div class="tool-card__icon" style="color:var(--danger); background:rgba(220,38,38,0.1);">💳</div>
-          <span class="badge" style="background:rgba(220,38,38,0.1);color:#dc2626;">¡Nuevo!</span>
-        </div>
-        <p class="tool-card__name">Simulador de Pago Mínimo</p>
-        <p class="tool-card__description">Descubre cuánto tiempo y dinero perderás si solo pagas el mínimo de tu tarjeta. Impactante y revelador.</p>
-        <span class="tool-card__arrow">Calcular →</span>
-      </a>
-
-      <a href="calculadora-intereses/index.html" class="tool-card reveal reveal--delay-2" aria-label="Ir a la Calculadora de Intereses">
-        <div class="tool-card__icon tool-card__icon--cream">🧮</div>
-        <p class="tool-card__name">Calculadora de Intereses</p>
-        <p class="tool-card__description">Calcula el costo real de cualquier préstamo o crédito. Descubre cuánto pagas realmente de interés.</p>
-        <span class="tool-card__arrow">Calcular →</span>
-      </a>
-
-      <a href="control-gastos/index.html" class="tool-card reveal reveal--delay-2" aria-label="Ir al Control de Gastos">
-        <div class="tool-card__icon tool-card__icon--stone">📊</div>
-        <p class="tool-card__name">Control de Gastos</p>
-        <p class="tool-card__description">Registra y visualiza tus gastos mensuales. Identifica en segundos dónde se va tu dinero.</p>
-        <span class="tool-card__arrow">Comenzar →</span>
-      </a>
-
-      <a href="metodo-bola-de-nieve/index.html" class="tool-card reveal" aria-label="Aprender sobre el método bola de nieve">
-        <div class="tool-card__icon tool-card__icon--sage">⛄</div>
-        <p class="tool-card__name">Método Bola de Nieve</p>
-        <p class="tool-card__description">La estrategia favorita de Dave Ramsey. Pequeñas victorias que generan impulso para pagar todas tus deudas.</p>
-        <span class="tool-card__arrow">Aprender →</span>
-      </a>
-
-      <a href="como-salir-de-deudas/index.html" class="tool-card reveal reveal--delay-1" aria-label="Leer guía sobre cómo salir de deudas">
-        <div class="tool-card__icon tool-card__icon--cream">📖</div>
-        <p class="tool-card__name">Guía: Cómo salir de deudas</p>
-        <p class="tool-card__description">La guía definitiva con pasos concretos, estrategias probadas y errores que debes evitar al pagar deudas.</p>
-        <span class="tool-card__arrow">Leer guía →</span>
-      </a>
-
-      <div class="tool-card reveal reveal--delay-2" style="opacity:0.6;cursor:default;" aria-label="Asesor financiero, próximamente">
-        <div class="tool-card__icon tool-card__icon--stone">🤖</div>
-        <p class="tool-card__name">Asesor Financiero</p>
-        <p class="tool-card__description">Respuestas personalizadas a tus preguntas financieras. Diseñado para tu situación específica.</p>
-        <span class="badge badge--cream">Próximamente</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    <section class="guides-section" aria-labelledby="guides-title" style="padding-block: var(--sp-12); background: var(--cream-50);">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-header__eyebrow">
-            <span class="badge badge--cream">Educación</span>
-          </div>
-          <h2 class="section-header__title" id="guides-title">Guías más leídas</h2>
-          <p class="section-header__subtitle">Artículos fundamentales para tomar el control de tu dinero hoy mismo.</p>
-        </div>
-        <div class="tools-grid" style="display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-          <a href="como-salir-de-deudas/index.html" class="tool-card reveal" style="border: 1px solid var(--cream-300); padding: var(--sp-5); border-radius: var(--radius-lg); text-decoration: none; display: block; background: var(--white);">
-            <div style="font-size: 1.5rem; background: var(--sage-100); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); margin-bottom: var(--sp-3);">📘</div>
-            <h3 style="font-size: var(--text-base); font-weight: 600; color: var(--charcoal); margin: 0 0 var(--sp-2) 0;">Cómo salir de deudas rápido</h3>
-            <p style="font-size: var(--text-sm); color: var(--stone-500); margin: 0;">La guía paso a paso para auditar tus deudas y empezar a eliminarlas.</p>
-          </a>
-          <a href="hoja-de-ruta-financiera/index.html" class="tool-card reveal reveal--delay-1" style="border: 1px solid var(--cream-300); padding: var(--sp-5); border-radius: var(--radius-lg); text-decoration: none; display: block; background: var(--white);">
-            <div style="font-size: 1.5rem; background: var(--sage-100); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); margin-bottom: var(--sp-3);">🗺️</div>
-            <h3 style="font-size: var(--text-base); font-weight: 600; color: var(--charcoal); margin: 0 0 var(--sp-2) 0;">Tu hoja de ruta financiera</h3>
-            <p style="font-size: var(--text-sm); color: var(--stone-500); margin: 0;">Descubre en qué etapa estás y cuál es tu siguiente paso lógico.</p>
-          </a>
-          <a href="retiro-tardio/index.html" class="tool-card reveal reveal--delay-2" style="border: 1px solid var(--cream-300); padding: var(--sp-5); border-radius: var(--radius-lg); text-decoration: none; display: block; background: var(--white);">
-            <div style="font-size: 1.5rem; background: var(--sage-100); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); margin-bottom: var(--sp-3);">⏳</div>
-            <h3 style="font-size: var(--text-base); font-weight: 600; color: var(--charcoal); margin: 0 0 var(--sp-2) 0;">Recupera el tiempo para tu retiro</h3>
-            <p style="font-size: var(--text-sm); color: var(--stone-500); margin: 0;">Estrategias agresivas para quienes empiezan a ahorrar después de los 40.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-    
-
-<!-- CÓMO FUNCIONA -->
-<section class="howto-section" aria-labelledby="howto-title">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-header__eyebrow">
-        <span class="badge badge--cream">Simple</span>
-      </div>
-      <h2 class="section-header__title" id="howto-title">De cero a un plan real en 3 pasos</h2>
-      <p class="section-header__subtitle">No hace falta saber de finanzas. Solo tener los números a la mano.</p>
-    </div>
-    <div class="howto-steps">
-      <div class="howto-step reveal">
-        <div class="howto-step__number" aria-hidden="true">1</div>
-        <h3 class="howto-step__title">Agrega tus deudas</h3>
-        <p class="howto-step__text">El nombre, el saldo y la tasa de interés que te cobra el banco. Nada más.</p>
-      </div>
-      <div class="howto-step reveal reveal--delay-1">
-        <div class="howto-step__number" aria-hidden="true">2</div>
-        <h3 class="howto-step__title">Elige cómo atacarlas</h3>
-        <p class="howto-step__text">Bola de Nieve o Avalancha. El simulador te muestra el impacto de cada una en segundos.</p>
-      </div>
-      <div class="howto-step reveal reveal--delay-2">
-        <div class="howto-step__number" aria-hidden="true">3</div>
-        <h3 class="howto-step__title">Sigue el mapa</h3>
-        <p class="howto-step__text">Ves exactamente cuánto pagar cada mes y en qué fecha cierras tu última deuda.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIOS -->
-<section class="testimonials-section" aria-labelledby="testimonials-title">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2 class="section-header__title" id="testimonials-title">Lo que la gente descubre al usarlo</h2>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card reveal">
-        <div class="testimonial-card__stars" aria-label="5 estrellas">★★★★★</div>
-        <blockquote class="testimonial-card__quote">
-          "Por fin entiendo cuánto me cuestan mis tarjetas. El simulador me mostró que pagando $800 extra al mes, salgo de deudas 3 años antes. Increíble."
-        </blockquote>
-        <div class="testimonial-card__author">
-          <div class="testimonial-card__avatar" aria-hidden="true">👩</div>
-          <div>
-            <p class="testimonial-card__name">Mariana R.</p>
-            <p class="testimonial-card__meta">Guadalajara · 2 tarjetas de crédito</p>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal reveal--delay-1">
-        <div class="testimonial-card__stars" aria-label="5 estrellas">★★★★★</div>
-        <blockquote class="testimonial-card__quote">
-          "Tenía 4 deudas y no sabía por cuál empezar. El método avalancha me ahorró $18,000 en intereses. No lo hubiera calculado sin Dinari."
-        </blockquote>
-        <div class="testimonial-card__author">
-          <div class="testimonial-card__avatar" aria-hidden="true">👨</div>
-          <div>
-            <p class="testimonial-card__name">Carlos M.</p>
-            <p class="testimonial-card__meta">CDMX · Préstamo + 3 tarjetas</p>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal reveal--delay-2">
-        <div class="testimonial-card__stars" aria-label="5 estrellas">★★★★★</div>
-        <blockquote class="testimonial-card__quote">
-          "Súper fácil de usar. En 5 minutos tenía mi plan completo. Lo mejor es que corre en mi celular perfecto y no me pide nada."
-        </blockquote>
-        <div class="testimonial-card__author">
-          <div class="testimonial-card__avatar" aria-hidden="true">👩</div>
-          <div>
-            <p class="testimonial-card__name">Sofía L.</p>
-            <p class="testimonial-card__meta">Monterrey · Freelancer</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="cta-section container" aria-labelledby="cta-title">
-  <div class="cta-box reveal">
-    <h2 class="cta-box__title" id="cta-title">¿Cuándo será tu último pago?</h2>
-    <p class="cta-box__subtitle">Calcula tu plan en 2 minutos. Gratis, sin registro, sin anuncios que interrumpan.</p>
-    <div class="cta-box__actions">
-      <a href="simulador-deudas/index.html" class="btn btn--white btn--lg">
-        📊 Ver mi plan ahora
-      </a>
-      <a href="como-salir-de-deudas/index.html" class="btn btn--ghost btn--lg" style="color:rgba(255,255,255,0.8);">
-        Leer la guía →
-      </a>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- FOOTER -->
-<footer class="footer" role="contentinfo">
-  <div class="container">
-    <div class="footer__grid">
-      <div>
-        <div class="footer__brand">
-          <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
-          Dinari
-        </div>
-        <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
-      </div>
-      <div>
-        <p class="footer__heading">Herramientas</p>
-        <ul class="footer__links">
-          <li><a href="simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
-          <li><a href="simulador-pago-minimo/" class="footer__link">Simulador de Pago Mínimo</a></li>
-          <li><a href="calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
-          <li><a href="control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer__heading">Dinari</p>
-        <ul class="footer__links">
-          <li><a href="sobre-dinari/index.html" class="footer__link">Sobre Dinari</a></li>
-          <li><a href="guias/index.html" class="footer__link">Gu�as Financieras</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer__heading">Legal</p>
-        <ul class="footer__links">
-          <li><a href="privacidad/index.html" class="footer__link">Privacidad</a></li>
-          <li><a href="cookies/index.html" class="footer__link">Cookies</a></li>
-          <li><a href="terminos/index.html" class="footer__link">Términos</a></li>
-          <li><a href="contacto/index.html" class="footer__link">Contacto</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
-      <p>Los cálculos son orientativos. No constituyen asesoría financiera profesional.</p>
-    </div>
-  </div>
-</footer>
-
-<script src="js/main.js" defer></script>
-</body>
-</html>
-
-
-
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Guías de finanzas personales | Dinari</title><meta name="description" content="Aprende a salir de deudas, mejorar tu score crediticio y entender la psicología del dinero con nuestras guías maestras."><link rel="canonical" href="https://midinari.com/guias/"><meta name="robots" content="index, follow"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/main.css"><link rel="manifest" href="/manifest.json"></head> <body> <header> <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal"> <div class="container"> <div class="navbar__inner"> <a href="/" class="navbar__logo" aria-label="Dinari - Inicio"> <span class="navbar__logo-mark" aria-hidden="true">D</span>
+Dinari
+</a> <ul class="navbar__nav" role="list"> <li><a href="/simulador-deudas/" class="navbar__link">Simulador</a></li> <li><a href="/calculadora-intereses/" class="navbar__link">Calculadora</a></li> <li><a href="/guias/" class="navbar__link" aria-current="page">Guías</a></li> </ul> <div class="navbar__cta"> <a href="/simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a> <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"> <span></span><span></span><span></span> </button> </div> </div> </div> </nav> <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil"> <a href="/" class="mobile-menu__link">Inicio</a> <a href="/simulador-deudas/" class="mobile-menu__link">Simulador de Deudas</a> <a href="/calculadora-intereses/" class="mobile-menu__link">Calculadora de Intereses</a> <a href="/guias/" class="mobile-menu__link">Guías Fundamentales</a> </div> </header> <main id="main-content" style="padding-block-start: calc(var(--navbar-h) + var(--sp-16)); padding-block-end: var(--sp-20);"> <div class="container container--narrow"> <h1 class="display-2" style="margin-bottom:var(--sp-4);">La Biblioteca Dinari</h1> <p class="body-lg" style="margin-bottom:var(--sp-12);">
+El conocimiento financiero organizado en 5 pilares estratégicos. Selecciona tu objetivo y toma el control de tu dinero hoy mismo.
+</p> <div style="display:flex; flex-direction:column; gap:var(--sp-12);"> <section> <div style="margin-bottom: var(--sp-6); padding-bottom: var(--sp-3); border-bottom: 2px solid var(--cream-300);"> <h2 style="font-size: var(--text-xl); font-weight: 700; color: var(--charcoal);">Tarjetas de crédito y pago mínimo</h2> </div> <div style="display:flex; flex-direction:column; gap:var(--sp-4);"> <a href="/atraso-de-un-dia/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: El Precio de Olvidar: Qué Pasa al Atrasarte 24 Horas"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Tarjetas de Crédito</span> <span class="body-sm" style="color: var(--stone-500);">8 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> El Precio de Olvidar: Qué Pasa al Atrasarte 24 Horas </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Descubre el efecto dominó que ocurre cuando olvidas pagar a tiempo: desde moras hasta el daño a tu historial. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/cat-vs-tasa/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: El CAT: El Número que los Bancos Odian que Leas"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Educación Financiera</span> <span class="body-sm" style="color: var(--stone-500);">9 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> El CAT: El Número que los Bancos Odian que Leas </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Aprende a leer el Costo Anual Total (CAT) para no caer en préstamos que parecen baratos pero esconden comisiones usureras. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/intereses-rotativos/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Interés Rotativo: La Trampa Matemática de tu Tarjeta"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Tarjetas de Crédito</span> <span class="body-sm" style="color: var(--stone-500);">12 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Interés Rotativo: La Trampa Matemática de tu Tarjeta </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Los bancos ganan millones porque nadie entiende cómo se calcula el interés rotativo. Aprende la matemática oculta detrás del Saldo Promedio Diario. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/interes-compuesto-en-contra/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: El Interés Compuesto en tu Contra"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Educación Avanzada</span> <span class="body-sm" style="color: var(--stone-500);">18 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> El Interés Compuesto en tu Contra </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Todo el mundo ama el interés compuesto en las inversiones, pero nadie te habla del monstruo financiero que te devora cuando tienes deudas. Conoce la verdad. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/el-peligro-del-pago-minimo/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: El peligro invisible de pagar solo el mínimo: Por qué tu deuda parece no tener fin"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Guía Práctica</span> <span class="body-sm" style="color: var(--stone-500);">5 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> El peligro invisible de pagar solo el mínimo: Por qué tu deuda parece no tener fin </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Descubre por qué pagar solo el mínimo en tu tarjeta de crédito es una trampa financiera que alarga tus deudas por años y cómo evitar caer en el efecto anclaje. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a> </div> </section><section> <div style="margin-bottom: var(--sp-6); padding-bottom: var(--sp-3); border-bottom: 2px solid var(--cream-300);"> <h2 style="font-size: var(--text-xl); font-weight: 700; color: var(--charcoal);">Métodos para salir de deudas</h2> </div> <div style="display:flex; flex-direction:column; gap:var(--sp-4);"> <a href="/como-negociar-deudas/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Negocia con el Banco como un Profesional (Sin Miedo)"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Estrategia</span> <span class="body-sm" style="color: var(--stone-500);">14 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Negocia con el Banco como un Profesional (Sin Miedo) </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Los bancos no son invencibles. Aprende las estrategias exactas, qué decir y qué exigir por escrito para lograr una quita o un refinanciamiento a tu favor. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/errores-deuda-eterna/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Por Qué Tu Deuda Nunca Baja (Los Errores Mortales)"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Estrategia</span> <span class="body-sm" style="color: var(--stone-500);">9 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Por Qué Tu Deuda Nunca Baja (Los Errores Mortales) </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Si llevas años pagando y tu balance no baja, estás cometiendo uno de estos tres errores mortales. Aprende a detener la fuga hoy. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/organizar-multiples-deudas/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: El Caos Financiero: Cómo Organizar Múltiples Deudas"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Organización</span> <span class="body-sm" style="color: var(--stone-500);">10 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> El Caos Financiero: Cómo Organizar Múltiples Deudas </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Un sistema infalible paso a paso para consolidar tu información, priorizar tus pagos y detener el pánico cuando debes en varios lugares. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/consolidar-deudas/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: El Mito de la Consolidación: ¿Solución Mágica o Espejismo?"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Estrategia</span> <span class="body-sm" style="color: var(--stone-500);">12 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> El Mito de la Consolidación: ¿Solución Mágica o Espejismo? </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Descubre exactamente cuándo matemáticamente conviene unificar tus deudas en un solo préstamo y cuándo es el peor error financiero que puedes cometer. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/metodo-avalancha/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: El Método Avalancha: Matemáticas Puras Contra la Deuda"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Estrategia</span> <span class="body-sm" style="color: var(--stone-500);">12 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> El Método Avalancha: Matemáticas Puras Contra la Deuda </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Si eres una persona lógica y quieres pagar la menor cantidad de intereses posible a los bancos, el Método Avalancha es exactamente lo que necesitas. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/metodo-bola-de-nieve/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: El Método Bola de Nieve: paga primero lo más pequeño y gana impulso"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Guía Estratégica</span> <span class="body-sm" style="color: var(--stone-500);">7 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> El Método Bola de Nieve: paga primero lo más pequeño y gana impulso </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Aprende cómo aplicar el método bola de nieve (snowball) para salir de deudas rápido. Estrategia psicológica, pasos y calculadora gratuita. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/como-salir-de-deudas/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Cómo salir de deudas: lo que realmente funciona"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Pilar Financiero</span> <span class="body-sm" style="color: var(--stone-500);">10 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Cómo salir de deudas: lo que realmente funciona </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Cómo salir de deudas paso a paso: audita lo que debes, para el sangrado, elige entre avalancha y bola de nieve, y negocia con el banco. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a> </div> </section><section> <div style="margin-bottom: var(--sp-6); padding-bottom: var(--sp-3); border-bottom: 2px solid var(--cream-300);"> <h2 style="font-size: var(--text-xl); font-weight: 700; color: var(--charcoal);">Score crediticio</h2> </div> <div style="display:flex; flex-direction:column; gap:var(--sp-4);"> <a href="/cuantas-tarjetas-tener/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: ¿Cuál es el Número Perfecto de Tarjetas?"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Score Crediticio</span> <span class="body-sm" style="color: var(--stone-500);">10 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> ¿Cuál es el Número Perfecto de Tarjetas? </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> El mito de tener 10 tarjetas vs tener solo 1. Descubre el número óptimo para maximizar tu score sin caer en descontrol financiero. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/porcentaje-de-uso-peligroso/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: El Límite de la Tarjeta No es tu Dinero: El Peligro de la Utilización"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Score Crediticio</span> <span class="body-sm" style="color: var(--stone-500);">10 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> El Límite de la Tarjeta No es tu Dinero: El Peligro de la Utilización </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Descubre exactamente cuánto puedes gastar de tu límite de crédito antes de que el buró empiece a penalizarte y destruir tu score crediticio. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/cancelar-tarjeta-de-credito/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Cancelar Tarjetas de Crédito: ¿Libertad o Suicidio Financiero?"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Score Crediticio</span> <span class="body-sm" style="color: var(--stone-500);">10 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Cancelar Tarjetas de Crédito: ¿Libertad o Suicidio Financiero? </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Descubre exactamente qué pasa con tu historial crediticio cuando cierras una tarjeta. ¿Deberías mantenerla abierta aunque no la uses? </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/por-que-baja-mi-score-crediticio/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Por qué tu Score baja aunque pagues a tiempo"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Mitos Financieros</span> <span class="body-sm" style="color: var(--stone-500);">15 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Por qué tu Score baja aunque pagues a tiempo </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Descubre por qué tu puntuación de crédito cae incluso cuando nunca te atrasas. La trampa de la utilización, los pagos mínimos y los secretos de los burós. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a> </div> </section><section> <div style="margin-bottom: var(--sp-6); padding-bottom: var(--sp-3); border-bottom: 2px solid var(--cream-300);"> <h2 style="font-size: var(--text-xl); font-weight: 700; color: var(--charcoal);">Finanzas personales reales</h2> </div> <div style="display:flex; flex-direction:column; gap:var(--sp-4);"> <a href="/como-ahorrar-si-ganas-poco/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Ahorrar con Sueldo Mínimo: Cuando la Matemática no Alcanza"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Finanzas Reales</span> <span class="body-sm" style="color: var(--stone-500);">13 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Ahorrar con Sueldo Mínimo: Cuando la Matemática no Alcanza </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Los consejos de siempre no sirven con un salario mínimo. Descubre estrategias reales para lograr ahorrar cuando no te sobra un centavo a fin de mes. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/crear-un-presupuesto/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Cómo hacer un presupuesto sin sentir que estás a dieta"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Guía Paso a Paso</span> <span class="body-sm" style="color: var(--stone-500);">8 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Cómo hacer un presupuesto sin sentir que estás a dieta </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Aprende a crear un presupuesto realista paso a paso. Descubre cómo organizar tu dinero según tus prioridades sin sentir que estás a dieta. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/gastos-hormiga/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: El Mito del Café: Por qué los gastos hormiga reales son otros"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Finanzas Reales</span> <span class="body-sm" style="color: var(--stone-500);">11 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> El Mito del Café: Por qué los gastos hormiga reales son otros </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Descubre cuáles son los verdaderos gastos hormiga que te mantienen sin dinero y cómo eliminarlos sin tener que dejar de vivir tu vida. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/fondo-de-emergencia/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Fondo de Emergencia: Tu colchón anticrisis"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Guía Paso a Paso</span> <span class="body-sm" style="color: var(--stone-500);">7 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Fondo de Emergencia: Tu colchón anticrisis </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Descubre cómo crear un fondo de emergencia realista. Olvídate del mito de los 6 meses y empieza con un escudo financiero que frene tu endeudamiento. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/hoja-de-ruta-financiera/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Deudas, Ahorro y Jubilación: Tu Hoja de Ruta Financiera"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Guía Estratégica</span> <span class="body-sm" style="color: var(--stone-500);">6 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Deudas, Ahorro y Jubilación: Tu Hoja de Ruta Financiera </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Una guía humana y práctica para entender por qué estás endeudado, cómo salir usando estrategias probadas y cuándo empezar a invertir para tu futuro. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/retiro-tardio/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: ¿Sientes que vas tarde para tu retiro? Cómo recuperar el tiempo perdido"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Guía de Retiro</span> <span class="body-sm" style="color: var(--stone-500);">6 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> ¿Sientes que vas tarde para tu retiro? Cómo recuperar el tiempo perdido </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Si tienes 40 o 50 años y no tienes un fondo de retiro, no estás solo. Aprende a activar los aceleradores financieros y jubilarte con dignidad. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a> </div> </section><section> <div style="margin-bottom: var(--sp-6); padding-bottom: var(--sp-3); border-bottom: 2px solid var(--cream-300);"> <h2 style="font-size: var(--text-xl); font-weight: 700; color: var(--charcoal);">Psicología financiera</h2> </div> <div style="display:flex; flex-direction:column; gap:var(--sp-4);"> <a href="/ansiedad-financiera/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Ansiedad Financiera: Cuando el Dinero te Roba la Salud"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Psicología Financiera</span> <span class="body-sm" style="color: var(--stone-500);">12 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Ansiedad Financiera: Cuando el Dinero te Roba la Salud </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> El estrés por dinero daña tu cerebro, tus relaciones y tu salud. Aprende cómo la ansiedad financiera te mantiene pobre y cómo romper el ciclo hoy mismo. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/endeudamiento-emocional/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: Endeudamiento Emocional: Por qué compramos lo que no podemos pagar"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Psicología Financiera</span> <span class="body-sm" style="color: var(--stone-500);">12 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> Endeudamiento Emocional: Por qué compramos lo que no podemos pagar </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Descubre cómo los sesgos psicológicos y las emociones controlan tu dinero, y las estrategias reales para romper el ciclo del endeudamiento emocional. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a><a href="/sesgos-psicologicos-bancos/" class="card card--interactive" style="padding:var(--sp-6); display:block;" aria-label="Leer: La Psicología Oscura de los Bancos: Trampas en tu Tarjeta de Crédito"> <div style="display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-3);"> <span class="badge badge--sage">Psicología Financiera</span> <span class="body-sm" style="color: var(--stone-500);">14 min de lectura</span> </div> <h3 style="font-family:var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--charcoal); margin-bottom:var(--sp-2);"> La Psicología Oscura de los Bancos: Trampas en tu Tarjeta de Crédito </h3> <p class="body-sm" style="margin-bottom:var(--sp-4); color: var(--stone-600);"> Descubre las trampas cognitivas y trucos de diseño que usa la industria financiera para que gastes más y pagues intereses para siempre. </p> <span style="color:var(--sage-600); font-weight:600; font-size:var(--text-sm);">
+Leer guía →
+</span> </a> </div> </section> </div> </div> </main> <footer class="footer" role="contentinfo"> <div class="container"> <div class="footer__bottom" style="border-top:none; padding-top:0;"> <p>&copy; 2026 Dinari. Todos los derechos reservados.</p> <p><a href="/" style="color:var(--stone-400);">Volver al inicio →</a></p> </div> </div> </footer> <script src="/js/main.js" defer></script> </body> </html>
