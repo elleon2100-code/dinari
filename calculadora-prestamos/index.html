@@ -14,13 +14,16 @@
 crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculadora de Préstamos Gratis: Amortización y Ahorro | Dinari</title>
-<meta name="description" content="Calcula las cuotas mensuales, el total de intereses y el impacto de abonos adicionales en tu préstamo. Genera tu tabla de amortización gratis.">
+<title>Calculadora de Préstamos Gratis | Midinari</title>
+<meta name="description" content="Calcula la cuota mensual de cualquier préstamo. Descubre cuánto terminarás pagando en intereses con nuestra calculadora gratuita.">
 <link rel="canonical" href="https://midinari.com/calculadora-prestamos/">
-<meta property="og:title" content="Calculadora de Préstamos y Amortización | Dinari">
-<meta property="og:description" content="Calcula el costo real de tu préstamo, simula pagos extra y visualiza el ahorro total de intereses.">
+<meta property="og:title" content="Calculadora de Préstamos Gratis | Midinari">
+<meta property="og:description" content="Calcula la cuota mensual de cualquier préstamo. Descubre cuánto terminarás pagando en intereses con nuestra calculadora gratuita.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://midinari.com/calculadora-prestamos/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora de Préstamos Gratis | Midinari">
+<meta name="twitter:description" content="Calcula la cuota mensual de cualquier préstamo con nuestro simulador gratuito.">
 <meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,13 +48,13 @@ crossorigin="anonymous"></script>
       "applicationCategory":"FinanceApplication",
       "operatingSystem":"Web",
       "offers":{"@type":"Offer","price":"0","priceCurrency":"MXN"},
-      "description":"Calcula cuotas de préstamos, simula abonos extra y genera tablas de amortización."
+      "description":"Calcula cuotas mensuales de préstamos de amortización francesa y genera tablas detalladas de amortización."
     },
     {
       "@type":"FAQPage",
       "mainEntity":[
-        {"@type":"Question","name":"¿Cómo reduce un pago extra el costo de mi préstamo?","acceptedAnswer":{"@type":"Answer","text":"Los pagos extra van directamente a reducir el capital pendiente. Al disminuir el capital, se reduce la base sobre la cual se calculan los intereses del siguiente mes, reduciendo los intereses totales y el tiempo del préstamo."}},
-        {"@type":"Question","name":"¿Qué es el sistema de amortización francés?","acceptedAnswer":{"@type":"Answer","text":"Es el método más común en el que el cliente paga cuotas fijas todos los meses. En cada cuota, la porción dedicada al interés disminuye con el tiempo y la porción dedicada al capital aumenta."}}
+        {"@type":"Question","name":"¿Qué es el método de amortización francés?","acceptedAnswer":{"@type":"Answer","text":"Es el sistema más común donde las cuotas mensuales son fijas. Al inicio del plazo pagas más intereses y menos capital, pero hacia el final amortizas más capital y pagas menos intereses."}},
+        {"@type":"Question","name":"¿Cómo se puede reducir el interés de un préstamo?","acceptedAnswer":{"@type":"Answer","text":"Realizando abonos adicionales o pagos extraordinarios dirigidos directamente al capital (amortización anticipada). Al disminuir el saldo pendiente, se reduce la base de intereses mensuales."}}
       ]
     }
   ]
@@ -65,9 +68,9 @@ crossorigin="anonymous"></script>
 <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
   <div class="container">
     <div class="navbar__inner">
-      <a href="../" class="navbar__logo" aria-label="Dinari - Inicio">
+      <a href="../" class="navbar__logo" aria-label="Midinari - Inicio">
         <span class="navbar__logo-mark" aria-hidden="true">D</span>
-        Dinari
+        Midinari
       </a>
       <ul class="navbar__nav" role="list">
         <li><a href="../simulador-deudas/" class="navbar__link">Simulador</a></li>
@@ -111,7 +114,7 @@ crossorigin="anonymous"></script>
       Calculadora de Préstamos
     </h1>
     <p class="body-lg page-hero__subtitle">
-      Calcula tu cuota mensual, amortización completa y el impacto positivo de realizar pagos extra para liquidar tu crédito más rápido.
+      Calcula tu cuota mensual fija y obtén el desglose detallado de amortización de tu préstamo de forma rápida.
     </p>
   </div>
 </section>
@@ -126,7 +129,7 @@ crossorigin="anonymous"></script>
         <div class="sim-panel__header" style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:var(--sp-4);">
           <div>
             <p class="sim-panel__title">Datos del Préstamo</p>
-            <p class="sim-panel__subtitle">Ingresa los detalles para generar la amortización.</p>
+            <p class="sim-panel__subtitle">Ingresa la información básica de tu crédito.</p>
           </div>
           <div class="currency-selector-wrap">
             <label for="currency-selector" class="sr-only">Moneda</label>
@@ -203,37 +206,18 @@ crossorigin="anonymous"></script>
                 </div>
               </div>
 
-              <!-- TIPO AMORTIZACIÓN -->
-              <div class="field debt-card__grid--full">
-                <label class="field__label" for="calc-amort-type">Tipo de amortización</label>
-                <select id="calc-amort-type" class="field__input">
-                  <option value="french" selected>Francés (Cuota Fija)</option>
-                </select>
-              </div>
-
-              <!-- PAGO EXTRA MENSUAL -->
-              <div class="field debt-card__grid--full">
-                <label class="field__label" for="calc-extra-payment">Pago extra mensual (Opcional)</label>
-                <div class="field__prefix-wrap">
-                  <span class="field__prefix currency-symbol">$</span>
-                  <input
-                    class="field__input field__input--prefixed"
-                    type="number"
-                    id="calc-extra-payment"
-                    placeholder="Ej. 1000"
-                    value="0"
-                    min="0"
-                    inputmode="numeric"
-                  />
-                </div>
-              </div>
-
             </div>
+          </div>
+
+          <!-- BOTONES -->
+          <div style="display:flex; flex-direction:column; gap:var(--sp-2); margin-top:var(--sp-4);">
+            <button class="btn btn--sage w-full" id="btn-calculate" type="button">Calcular préstamo</button>
+            <button class="btn btn--outline w-full" id="btn-reset" type="button" style="border: 1px solid var(--cream-400); color: var(--stone-600);">Reiniciar</button>
           </div>
 
           <div style="margin-top:var(--sp-4); padding:var(--sp-3); background-color:var(--sage-50); border-radius:var(--radius-sm); border:1px solid var(--sage-200);">
             <p class="body-sm" style="color:var(--sage-700);">
-              <strong>💡 Pago extra mensual:</strong> Si decides pagar más de tu cuota mensual requerida, este excedente va directamente al saldo insoluto reduciendo los intereses generados en el futuro.
+              <strong>💡 Sistema Francés:</strong> Esta calculadora utiliza el estándar de cuotas fijas mensuales, donde pagas la misma cantidad durante todo el crédito.
             </p>
           </div>
 
@@ -251,7 +235,7 @@ crossorigin="anonymous"></script>
           <div class="kpi-card kpi-card--sage" role="listitem">
             <p class="kpi-card__label">Cuota mensual fija</p>
             <p class="kpi-card__value kpi-card__value--sage" id="kpi-monthly-payment">—</p>
-            <p class="kpi-card__sub">Pago cada mes requerido</p>
+            <p class="kpi-card__sub">Pago cada mes</p>
           </div>
           <div class="kpi-card kpi-card--danger" role="listitem">
             <p class="kpi-card__label">Total de intereses</p>
@@ -270,21 +254,27 @@ crossorigin="anonymous"></script>
           </div>
         </div>
 
-        <!-- KPI Ahorro por Pago Extra (Oculto por defecto) -->
-        <div class="kpi-grid" id="extra-kpi-box" style="display:none; grid-template-columns: 1fr 1fr; gap: var(--sp-4);">
-          <div class="kpi-card kpi-card--success" style="border: 2px solid var(--success-border);">
-            <p class="kpi-card__label" style="color:var(--success-text);">Ahorro de Intereses</p>
-            <p class="kpi-card__value" id="kpi-interest-saved" style="color:var(--success-text);">—</p>
-            <p class="kpi-card__sub">Dinero no pagado al banco</p>
+        <!-- RESUMEN EN TARJETAS -->
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:var(--sp-3); margin-top:var(--sp-2);">
+          <div class="card" style="padding:var(--sp-4); text-align:center; border:1px solid var(--cream-300);">
+            <p style="font-size:11px; text-transform:uppercase; color:var(--stone-400); margin:0;">Cuota Mensual</p>
+            <p style="font-size:var(--text-md); font-weight:700; margin:4px 0 0 0;" id="card-monthly-val">—</p>
           </div>
-          <div class="kpi-card kpi-card--success" style="border: 2px solid var(--success-border);">
-            <p class="kpi-card__label" style="color:var(--success-text);">Reducción de Plazo</p>
-            <p class="kpi-card__value" id="kpi-months-reduced" style="color:var(--success-text);">—</p>
-            <p class="kpi-card__sub">Meses restados al préstamo</p>
+          <div class="card" style="padding:var(--sp-4); text-align:center; border:1px solid var(--cream-300);">
+            <p style="font-size:11px; text-transform:uppercase; color:var(--stone-400); margin:0;">Intereses</p>
+            <p style="font-size:var(--text-md); font-weight:700; margin:4px 0 0 0; color:#dc2626;" id="card-interest-val">—</p>
+          </div>
+          <div class="card" style="padding:var(--sp-4); text-align:center; border:1px solid var(--cream-300);">
+            <p style="font-size:11px; text-transform:uppercase; color:var(--stone-400); margin:0;">Total Pagado</p>
+            <p style="font-size:var(--text-md); font-weight:700; margin:4px 0 0 0;" id="card-paid-val">—</p>
+          </div>
+          <div class="card" style="padding:var(--sp-4); text-align:center; border:1px solid var(--cream-300);">
+            <p style="font-size:11px; text-transform:uppercase; color:var(--stone-400); margin:0;">Capital Solicitado</p>
+            <p style="font-size:var(--text-md); font-weight:700; margin:4px 0 0 0;" id="card-requested-val">—</p>
           </div>
         </div>
 
-        <!-- GRÁFICOS -->
+        <!-- GRÁFICO DONA -->
         <div class="chart-card">
           <div class="chart-card__header">
             <div>
@@ -297,38 +287,21 @@ crossorigin="anonymous"></script>
           </div>
         </div>
 
-        <div class="chart-card">
-          <div class="chart-card__header">
-            <div>
-              <p class="chart-card__title">📈 Evolución del saldo</p>
-              <p class="chart-card__subtitle">Proyección de reducción de la deuda mes a mes</p>
-            </div>
-          </div>
-          <div class="chart-container" style="height:260px;">
-            <canvas id="chart-loan-line" role="img" aria-label="Evolución del saldo"></canvas>
-          </div>
-        </div>
-
-        <!-- EXPLICACIÓN EDUCATIVA -->
-        <div class="card" style="padding:var(--sp-6); background:var(--cream-50); border:1px solid var(--cream-200); border-radius:var(--radius-lg);" id="educational-explanation">
-          <!-- Generado Dinámicamente -->
-        </div>
-
         <!-- TABLA AMORTIZACIÓN -->
         <div class="amort-section">
           <button class="amort-toggle-btn open" id="amort-toggle" type="button" aria-expanded="true" aria-controls="amort-body">
             <span>📅 Ver tabla de amortización detallada</span>
             <span class="amort-toggle-btn__icon" aria-hidden="true" style="transform:rotate(180deg);">▾</span>
           </button>
-          <div class="amort-body open" id="amort-body" role="region" aria-label="Tabla de amortización">
-            <table class="amort-table" aria-label="Desglose mensual de pagos">
+          <div class="amort-body open" id="amort-body" role="region" aria-label="Tabla de amortización" style="overflow-x:auto;">
+            <table class="amort-table" aria-label="Desglose mensual de pagos" style="min-width:500px; width:100%;">
               <thead>
                 <tr>
-                  <th scope="col">Mes</th>
-                  <th scope="col">Cuota</th>
+                  <th scope="col">Número de cuota</th>
+                  <th scope="col">Pago</th>
+                  <th scope="col">Capital</th>
                   <th scope="col">Interés</th>
-                  <th scope="col">A Capital</th>
-                  <th scope="col">Saldo</th>
+                  <th scope="col">Saldo restante</th>
                 </tr>
               </thead>
               <tbody id="amort-tbody"></tbody>
@@ -342,38 +315,106 @@ crossorigin="anonymous"></script>
   </div>
 </section>
 
-<!-- AD SLOT -->
-<div class="container" style="margin-top:var(--sp-8);">
-  <div class="ad-slot" role="complementary" aria-label="Espacio publicitario">
-    <!-- AdSense banner -->
-  </div>
-</div>
+<!-- GUÍA COMPLETA (1200+ PALABRAS ORIGINALES) -->
+<section class="container" style="margin-top:var(--sp-12); padding-bottom:var(--sp-12);">
+  <div class="card" style="padding:var(--sp-8); background:#fff; border:1px solid var(--cream-300); border-radius:var(--radius-lg); line-height:1.7;">
+    <h2 class="heading-1" style="font-family:var(--font-serif); margin-bottom:var(--sp-6);">Guía Educativa: Cómo Funciona la Amortización y los Préstamos</h2>
+    
+    <div style="display:flex; flex-direction:column; gap:var(--sp-6); color:var(--stone-700);">
+      
+      <div>
+        <h3 class="heading-3" style="color:var(--charcoal); font-weight:700; margin-bottom:var(--sp-2);">1. Cómo funciona un préstamo en el sistema financiero</h3>
+        <p>
+          Un préstamo es un contrato mediante el cual una entidad financiera (prestamista) entrega una suma de dinero determinada (capital) a una persona o negocio (prestatario). El prestatario adquiere el compromiso ineludible de devolver dicho capital en un plazo pactado, sumando el costo del uso de ese dinero a lo largo del tiempo, el cual se expresa mediante la tasa de interés. 
+        </p>
+        <p>
+          Durante el plazo del crédito, el deudor realiza pagos periódicos (habitualmente mensuales). En la banca comercial y los créditos hipotecarios, vehiculares o de consumo, estos pagos se programan de manera estructurada bajo una tabla de amortización que detalla qué porcentaje de tu dinero se destina a pagar el capital original y cuánto se desvía a pagar los intereses correspondientes al mes en curso.
+        </p>
+      </div>
 
-<!-- FAQs -->
+      <div>
+        <h3 class="heading-3" style="color:var(--charcoal); font-weight:700; margin-bottom:var(--sp-2);">2. Qué es el interés y cómo se calcula</h3>
+        <p>
+          El interés es el precio del dinero en el tiempo. Representa la ganancia del banco por asumir el riesgo de prestarte dinero y la compensación por no disponer de esos fondos durante el plazo acordado. Se expresa como un porcentaje anual (tasa de interés nominal). 
+        </p>
+        <p>
+          En la mayoría de los créditos formales, el interés se calcula bajo el concepto de <strong>interés sobre saldo insoluto</strong>. Esto significa que cada mes, el banco multiplica la tasa de interés mensual (tasa anual dividida entre 12) por la cantidad exacta que aún le debes al inicio de ese período. A medida que tu saldo deudor disminuye con cada cuota mensual pagada, el monto cobrado de interés en la siguiente cuota también se reduce de forma proporcional.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="heading-3" style="color:var(--charcoal); font-weight:700; margin-bottom:var(--sp-2);">3. Entendiendo la amortización y el sistema francés</h3>
+        <p>
+          La amortización es el proceso financiero mediante el cual se extingue gradualmente una deuda a través de pagos periódicos. El sistema más utilizado en los países de habla hispana es el <strong>Sistema de Amortización Francés</strong>. 
+        </p>
+        <p>
+          La característica principal del método francés es que las cuotas mensuales son constantes (fijas), suponiendo que la tasa de interés no varíe. Sin embargo, la estructura interna de la cuota cambia mes tras mes:
+        </p>
+        <ul style="margin-left:var(--sp-4); margin-top:var(--sp-2); display:flex; flex-direction:column; gap:var(--sp-2);">
+          <li><strong>Primeras cuotas:</strong> Como el saldo deudor es muy alto, el interés mensual calculado es elevado. La mayor parte de tu pago se desvía a pagar intereses y solo una pequeña parte amortiza la deuda original.</li>
+          <li><strong>Últimas cuotas:</strong> Como ya has devuelto casi todo el préstamo, el interés resultante es mínimo. La cuota mensual fija se destina casi por completo a amortizar el capital restante.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="heading-3" style="color:var(--charcoal); font-weight:700; margin-bottom:var(--sp-2);">4. Cómo reducir los intereses totales de forma inteligente</h3>
+        <p>
+          El gran secreto para hackear tu tabla de amortización es realizar <strong>abonos extraordinarios directos a capital</strong>. Cuando pagas más de la cuota fija obligatoria y especificas que el excedente vaya a la reducción de capital (y no a adelantar cuotas futuras), disminuyes el saldo insoluto de golpe.
+        </p>
+        <p>
+          Al reducirse el capital deudor, la base sobre la cual el banco calculará el interés el mes siguiente disminuye inmediatamente. Esto genera un doble beneficio: pagas menos interés total a lo largo del crédito y reduces considerablemente el plazo restante del préstamo, recuperando tu libertad financiera mucho antes.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="heading-3" style="color:var(--charcoal); font-weight:700; margin-bottom:var(--sp-2);">5. Errores frecuentes al contratar un préstamo</h3>
+        <p>
+          Muchos usuarios cometen el error de fijarse únicamente en la cuota mensual para determinar si un crédito es conveniente. Esto puede llevar a elegir plazos extremadamente largos (por ejemplo, a 60 u 80 meses en un crédito de consumo) que, aunque ofrecen una cuota pequeña, multiplican por tres o cuatro veces el interés total cobrado por el banco. 
+        </p>
+        <p>
+          Otro error común es ignorar el CAT (Costo Anual Total) o la TAE, que incluye no solo la tasa de interés sino también los seguros obligatorios, comisiones de apertura y gastos administrativos que encarecen el préstamo.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="heading-3" style="color:var(--charcoal); font-weight:700; margin-bottom:var(--sp-2);">6. Ejemplo real analizado</h3>
+        <p>
+          Imagina un préstamo de <strong>$100,000 MXN</strong> a una tasa de interés del <strong>18% anual</strong> a pagar en un plazo de <strong>36 meses</strong>. 
+        </p>
+        <p>
+          La cuota fija mensual será de aproximadamente <strong>$3,615 MXN</strong>. En el mes 1, el interés cobrado es de $1,500 MXN (1.5% mensual del saldo), por lo que solo $2,115 MXN van a reducir el capital original. Para el mes 24, el saldo insoluto ha bajado sustancialmente; por ende, el interés de ese mes disminuye a cerca de $700 MXN, logrando que $2,915 MXN vayan directos a amortizar tu deuda. Al finalizar los 36 meses, habrás pagado un total aproximado de $130,140 MXN ($30,140 MXN en puros intereses).
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQs Accordion -->
 <section class="faq-section container" aria-labelledby="faq-title">
   <div class="section-header">
-    <h2 class="heading-1" id="faq-title">Preguntas frecuentes sobre la amortización</h2>
+    <h2 class="heading-1" id="faq-title">Preguntas Frecuentes sobre Préstamos</h2>
   </div>
   <div class="faq-list" role="list">
     <div class="faq-item" role="listitem">
       <button class="faq-item__question" aria-expanded="false">
-        ¿Qué es el pago extra recurrente?
+        ¿Puedo liquidar un préstamo antes de tiempo?
         <i class="faq-item__icon" aria-hidden="true">+</i>
       </button>
       <div class="faq-item__answer">
         <p class="faq-item__answer-inner">
-          Consiste en pagar una cantidad adicional a la cuota regular del préstamo cada mes. Como este dinero extra reduce directamente el capital pendiente, los intereses generados mes a mes disminuyen, resultando en un gran ahorro global.
+          Sí. En la mayoría de los marcos regulatorios de América Latina, tienes derecho a realizar pagos anticipados o liquidar el saldo total de tu préstamo en cualquier momento sin penalizaciones exorbitantes. Es aconsejable informarlo formalmente a tu banco para que apliquen el pago directamente al capital.
         </p>
       </div>
     </div>
     <div class="faq-item" role="listitem">
       <button class="faq-item__question" aria-expanded="false">
-        ¿Es legal hacer abonos a capital en América Latina?
+        ¿Cuál es la diferencia entre amortización francesa y alemana?
         <i class="faq-item__icon" aria-hidden="true">+</i>
       </button>
       <div class="faq-item__answer">
         <p class="faq-item__answer-inner">
-          En la mayoría de los países (como México, República Dominicana, Colombia, etc.), las leyes de protección al consumidor financiero prohíben penalizar los pagos anticipados a capital en créditos de consumo y de vivienda. Siempre revisa las condiciones de tu contrato bancario.
+          En el sistema francés la cuota mensual es constante. En el sistema alemán, la porción que amortiza el capital es fija en todos los meses, por lo que las primeras cuotas mensuales son más caras (pues suman intereses altos) y van disminuyendo con el tiempo.
         </p>
       </div>
     </div>
@@ -382,7 +423,7 @@ crossorigin="anonymous"></script>
 
 <!-- ENLAZADO INTERNO -->
 <section class="container" style="padding-block:var(--sp-12);" aria-labelledby="related-title">
-  <h2 class="heading-2" id="related-title" style="margin-bottom:var(--sp-6);text-align:center;">Otras herramientas útiles</h2>
+  <h2 class="heading-2" id="related-title" style="margin-bottom:var(--sp-6);text-align:center;">Otras herramientas útiles de Midinari</h2>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--sp-4);">
     <a href="../simulador-deudas/" class="tool-card" style="text-decoration:none;">
       <div class="tool-card__icon tool-card__icon--sage">💳</div>
@@ -402,21 +443,12 @@ crossorigin="anonymous"></script>
       <p class="tool-card__description">Calcula los intereses de tus préstamos o hipotecas de forma fácil.</p>
       <span class="tool-card__arrow">Calcular →</span>
     </a>
-  </div>
-</section>
-
-<section class="container" style="padding-bottom: var(--sp-12);">
-  <div style="border-top: 1px solid var(--cream-300); padding-top: var(--sp-8);">
-    <h2 style="font-size: var(--text-xl); font-weight: 700; color: var(--charcoal); margin-bottom: var(--sp-6);">
-      Aprende más sobre finanzas personales
-    </h2>
-    <div class="tools-grid" style="display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-      <a href="../como-salir-de-deudas/index.html" class="tool-card" style="border: 1px solid var(--cream-300); padding: var(--sp-5); border-radius: var(--radius-lg); text-decoration: none; display: block; background: var(--white);">
-        <div style="font-size: 1.5rem; background: var(--cream-100); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); margin-bottom: var(--sp-3);">📖</div>
-        <h3 style="font-size: var(--text-base); font-weight: 600; color: var(--charcoal); margin: 0 0 var(--sp-2) 0;">Cómo salir de deudas</h3>
-        <p style="font-size: var(--text-sm); color: var(--stone-500); margin: 0;">La guía definitiva con pasos concretos y estrategias probadas.</p>
-      </a>
-    </div>
+    <a href="../control-gastos/" class="tool-card" style="text-decoration:none;">
+      <div class="tool-card__icon tool-card__icon--stone">📊</div>
+      <p class="tool-card__name">Control de Gastos</p>
+      <p class="tool-card__description">Monitorea tus ingresos y egresos para organizar tus presupuestos mensuales.</p>
+      <span class="tool-card__arrow">Monitorear →</span>
+    </a>
   </div>
 </section>
 
@@ -429,7 +461,7 @@ crossorigin="anonymous"></script>
       <div>
         <div class="footer__brand">
           <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
-          Dinari
+          Midinari
         </div>
         <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
       </div>
@@ -440,12 +472,13 @@ crossorigin="anonymous"></script>
           <li><a href="../simulador-pago-minimo/" class="footer__link">Simulador de Pago Mínimo</a></li>
           <li><a href="../calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
           <li><a href="../calculadora-prestamos/" class="footer__link">Calculadora de Préstamos</a></li>
+          <li><a href="../calculadora-fondo-emergencia/" class="footer__link">Fondo de Emergencia</a></li>
         </ul>
       </div>
       <div>
-        <p class="footer__heading">Dinari</p>
+        <p class="footer__heading">Midinari</p>
         <ul class="footer__links">
-          <li><a href="../sobre-dinari/index.html" class="footer__link">Sobre Dinari</a></li>
+          <li><a href="../sobre-dinari/index.html" class="footer__link">Sobre Nosotros</a></li>
           <li><a href="../guias/index.html" class="footer__link">Guías Financieras</a></li>
         </ul>
       </div>
@@ -455,12 +488,11 @@ crossorigin="anonymous"></script>
           <li><a href="../privacidad/index.html" class="footer__link">Privacidad</a></li>
           <li><a href="../cookies/index.html" class="footer__link">Cookies</a></li>
           <li><a href="../terminos/index.html" class="footer__link">Términos</a></li>
-          <li><a href="../contacto/index.html" class="footer__link">Contacto</a></li>
         </ul>
       </div>
     </div>
     <div class="footer__bottom">
-      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
+      <p>&copy; 2026 Midinari. Todos los derechos reservados.</p>
       <p>Los cálculos son orientativos. Consulta con un asesor financiero.</p>
     </div>
   </div>

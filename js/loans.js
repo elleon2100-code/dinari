@@ -6,19 +6,13 @@
 (function () {
   'use strict';
 
-  // ══════════════════════════════════════════
-  // ESTADO Y MULTI-MONEDA
-  // ══════════════════════════════════════════
   const state = {
     amount: 50000,
     rate: 18,
     term: 36,
     termType: 'months',
-    amortType: 'french',
-    extraPayment: 0,
     currencyInfo: { code: 'MXN', locale: 'es-MX' },
-    chartDonut: null,
-    chartLine: null
+    chartDonut: null
   };
 
   const CURRENCIES = {
@@ -67,221 +61,118 @@
     calculate();
   }
 
-  // ══════════════════════════════════════════
-  // LÓGICA FINANCIERA (AMORTIZACIÓN Y PAGOS EXTRA)
-  // ══════════════════════════════════════════
   function calculate() {
+    // Read input values
+    const amountInput = document.getElementById('calc-amount');
+    const rateInput = document.getElementById('calc-rate');
+    const termInput = document.getElementById('calc-term');
+    const termTypeSelect = document.getElementById('calc-term-type');
+
+    if (!amountInput || !rateInput || !termInput || !termTypeSelect) return;
+
+    state.amount = parseFloat(amountInput.value) || 0;
+    state.rate = parseFloat(rateInput.value) || 0;
+    state.term = parseFloat(termInput.value) || 0;
+    state.termType = termTypeSelect.value;
+
     const p = state.amount;
     const annualRate = state.rate;
-    const originalMonths = state.termType === 'years' ? state.term * 12 : state.term;
-    const extra = state.extraPayment;
+    const months = state.termType === 'years' ? state.term * 12 : state.term;
 
-    if (p <= 0 || annualRate <= 0 || originalMonths <= 0) return;
+    if (p <= 0 || annualRate <= 0 || months <= 0) return;
 
     const monthlyRate = (annualRate / 100) / 12;
 
-    // 1. Cálculo base (Sin pagos extra)
-    let standardPmt = 0;
+    let pmt = 0;
     if (annualRate === 0) {
-      standardPmt = p / originalMonths;
+      pmt = p / months;
     } else {
-      standardPmt = p * monthlyRate * Math.pow(1 + monthlyRate, originalMonths) / (Math.pow(1 + monthlyRate, originalMonths) - 1);
+      pmt = p * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
     }
 
-    let baseBalance = p;
-    let baseTotalInterest = 0;
-    const baseSchedule = [];
-    const baseBalances = [p];
+    let balance = p;
+    let totalInterest = 0;
+    const schedule = [];
 
-    for (let i = 1; i <= originalMonths; i++) {
-      let interest = baseBalance * monthlyRate;
-      let principal = standardPmt - interest;
+    for (let i = 1; i <= months; i++) {
+      let interest = balance * monthlyRate;
+      let principal = pmt - interest;
 
-      if (i === originalMonths) {
-        principal = baseBalance;
-        interest = baseBalance * monthlyRate;
-        baseBalance = 0;
+      if (i === months) {
+        principal = balance;
+        pmt = principal + interest;
+        balance = 0;
       } else {
-        baseBalance -= principal;
+        balance -= principal;
       }
-      baseTotalInterest += interest;
-      baseSchedule.push({
+
+      totalInterest += interest;
+      schedule.push({
         month: i,
-        payment: principal + interest,
+        payment: pmt,
         interest: interest,
         principal: principal,
-        balance: Math.max(0, baseBalance)
+        balance: Math.max(0, balance)
       });
-      baseBalances.push(Math.max(0, baseBalance));
     }
-
-    // 2. Cálculo con pagos extra (si existen)
-    let activeBalance = p;
-    let activeTotalInterest = 0;
-    const activeSchedule = [];
-    const activeBalances = [p];
-    let monthCounter = 0;
-
-    while (activeBalance > 0.01 && monthCounter < 600) { // Límite de 50 años para evitar loops infinitos
-      monthCounter++;
-      let interest = activeBalance * monthlyRate;
-      let principal = standardPmt - interest;
-
-      let thisMonthExtra = extra;
-      if (principal + thisMonthExtra > activeBalance) {
-        thisMonthExtra = Math.max(0, activeBalance - principal);
-      }
-
-      let totalPrincipal = principal + thisMonthExtra;
-
-      if (totalPrincipal > activeBalance) {
-        totalPrincipal = activeBalance;
-        activeBalance = 0;
-      } else {
-        activeBalance -= totalPrincipal;
-      }
-
-      activeTotalInterest += interest;
-      activeSchedule.push({
-        month: monthCounter,
-        payment: totalPrincipal + interest,
-        interest: interest,
-        principal: totalPrincipal,
-        balance: Math.max(0, activeBalance)
-      });
-      activeBalances.push(Math.max(0, activeBalance));
-    }
-
-    const hasExtra = extra > 0;
-    const finalSchedule = hasExtra ? activeSchedule : baseSchedule;
-    const finalInterest = hasExtra ? activeTotalInterest : baseTotalInterest;
-    const finalMonths = hasExtra ? monthCounter : originalMonths;
-
-    const interestSaved = Math.max(0, baseTotalInterest - activeTotalInterest);
-    const monthsReduced = Math.max(0, originalMonths - finalMonths);
 
     renderResults({
       principal: p,
-      monthlyPayment: standardPmt,
-      totalInterest: finalInterest,
-      totalPaid: p + finalInterest,
-      months: finalMonths,
-      schedule: finalSchedule,
-      hasExtra: hasExtra,
-      interestSaved: interestSaved,
-      monthsReduced: monthsReduced,
-      baseBalances: baseBalances,
-      activeBalances: activeBalances,
-      termType: state.termType,
-      rate: annualRate
+      monthlyPayment: pmt,
+      totalInterest: totalInterest,
+      totalPaid: p + totalInterest,
+      months: months,
+      schedule: schedule
     });
   }
 
-  // ══════════════════════════════════════════
-  // RENDERIZADO UI Y EXPLICACIÓN DINÁMICA
-  // ══════════════════════════════════════════
   function renderResults(res) {
     document.getElementById('kpi-monthly-payment').textContent = fmt.currency(res.monthlyPayment);
     document.getElementById('kpi-total-interest').textContent = fmt.currency(res.totalInterest);
     document.getElementById('kpi-total-paid').textContent = fmt.currency(res.totalPaid);
     document.getElementById('kpi-payoff-date').textContent = fmt.date(res.months);
 
-    // KPI Extras
-    const extraBox = document.getElementById('extra-kpi-box');
-    if (res.hasExtra && res.interestSaved > 0) {
-      extraBox.style.display = 'block';
-      document.getElementById('kpi-interest-saved').textContent = fmt.currency(res.interestSaved);
-      document.getElementById('kpi-months-reduced').textContent = res.monthsReduced + (res.monthsReduced === 1 ? ' mes' : ' meses');
-    } else {
-      extraBox.style.display = 'none';
-    }
+    // Cards summary
+    const cardMonthly = document.getElementById('card-monthly-val');
+    const cardInterest = document.getElementById('card-interest-val');
+    const cardPaid = document.getElementById('card-paid-val');
+    const cardRequested = document.getElementById('card-requested-val');
 
-    renderCharts(res);
+    if (cardMonthly) cardMonthly.textContent = fmt.currency(res.monthlyPayment);
+    if (cardInterest) cardInterest.textContent = fmt.currency(res.totalInterest);
+    if (cardPaid) cardPaid.textContent = fmt.currency(res.totalPaid);
+    if (cardRequested) cardRequested.textContent = fmt.currency(res.principal);
+
+    renderChart(res.principal, res.totalInterest);
     renderTable(res.schedule);
-    renderExplanation(res);
   }
 
-  function renderCharts(res) {
+  function renderChart(principal, interest) {
     const canvasDonut = document.getElementById('chart-loan-donut');
-    const canvasLine = document.getElementById('chart-loan-line');
-    if (!window.Chart) return;
+    if (!window.Chart || !canvasDonut) return;
 
-    // 1. Donut Chart
-    if (canvasDonut) {
-      if (state.chartDonut) state.chartDonut.destroy();
-      state.chartDonut = new Chart(canvasDonut, {
-        type: 'doughnut',
-        data: {
-          labels: ['Capital solicitado', 'Intereses totales'],
-          datasets: [{
-            data: [res.principal, res.totalInterest],
-            backgroundColor: ['#5C8060', '#B3A99E'],
-            borderColor: '#FAF8F4',
-            borderWidth: 3,
-          }],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          cutout: '65%',
-          plugins: {
-            legend: { position: 'bottom', labels: { font: { family: "'Plus Jakarta Sans'" }, color: '#635A52', usePointStyle: true } }
-          }
+    if (state.chartDonut) state.chartDonut.destroy();
+
+    state.chartDonut = new Chart(canvasDonut, {
+      type: 'doughnut',
+      data: {
+        labels: ['Capital prestado', 'Intereses'],
+        datasets: [{
+          data: [principal, interest],
+          backgroundColor: ['#5C8060', '#B3A99E'],
+          borderColor: '#FAF8F4',
+          borderWidth: 3,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '65%',
+        plugins: {
+          legend: { position: 'bottom', labels: { font: { family: "'Plus Jakarta Sans'" }, color: '#635A52', usePointStyle: true } }
         }
-      });
-    }
-
-    // 2. Line Chart
-    if (canvasLine) {
-      if (state.chartLine) state.chartLine.destroy();
-      
-      const labels = Array.from({ length: Math.max(res.baseBalances.length, res.activeBalances.length) }, (_, i) => `Mes ${i}`);
-      const datasets = [{
-        label: 'Saldo Sin Pagos Extra',
-        data: res.baseBalances,
-        borderColor: '#B3A99E',
-        backgroundColor: 'rgba(179, 169, 158, 0.1)',
-        tension: 0.1,
-        fill: true
-      }];
-
-      if (res.hasExtra) {
-        datasets.push({
-          label: 'Saldo Con Pagos Extra',
-          data: res.activeBalances,
-          borderColor: '#5C8060',
-          backgroundColor: 'rgba(92, 128, 96, 0.1)',
-          tension: 0.1,
-          fill: true
-        });
       }
-
-      state.chartLine = new Chart(canvasLine, {
-        type: 'line',
-        data: {
-          labels: labels,
-          datasets: datasets
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            y: {
-              ticks: {
-                callback: function(value) { return fmt.currency(value); },
-                font: { family: "'Plus Jakarta Sans'" }
-              }
-            },
-            x: {
-              ticks: { font: { family: "'Plus Jakarta Sans'" } }
-            }
-          },
-          plugins: {
-            legend: { position: 'bottom' }
-          }
-        }
-      });
-    }
+    });
   }
 
   function renderTable(schedule) {
@@ -294,65 +185,50 @@
       tr.innerHTML = `
         <td>${row.month}</td>
         <td>${fmt.currency(row.payment)}</td>
-        <td>${fmt.currency(row.interest)}</td>
         <td>${fmt.currency(row.principal)}</td>
+        <td>${fmt.currency(row.interest)}</td>
         <td>${fmt.currency(row.balance)}</td>
       `;
       tbody.appendChild(tr);
     });
   }
 
-  function renderExplanation(res) {
-    const container = document.getElementById('educational-explanation');
-    if (!container) return;
+  function resetForm() {
+    const amountInput = document.getElementById('calc-amount');
+    const rateInput = document.getElementById('calc-rate');
+    const termInput = document.getElementById('calc-term');
+    const termTypeSelect = document.getElementById('calc-term-type');
 
-    let text = `<h3>📊 Análisis de tu Préstamo de ${fmt.currency(res.principal)}</h3>`;
-    text += `<p>Al solicitar un crédito con una tasa de interés del <strong>${res.rate}% anual</strong>, cada cuota mensual fija de <strong>${fmt.currency(res.monthlyPayment)}</strong> amortiza parte del saldo y cubre los intereses mensuales calculados sobre el saldo insoluto restante (Método Francés).</p>`;
-
-    if (res.hasExtra && res.interestSaved > 0) {
-      text += `<p class="alert-success"><strong>💡 ¡Excelente estrategia!</strong> Añadir un abono extra mensual de <strong>${fmt.currency(state.extraPayment)}</strong> te permitirá ahorrar <strong>${fmt.currency(res.interestSaved)}</strong> en intereses totales y terminar de pagar la deuda <strong>${res.monthsReduced} meses antes</strong> de lo previsto.</p>`;
-    } else {
-      text += `<p><strong>💡 Consejo de Dinari:</strong> Si realizas abonos al capital de forma recurrente (pagos adelantados), reducirás directamente el saldo sobre el cual se calculan los intereses del siguiente mes. Esto puede acortar considerablemente la vida de tu préstamo y ahorrarte miles de pesos o dólares.</p>`;
+    if (amountInput) amountInput.value = 50000;
+    if (rateInput) {
+      rateInput.value = 18;
+      const valEl = document.getElementById('calc-rate-val');
+      if (valEl) valEl.textContent = '18%';
     }
+    if (termInput) termInput.value = 36;
+    if (termTypeSelect) termTypeSelect.value = 'months';
 
-    container.innerHTML = text;
+    calculate();
   }
 
-  // ══════════════════════════════════════════
-  // EVENTOS Y ENLACES
-  // ══════════════════════════════════════════
   function bindEvents() {
-    const inputs = [
-      { id: 'calc-amount', prop: 'amount', isNum: true },
-      { id: 'calc-rate', prop: 'rate', isNum: true, hasValEl: 'calc-rate-val', valSuffix: '%' },
-      { id: 'calc-term', prop: 'term', isNum: true },
-      { id: 'calc-term-type', prop: 'termType' },
-      { id: 'calc-extra-payment', prop: 'extraPayment', isNum: true }
-    ];
+    const btnCalculate = document.getElementById('btn-calculate');
+    if (btnCalculate) {
+      btnCalculate.addEventListener('click', calculate);
+    }
 
-    inputs.forEach(item => {
-      const el = document.getElementById(item.id);
-      if (!el) return;
+    const btnReset = document.getElementById('btn-reset');
+    if (btnReset) {
+      btnReset.addEventListener('click', resetForm);
+    }
 
-      const updateState = () => {
-        let val = el.value;
-        if (item.isNum) {
-          val = parseFloat(val) || 0;
-          if (val < 0) val = 0;
-        }
-        state[item.prop] = val;
-
-        if (item.hasValEl) {
-          const valEl = document.getElementById(item.hasValEl);
-          if (valEl) valEl.textContent = val + (item.valSuffix || '');
-        }
-
-        calculate();
-      };
-
-      el.addEventListener('input', updateState);
-      el.addEventListener('change', updateState);
-    });
+    const rateInput = document.getElementById('calc-rate');
+    if (rateInput) {
+      rateInput.addEventListener('input', (e) => {
+        const valEl = document.getElementById('calc-rate-val');
+        if (valEl) valEl.textContent = e.target.value + '%';
+      });
+    }
 
     const currencySel = document.getElementById('currency-selector');
     if (currencySel) {
@@ -393,7 +269,6 @@
   function init() {
     bindEvents();
     
-    // Auto-detect currency
     let initialCurrency = localStorage.getItem('dinari_currency');
     if (!initialCurrency) {
       try {
