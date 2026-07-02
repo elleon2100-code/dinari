@@ -398,6 +398,20 @@
     recalcTimer = setTimeout(recalculate, 400);
   }
 
+  let saveDebounce = null;
+  function saveToProfileDebounced(totalDebt, totalMinPay, avgRate) {
+    if (saveDebounce) clearTimeout(saveDebounce);
+    saveDebounce = setTimeout(() => {
+      if (window.MidinariProfile) {
+        window.MidinariProfile.updateProfile({
+          deudaTotal: totalDebt,
+          pagoMensualDeuda: totalMinPay,
+          interesPromedio: avgRate
+        });
+      }
+    }, 1000);
+  }
+
   function recalculate() {
     // Requiere al menos saldo > 0. El pago mínimo se ajusta automáticamente si es insuficiente.
     const validDebts = state.debts.filter(d => d.balance > 0);
@@ -414,6 +428,13 @@
 
     state.results = { primary: results, alt: altResults };
     renderResults(results, altResults, validDebts);
+
+    // Guardar datos agregados al perfil de Midinari
+    const totalDebt = validDebts.reduce((sum, d) => sum + d.balance, 0);
+    const totalMinPay = validDebts.reduce((sum, d) => sum + d.minPayment, 0);
+    const totalRateBalance = validDebts.reduce((sum, d) => sum + (d.balance * d.rate), 0);
+    const avgRate = totalDebt > 0 ? (totalRateBalance / totalDebt) : 0;
+    saveToProfileDebounced(totalDebt, totalMinPay, avgRate);
   }
 
   function renderResults(primary, alt, debts) {
@@ -763,8 +784,20 @@
     applyCurrency(initialCurrency);
 
     loadChartJS(() => {
-      // Precargar datos de ejemplo
-      SAMPLE_DEBTS.forEach(d => addDebt(d));
+      // Precargar del perfil si existe, o usar datos de ejemplo
+      let debtsToLoad = SAMPLE_DEBTS;
+      if (window.MidinariProfile) {
+        const profile = window.MidinariProfile.getProfile();
+        if (profile.deudaTotal > 0) {
+          debtsToLoad = [{
+            name: 'Deuda Consolidada',
+            balance: profile.deudaTotal,
+            rate: profile.interesPromedio || 24,
+            minPayment: profile.pagoMensualDeuda || Math.ceil(profile.deudaTotal * 0.05)
+          }];
+        }
+      }
+      debtsToLoad.forEach(d => addDebt(d));
       // Calcular al cargar
       setTimeout(recalculate, 100);
     });

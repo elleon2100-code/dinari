@@ -266,7 +266,30 @@
     document.head.appendChild(script);
   }
 
+  let saveDebounce = null;
+  function saveToProfileDebounced(pmt) {
+    if (saveDebounce) clearTimeout(saveDebounce);
+    saveDebounce = setTimeout(() => {
+      if (window.MidinariProfile) {
+        window.MidinariProfile.updateProfile({
+          deudaTotal: state.amount,
+          pagoMensualDeuda: pmt
+        });
+      }
+    }, 1000);
+  }
+
   function init() {
+    // Cargar perfil si existe
+    if (window.MidinariProfile) {
+      const profile = window.MidinariProfile.getProfile();
+      if (profile.deudaTotal > 0) {
+        state.amount = profile.deudaTotal;
+        const amountInput = document.getElementById('calc-amount');
+        if (amountInput) amountInput.value = state.amount;
+      }
+    }
+
     bindEvents();
     
     let initialCurrency = localStorage.getItem('dinari_currency');
@@ -294,4 +317,20 @@
     init();
   }
 
+  // Hook saveToProfileDebounced on calculate
+  const originalCalculate = calculate;
+  calculate = function() {
+    originalCalculate();
+    // Obtener cuota mensual fija recalculada
+    const p = state.amount;
+    const annualRate = state.rate;
+    const months = state.termType === 'years' ? state.term * 12 : state.term;
+    if (p > 0 && annualRate > 0 && months > 0) {
+      const monthlyRate = (annualRate / 100) / 12;
+      const pmt = p * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+      saveToProfileDebounced(pmt);
+    }
+  };
+
 })();
+

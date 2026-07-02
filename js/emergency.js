@@ -194,7 +194,33 @@
     });
   }
 
+  let saveDebounce = null;
+  function saveToProfileDebounced(recommendedFund) {
+    if (saveDebounce) clearTimeout(saveDebounce);
+    saveDebounce = setTimeout(() => {
+      if (window.MidinariProfile) {
+        window.MidinariProfile.updateProfile({
+          gastosMensuales: state.expenses,
+          ahorroActual: state.currentSavings,
+          fondoEmergenciaObjetivo: recommendedFund
+        });
+      }
+    }, 1000);
+  }
+
   function init() {
+    // Cargar perfil si existe
+    if (window.MidinariProfile) {
+      const profile = window.MidinariProfile.getProfile();
+      if (profile.gastosMensuales > 0) state.expenses = profile.gastosMensuales;
+      if (profile.ahorroActual > 0) state.currentSavings = profile.ahorroActual;
+
+      const expensesInput = document.getElementById('calc-expenses');
+      const currentInput = document.getElementById('calc-current-savings');
+      if (expensesInput) expensesInput.value = state.expenses;
+      if (currentInput) currentInput.value = state.currentSavings;
+    }
+
     bindEvents();
     
     // Auto-detect currency
@@ -220,5 +246,23 @@
   } else {
     init();
   }
+
+  // Hook saveToProfileDebounced on calculate
+  const originalCalculate = calculate;
+  calculate = function() {
+    originalCalculate();
+    // Obtener recomendación actual
+    let baseMonths = 4;
+    if (state.jobType === 'very_stable') baseMonths = 3;
+    else if (state.jobType === 'stable') baseMonths = 4;
+    else if (state.jobType === 'freelance') baseMonths = 6;
+    else if (state.jobType === 'business') baseMonths = 8;
+    let extraMonths = 0;
+    if (state.dependents) extraMonths += 1;
+    if (!state.otherIncome) extraMonths += 1;
+    const totalMonths = baseMonths + extraMonths;
+    const recommendedFund = state.expenses * totalMonths;
+    saveToProfileDebounced(recommendedFund);
+  };
 
 })();

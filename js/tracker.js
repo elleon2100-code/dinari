@@ -45,8 +45,30 @@
   // ══════════════════════════════════════════
   // PERSISTENCIA Y MONEDA
   // ══════════════════════════════════════════
+  let saveDebounce = null;
+  function saveToProfileDebounced(income, expensesTotal) {
+    if (saveDebounce) clearTimeout(saveDebounce);
+    saveDebounce = setTimeout(() => {
+      if (window.MidinariProfile) {
+        window.MidinariProfile.updateProfile({
+          ingresosMensuales: income,
+          gastosMensuales: expensesTotal
+        });
+      }
+    }, 1000);
+  }
+
   function loadData() {
     state.income = parseFloat(localStorage.getItem('dinari_income')) || 0;
+    
+    // Si no está definido en localstorage de gastos, intentar del perfil
+    if (state.income === 0 && window.MidinariProfile) {
+      const profile = window.MidinariProfile.getProfile();
+      if (profile.ingresosMensuales > 0) {
+        state.income = profile.ingresosMensuales;
+      }
+    }
+
     try {
       state.expenses = JSON.parse(localStorage.getItem('dinari_expenses')) || [];
     } catch(e) { state.expenses = []; }
@@ -57,6 +79,9 @@
   function saveData() {
     localStorage.setItem('dinari_income', state.income);
     localStorage.setItem('dinari_expenses', JSON.stringify(state.expenses));
+
+    const totalExpenses = state.expenses.reduce((sum, exp) => sum + exp.amount, 0);
+    saveToProfileDebounced(state.income, totalExpenses);
   }
 
   function getActiveSymbol() {

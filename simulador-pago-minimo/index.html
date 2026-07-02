@@ -67,6 +67,15 @@ crossorigin="anonymous"></script>
 </script>
 </head>
 <body>
+        {"@type":"Question","name":"¿Conviene consolidar deuda?","acceptedAnswer":{"@type":"Answer","text":"Solo si consigues un préstamo con una tasa sustancialmente menor y tienes la disciplina absoluta de no volver a usar las tarjetas de crédito."}},
+        {"@type":"Question","name":"¿Cómo se calculan los intereses del pago mínimo?","acceptedAnswer":{"@type":"Answer","text":"Utilizamos la fórmula de amortización estándar para préstamos revolving. Multiplicamos el balance por la tasa de interés anual dividida en 12 meses. Lo que sobra de tu pago mínimo después de cubrir el interés es lo que reduce tu deuda."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
 
 <header>
 <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
@@ -77,10 +86,11 @@ crossorigin="anonymous"></script>
         Dinari
       </a>
       <ul class="navbar__nav" role="list">
-        <li><a href="../simulador-deudas/index.html" class="navbar__link">Simulador Deudas</a></li>
+        <li><a href="../simulador-deudas/index.html" class="navbar__link">Simulador</a></li>
         <li><a href="../simulador-pago-minimo/" class="navbar__link" aria-current="page">Pago Mínimo</a></li>
         <li><a href="../calculadora-intereses/index.html" class="navbar__link">Calculadora</a></li>
         <li><a href="../guias/index.html" class="navbar__link">Guías</a></li>
+        <li><a href="../mi-perfil/" class="navbar__link">Mi Perfil</a></li>
       </ul>
       <div class="navbar__cta">
         <a href="../simulador-deudas/index.html" class="btn btn--sage btn--sm">Calcular mi deuda</a>
@@ -96,7 +106,12 @@ crossorigin="anonymous"></script>
   <a href="../simulador-deudas/index.html" class="mobile-menu__link">Simulador de Deudas</a>
   <a href="../simulador-pago-minimo/" class="mobile-menu__link">Simulador de Pago Mínimo</a>
   <a href="../calculadora-intereses/index.html" class="mobile-menu__link">Calculadora de Intereses</a>
+  <a href="../calculadora-prestamos/" class="mobile-menu__link">Calculadora de Préstamos</a>
+  <a href="../calculadora-fondo-emergencia/" class="mobile-menu__link">Fondo de Emergencia</a>
+  <a href="../control-gastos/" class="mobile-menu__link">Control de Gastos</a>
+  <a href="../mi-perfil/" class="mobile-menu__link">Mi Perfil</a>
   <a href="../guias/index.html" class="mobile-menu__link">Guías</a>
+  <a href="../sobre-dinari/index.html" class="mobile-menu__link">Sobre Dinari</a>
 </div>
 </header>
 
@@ -536,8 +551,10 @@ crossorigin="anonymous"></script>
 </footer>
 
 <script src="../js/main.js" defer></script>
+<script src="../js/core/storage.js" defer></script>
+<script src="../js/core/profile.js" defer></script>
+<script src="../js/core/recommendation-engine.js" defer></script>
+<script src="../js/core/utils.js" defer></script>
 <script src="../js/minimum-payment.js" defer></script>
 </body>
 </html>
-
-

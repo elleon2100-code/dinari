@@ -22,8 +22,54 @@ const MidinariProfile = (function () {
     fechaActualizacion: null
   };
 
+  let toastTimeout = null;
+
+  function showSaveToast() {
+    if (typeof document === 'undefined') return;
+
+    // Buscar o crear contenedor de toast
+    let toast = document.getElementById('midinari-save-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'midinari-save-toast';
+      // Estilos inline discretos y elegantes integrados con el tema de Midinari
+      toast.style.position = 'fixed';
+      toast.style.bottom = '20px';
+      toast.style.right = '20px';
+      toast.style.backgroundColor = '#5C8060'; // Verde Sage del proyecto
+      toast.style.color = '#FFFFFF';
+      toast.style.padding = '12px 20px';
+      toast.style.borderRadius = '8px';
+      toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+      toast.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+      toast.style.fontSize = '13px';
+      toast.style.fontWeight = '600';
+      toast.style.zIndex = '9999';
+      toast.style.opacity = '0';
+      toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      toast.style.transform = 'translateY(10px)';
+      toast.style.pointerEvents = 'none';
+      toast.textContent = 'Información guardada en tu Perfil Financiero';
+      document.body.appendChild(toast);
+    }
+
+    // Limpiar timeout previo
+    if (toastTimeout) {
+      clearTimeout(toastTimeout);
+    }
+
+    // Mostrar
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+
+    // Ocultar tras 2.5 segundos
+    toastTimeout = setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(10px)';
+    }, 2500);
+  }
+
   function getProfile() {
-    // Si no tiene cargada la base de almacenamiento, se usa globalmente
     const store = typeof window !== 'undefined' && window.MidinariStorage ? window.MidinariStorage : null;
     if (!store) {
       return Object.assign({}, DEFAULT_PROFILE);
@@ -32,7 +78,6 @@ const MidinariProfile = (function () {
     if (!data) {
       return Object.assign({}, DEFAULT_PROFILE);
     }
-    // Combinar con defaults para evitar campos no definidos
     return Object.assign({}, DEFAULT_PROFILE, data);
   }
 
@@ -43,26 +88,38 @@ const MidinariProfile = (function () {
     const profileToSave = Object.assign({}, profile, {
       fechaActualizacion: new Date().toISOString()
     });
-    return store.save(profileToSave);
+    const success = store.save(profileToSave);
+    if (success) {
+      showSaveToast();
+    }
+    return success;
   }
 
-  function updateProfile(partialProfile) {
+  function updateProfile(partialProfile, silent = false) {
     const store = typeof window !== 'undefined' && window.MidinariStorage ? window.MidinariStorage : null;
     if (!store) return false;
     
     const updates = Object.assign({}, partialProfile, {
       fechaActualizacion: new Date().toISOString()
     });
-    return store.update(updates);
+    const success = store.update(updates);
+    if (success && !silent) {
+      showSaveToast();
+    }
+    return success;
   }
 
   function resetProfile() {
     const store = typeof window !== 'undefined' && window.MidinariStorage ? window.MidinariStorage : null;
     if (!store) return false;
     
-    return store.save(Object.assign({}, DEFAULT_PROFILE, {
+    const success = store.save(Object.assign({}, DEFAULT_PROFILE, {
       fechaActualizacion: new Date().toISOString()
     }));
+    if (success) {
+      showSaveToast();
+    }
+    return success;
   }
 
   return {

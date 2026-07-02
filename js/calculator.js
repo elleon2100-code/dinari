@@ -240,7 +240,36 @@
     document.head.appendChild(script);
   }
 
+  let saveDebounce = null;
+  function saveToProfileDebounced() {
+    if (saveDebounce) clearTimeout(saveDebounce);
+    saveDebounce = setTimeout(() => {
+      if (window.MidinariProfile) {
+        window.MidinariProfile.updateProfile({
+          deudaTotal: state.amount,
+          interesPromedio: state.rate
+        });
+      }
+    }, 1000);
+  }
+
   function init() {
+    // Cargar perfil si existe
+    if (window.MidinariProfile) {
+      const profile = window.MidinariProfile.getProfile();
+      if (profile.deudaTotal > 0) state.amount = profile.deudaTotal;
+      if (profile.interesPromedio > 0) state.rate = profile.interesPromedio;
+
+      // Actualizar inputs del DOM con valores del perfil
+      const amountInput = document.getElementById('calc-amount');
+      const rateSlider = document.getElementById('calc-rate');
+      const rateVal = document.getElementById('calc-rate-val');
+
+      if (amountInput) amountInput.value = state.amount;
+      if (rateSlider) rateSlider.value = state.rate;
+      if (rateVal) rateVal.textContent = state.rate + '%';
+    }
+
     bindEvents();
     
     // Auto-detect currency
@@ -260,7 +289,9 @@
     }
     applyCurrency(initialCurrency || 'MXN');
 
-    loadChartJS(() => { calculate(); });
+    loadChartJS(() => { 
+      calculate(); 
+    });
   }
 
   if (document.readyState === 'loading') {
@@ -269,4 +300,12 @@
     init();
   }
 
+  // Hook saveToProfileDebounced on calculate
+  const originalCalculate = calculate;
+  calculate = function() {
+    originalCalculate();
+    saveToProfileDebounced();
+  };
+
 })();
+

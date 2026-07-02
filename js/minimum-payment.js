@@ -423,5 +423,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Inicialización
   updateFormatters();
-  // No llamamos calculate al inicio porque los campos están vacíos
+  
+  // Cargar datos del perfil
+  if (window.MidinariProfile) {
+    const profile = window.MidinariProfile.getProfile();
+    if (profile.deudaTotal > 0) inputs.debt.value = profile.deudaTotal;
+    if (profile.interesPromedio > 0) {
+      inputs.rateInput.value = profile.interesPromedio;
+      inputs.rateSlider.value = profile.interesPromedio;
+    }
+    if (profile.pagoMensualDeuda > 0) inputs.minPayment.value = profile.pagoMensualDeuda;
+    if (profile.deudaTotal > 0 || profile.interesPromedio > 0 || profile.pagoMensualDeuda > 0) {
+      calculate();
+    }
+  }
+
+  let saveDebounce = null;
+  function saveToProfileDebounced(debt, rate, minPay) {
+    if (saveDebounce) clearTimeout(saveDebounce);
+    saveDebounce = setTimeout(() => {
+      if (window.MidinariProfile) {
+        window.MidinariProfile.updateProfile({
+          deudaTotal: debt,
+          interesPromedio: rate,
+          pagoMensualDeuda: minPay
+        });
+      }
+    }, 1000);
+  }
+
+  // Hook saveToProfileDebounced on calculate
+  const originalCalculate = calculate;
+  calculate = function() {
+    originalCalculate();
+    const debt = parseFloat(inputs.debt.value) || 0;
+    const rate = parseFloat(inputs.rateInput.value) || 0;
+    const minPay = parseFloat(inputs.minPayment.value) || 0;
+    if (debt > 0) {
+      saveToProfileDebounced(debt, rate, minPay);
+    }
+  };
+
 });
