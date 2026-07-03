@@ -409,6 +409,9 @@
           interesPromedio: avgRate
         });
       }
+      if (window.MidinariMissions) {
+        window.MidinariMissions.registerSimulationEvent('simulator');
+      }
     }, 1000);
   }
 
@@ -454,12 +457,21 @@
     const saving = Math.abs(primary.totalInterestPaid - alt.totalInterestPaid);
     const monthSaving = Math.abs(primary.months - alt.months);
     const primaryIsBetter = primary.totalInterestPaid <= alt.totalInterestPaid;
-    const betterLabel = primaryIsBetter
-      ? `El método ${primary.method === 'avalanche' ? 'Avalancha' : 'Bola de Nieve'} te ahorra ${fmt.currency(saving)} y ${monthSaving} mes${monthSaving !== 1 ? 'es' : ''} vs. el otro método`
-      : `Considera el método ${alt.method === 'avalanche' ? 'Avalancha' : 'Bola de Nieve'} para ahorrar ${fmt.currency(saving)} adicionales`;
+    
+    let betterLabel = '';
+    if (saving === 0 && monthSaving === 0) {
+      betterLabel = 'Ambas estrategias dan el mismo resultado con tus deudas actuales.';
+    } else {
+      betterLabel = primaryIsBetter
+        ? `El método ${primary.method === 'avalanche' ? 'Avalancha' : 'Bola de Nieve'} te ahorra ${fmt.currency(saving)} y ${monthSaving} mes${monthSaving !== 1 ? 'es' : ''} vs. el otro método`
+        : `Considera el método ${alt.method === 'avalanche' ? 'Avalancha' : 'Bola de Nieve'} para ahorrar ${fmt.currency(saving)} adicionales`;
+    }
 
     const savingsEl = document.getElementById('method-savings');
     if (savingsEl) savingsEl.textContent = betterLabel;
+
+    const savingsSbEl = document.getElementById('method-savings-sb');
+    if (savingsSbEl) savingsSbEl.textContent = betterLabel;
 
     // Orden de pago
     renderDebtOrder(primary, debts);

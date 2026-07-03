@@ -276,6 +276,9 @@
           pagoMensualDeuda: pmt
         });
       }
+      if (window.MidinariMissions) {
+        window.MidinariMissions.registerSimulationEvent('loans');
+      }
     }, 1000);
   }
 

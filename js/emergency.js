@@ -205,6 +205,9 @@
           fondoEmergenciaObjetivo: recommendedFund
         });
       }
+      if (window.MidinariMissions) {
+        window.MidinariMissions.registerSimulationEvent('emergency');
+      }
     }, 1000);
   }
 

@@ -55,6 +55,9 @@
           gastosMensuales: expensesTotal
         });
       }
+      if (window.MidinariMissions) {
+        window.MidinariMissions.registerSimulationEvent('tracker');
+      }
     }, 1000);
   }
 

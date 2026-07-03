@@ -57,6 +57,13 @@ function isActive(path: string): boolean {
               aria-current={isActive('/mi-perfil') ? 'page' : undefined}
             >Mi Perfil</a>
           </li>
+          <li>
+            <a
+              href="/hoja-de-ruta-financiera/"
+              class="navbar__link"
+              aria-current={isActive('/hoja-de-ruta-financiera') ? 'page' : undefined}
+            >Hoja de Ruta</a>
+          </li>
         </ul>
         <div class="navbar__cta">
           <a href="/simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a>
@@ -83,6 +90,8 @@ function isActive(path: string): boolean {
     <a href="/calculadora-fondo-emergencia/" class="mobile-menu__link">Fondo de Emergencia</a>
     <a href="/control-gastos/" class="mobile-menu__link">Control de Gastos</a>
     <a href="/mi-perfil/" class="mobile-menu__link">Mi Perfil</a>
+    <a href="/copiloto/" class="mobile-menu__link">Copiloto</a>
+    <a href="/hoja-de-ruta-financiera/" class="mobile-menu__link">Hoja de Ruta</a>
     <a href="/guias/" class="mobile-menu__link">Guías</a>
     <a href="/sobre-dinari/" class="mobile-menu__link">Sobre Dinari</a>
     <a href="/simulador-deudas/" class="btn btn--sage" style="margin-top:var(--sp-4);">Calcular mi deuda →</a>

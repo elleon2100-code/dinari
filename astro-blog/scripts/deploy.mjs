@@ -26,7 +26,7 @@ const ARTICLE_SLUGS = [
   'metodo-bola-de-nieve',
   'como-salir-de-deudas',
   'el-peligro-del-pago-minimo',
-  'hoja-de-ruta-financiera',
+  'guia-hoja-de-ruta-financiera',
   'retiro-tardio',
   'atraso-de-un-dia',
   'ansiedad-financiera',

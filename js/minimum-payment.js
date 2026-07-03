@@ -449,6 +449,9 @@ document.addEventListener('DOMContentLoaded', () => {
           pagoMensualDeuda: minPay
         });
       }
+      if (window.MidinariMissions) {
+        window.MidinariMissions.registerSimulationEvent('minimum_payment');
+      }
     }, 1000);
   }
 

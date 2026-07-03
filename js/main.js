@@ -94,7 +94,49 @@
       },
       { threshold: 0.5 }
     );
-    statEls.forEach(el => counterObserver.observe(el));
+  }
+
+  // ── AJUSTE DINÁMICO DE PADDING PARA PREFIJOS DE MONEDA ──
+  function adjustPrefixPaddings() {
+    document.querySelectorAll('.field__prefix').forEach(prefix => {
+      const input = prefix.nextElementSibling;
+      if (input && (input.classList.contains('field__input--prefixed') || input.tagName === 'INPUT')) {
+        const text = prefix.textContent.trim();
+        const textLength = text.length;
+        let paddingLeft = 32; // Valor por defecto
+        if (textLength > 1) {
+          // Ajustar padding proporcionalmente para evitar solapamientos (ej. RD$, USD$)
+          paddingLeft = 20 + textLength * 9.5;
+        }
+        input.style.paddingLeft = `${paddingLeft}px`;
+      }
+    });
+  }
+
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        adjustPrefixPaddings();
+        setupPrefixObserver();
+      });
+    } else {
+      adjustPrefixPaddings();
+      setupPrefixObserver();
+    }
+  }
+
+  function setupPrefixObserver() {
+    if (typeof MutationObserver !== 'undefined') {
+      const observer = new MutationObserver(() => {
+        adjustPrefixPaddings();
+      });
+      // Observar todo el body para capturar inserciones dinámicas de filas de deudas o cambios de texto
+      observer.observe(document.body, { 
+        childList: true, 
+        characterData: true, 
+        subtree: true 
+      });
+    }
   }
 
 })();

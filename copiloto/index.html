@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W986LMBCEN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W986LMBCEN');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3422421858882439"
+crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copiloto Financiero Experto | Dinari</title>
+<meta name="description" content="Tu asistente financiero experto en Dinari. Misiones, logros, objetivos y evolución financiera personalizada en base a tus ingresos y deudas.">
+<link rel="canonical" href="https://midinari.com/copiloto/">
+<meta property="og:title" content="Copiloto Financiero Experto | Dinari">
+<meta property="og:description" content="Tu asistente financiero experto local. Recibe misiones, desbloquea logros y haz seguimiento de tus metas de ahorro y deudas.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://midinari.com/copiloto/">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/simulator.css">
+<link rel="manifest" href="../manifest.json">
+<style>
+  .copilot-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+    margin-top: var(--sp-6);
+  }
+  @media (min-width: 992px) {
+    .copilot-grid {
+      grid-template-columns: 350px 1fr;
+    }
+  }
+
+  .c-card {
+    background: var(--white);
+    border: 1px solid var(--cream-300);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-6);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    margin-bottom: var(--sp-6);
+  }
+
+  /* Score Anillo en Copiloto */
+  .score-circle {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto var(--sp-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .score-circle svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+  }
+  .score-circle circle {
+    fill: none;
+    stroke-width: 8;
+  }
+  .score-circle .bg-circle {
+    stroke: var(--cream-200);
+  }
+  .score-circle .val-circle {
+    stroke: var(--sage-500);
+    stroke-linecap: round;
+    transition: stroke-dasharray 1s ease;
+  }
+
+  /* Listado de fortalezas / debilidades */
+  .list-check, .list-warn {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .list-check li, .list-warn li {
+    padding-left: var(--sp-6);
+    position: relative;
+    margin-bottom: var(--sp-3);
+    font-size: var(--text-sm);
+  }
+  .list-check li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: 700;
+  }
+  .list-warn li::before {
+    content: "⚠️";
+    position: absolute;
+    left: 0;
+  }
+
+  /* Barra de objetivos */
+  .goal-bar-wrap {
+    height: 10px;
+    background: var(--cream-200);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-block: var(--sp-2) var(--sp-4);
+  }
+  .goal-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--sage-400), var(--sage-600));
+    width: 0%;
+    transition: width 1s ease-out;
+  }
+
+  /* Badges Grid (Logros) */
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-3);
+    margin-top: var(--sp-4);
+  }
+  .ach-badge {
+    text-align: center;
+    padding: var(--sp-3) var(--sp-2);
+    border: 1px solid var(--cream-200);
+    border-radius: var(--radius-md);
+    background: var(--cream-100);
+    filter: grayscale(1);
+    opacity: 0.6;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .ach-badge--unlocked {
+    filter: none;
+    opacity: 1;
+    background: var(--white);
+    border-color: var(--sage-200);
+    box-shadow: 0 4px 10px rgba(92,128,96,0.06);
+  }
+  .ach-badge__icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: var(--sp-1);
+  }
+  .ach-badge__title {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--charcoal);
+    display: block;
+  }
+
+  /* Tooltip flotante para logros */
+  .ach-badge:hover .ach-tooltip {
+    display: block;
+  }
+  .ach-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 105%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--charcoal);
+    color: var(--white);
+    padding: var(--sp-2) var(--sp-3);
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    width: 150px;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  /* Misiones */
+  .mission-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    padding-block: var(--sp-3);
+    border-bottom: 1px solid var(--cream-200);
+  }
+  .mission-item:last-child {
+    border-bottom: none;
+  }
+  .mission-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 2px solid var(--cream-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--success);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: default;
+    background: var(--white);
+  }
+  .mission-checkbox--completed {
+    border-color: var(--success);
+    background: #edf4ee;
+  }
+  .mission-text {
+    font-size: var(--text-sm);
+    color: var(--charcoal);
+  }
+  .mission-text--completed {
+    text-decoration: line-through;
+    color: var(--stone-400);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="../" class="navbar__logo" aria-label="Dinari - Inicio">
+        <span class="navbar__logo-mark" aria-hidden="true">D</span>
+        Dinari
+      </a>
+      <ul class="navbar__nav" role="list">
+        <li><a href="../simulador-deudas/" class="navbar__link">Simulador</a></li>
+        <li><a href="../simulador-pago-minimo/" class="navbar__link">Pago Mínimo</a></li>
+        <li><a href="../calculadora-intereses/" class="navbar__link">Calculadora</a></li>
+        <li><a href="../guias/" class="navbar__link">Guías</a></li>
+        <li><a href="../mi-perfil/" class="navbar__link">Mi Perfil</a></li>
+      </ul>
+      <div class="navbar__cta">
+        <a href="../simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+  <a href="../" class="mobile-menu__link">Inicio</a>
+  <a href="../simulador-deudas/" class="mobile-menu__link">Simulador de Deudas</a>
+  <a href="../simulador-pago-minimo/" class="mobile-menu__link">Simulador de Pago Mínimo</a>
+  <a href="../calculadora-intereses/" class="mobile-menu__link">Calculadora de Intereses</a>
+  <a href="../calculadora-prestamos/" class="mobile-menu__link">Calculadora de Préstamos</a>
+  <a href="../calculadora-fondo-emergencia/" class="mobile-menu__link">Fondo de Emergencia</a>
+  <a href="../control-gastos/" class="mobile-menu__link">Control de Gastos</a>
+  <a href="../mi-perfil/" class="mobile-menu__link">Mi Perfil</a>
+  <a href="../copiloto/" class="mobile-menu__link">Copiloto</a>
+  <a href="../guias/" class="mobile-menu__link">Guías</a>
+  <a href="../sobre-dinari/index.html" class="mobile-menu__link">Sobre Dinari</a>
+</div>
+</header>
+
+<main id="main-content" class="main-layout container" style="padding-top: calc(var(--navbar-h) + var(--sp-10));">
+  
+  <div class="section-header" style="text-align: left; margin-bottom: var(--sp-4);">
+    <nav class="page-hero__breadcrumb" aria-label="Ruta de navegación" style="margin-bottom:var(--sp-2);">
+      <a href="../">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <span>Copiloto Financiero</span>
+    </nav>
+    <h1 class="heading-1">Copiloto Financiero</h1>
+    <p class="body-lg" style="max-width: 750px; margin-inline: 0;">Tu asesor experto personal. Completa misiones, sigue tu plan de progreso y desbloquea insignias de éxito financiero local.</p>
+  </div>
+
+  <div class="copilot-grid">
+    
+    <!-- COLUMNA IZQUIERDA: RESUMEN, GRÁFICO, LOGROS -->
+    <aside class="copilot-aside">
+      
+      <!-- CARD 1: RESUMEN FINANCIERO -->
+      <div class="c-card" style="text-align: center;">
+        <h2 class="heading-4" style="margin-bottom: var(--sp-3);">Resumen General</h2>
+        <div class="score-circle">
+          <svg viewBox="0 0 160 160">
+            <circle class="bg-circle" cx="80" cy="80" r="70"></circle>
+            <circle class="val-circle" id="score-ring" cx="80" cy="80" r="70"></circle>
+          </svg>
+          <div style="position: absolute; text-align: center;">
+            <div id="score-val" style="font-size: 2.25rem; font-weight: 700; color: var(--charcoal); line-height: 1;">0</div>
+            <div style="font-size: 10px; font-weight: 600; color: var(--stone-400); margin-top: 2px;">SCORE</div>
+          </div>
+        </div>
+        <div class="score-badge" style="margin-bottom: var(--sp-3);">
+          <span class="score-label" id="score-status" style="padding: 4px 12px; font-size: 12px;">CRÍTICO</span>
+        </div>
+        <p class="body-xs" style="color: var(--stone-500); margin-bottom: 0;">
+          Última actualización:<br><strong id="last-update">--</strong>
+        </p>
+      </div>
+
+      <!-- CARD 2: GRÁFICO EVOLUCIÓN -->
+      <div class="c-card">
+        <h2 class="heading-4" style="margin-bottom: var(--sp-1);">Evolución de Score</h2>
+        <p class="body-xs" style="color: var(--stone-400); margin-bottom: var(--sp-4);">Tu historial de salud financiera diaria.</p>
+        <div id="score-chart">
+          <!-- SVG dinámico inyectado -->
+        </div>
+      </div>
+
+      <!-- CARD 3: LOGROS -->
+      <div class="c-card">
+        <h2 class="heading-4" style="margin-bottom: var(--sp-1);">Insignias y Logros</h2>
+        <p class="body-xs" style="color: var(--stone-400); margin-bottom: var(--sp-3);">Desbloquea metas completando misiones.</p>
+        <div class="achievements-grid" id="achievements-grid">
+          <!-- Badges dinámicas inyectadas -->
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- COLUMNA DERECHA: PRIORIDAD, MISIONES, OBJETIVOS, DIAGNÓSTICO -->
+    <section class="copilot-main">
+      
+      <!-- CARD 4: PRIORIDAD DEL MES -->
+      <div class="c-card" style="border-left: 4px solid var(--sage-500); background: var(--cream-100);">
+        <span class="badge badge--cream" style="margin-bottom: var(--sp-2);">🎯 Enfoque de este mes</span>
+        <h2 class="heading-3" id="priority-title" style="margin-bottom: var(--sp-2);">Cargando prioridad...</h2>
+        <p class="body-sm" id="priority-desc" style="color: var(--stone-600); margin: 0; line-height: 1.5;">Analizando tus finanzas para determinar tu prioridad...</p>
+      </div>
+
+      <!-- CARD 5: OBJETIVOS ACTUADOS -->
+      <div class="c-card">
+        <h2 class="heading-4" style="margin-bottom: var(--sp-1);">Mis Objetivos Actuales</h2>
+        <p class="body-xs" style="color: var(--stone-400); margin-bottom: var(--sp-4);">Tus metas cuantitativas calculadas automáticamente.</p>
+        <div id="goals-list">
+          <!-- Objetivos dinámicos inyectados -->
+        </div>
+      </div>
+
+      <!-- CARD 6: MISIONES DE TRABAJO -->
+      <div class="c-card">
+        <h2 class="heading-4" style="margin-bottom: var(--sp-1);">Lista de Misiones</h2>
+        <p class="body-xs" style="color: var(--stone-400); margin-bottom: var(--sp-4);">Completa tareas del copiloto interactuando con las herramientas de Midinari.</p>
+        <div id="missions-list">
+          <!-- Misiones dinámicas inyectadas -->
+        </div>
+      </div>
+
+      <!-- CARD 7: LO ESTÁS HACIENDO BIEN VS LO QUE NECESITA ATENCIÓN -->
+      <div style="display: grid; grid-template-columns: 1fr; gap: var(--sp-6);">
+        <!-- Lo que haces bien -->
+        <div class="c-card" style="margin-bottom: 0;">
+          <h2 class="heading-4" style="margin-bottom: var(--sp-3); color: var(--sage-700);">👍 Aspectos Positivos</h2>
+          <ul class="list-check" id="list-good">
+            <!-- Fortalezas dinámicas -->
+          </ul>
+        </div>
+        <!-- Atención -->
+        <div class="c-card" style="margin-bottom: 0;">
+          <h2 class="heading-4" style="margin-bottom: var(--sp-3); color: var(--danger);">⚠️ Puntos de Atención</h2>
+          <ul class="list-warn" id="list-warn">
+            <!-- Debilidades dinámicas -->
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer" role="contentinfo" style="margin-top: var(--sp-12);">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
+          Dinari
+        </div>
+        <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Herramientas</p>
+        <ul class="footer__links">
+          <li><a href="../simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="../simulador-pago-minimo/" class="footer__link">Simulador de Pago Mínimo</a></li>
+          <li><a href="../calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
+          <li><a href="../calculadora-prestamos/" class="footer__link">Calculadora de Préstamos</a></li>
+          <li><a href="../calculadora-fondo-emergencia/" class="footer__link">Fondo de Emergencia</a></li>
+          <li><a href="../control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
+          <li><a href="../mi-perfil/" class="footer__link">Mi Perfil</a></li>
+          <li><a href="../copiloto/" class="footer__link">Copiloto</a></li>
+          <li><a href="../hoja-de-ruta-financiera/" class="footer__link">Hoja de Ruta</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__links">
+          <li><a href="../privacidad/index.html" class="footer__link">Privacidad</a></li>
+          <li><a href="../cookies/index.html" class="footer__link">Cookies</a></li>
+          <li><a href="../terminos/index.html" class="footer__link">Términos</a></li>
+          <li><a href="../contacto/index.html" class="footer__link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
+      <p>Los cálculos son orientativos. Consulta con un asesor financiero.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+<script src="../js/core/storage.js" defer></script>
+<script src="../js/core/profile.js" defer></script>
+<!-- Los demas scripts del core (advisor, timeline, missions, achievements) se cargaran automaticamente gracias al profile.js -->
+<script src="../js/copilot.js" defer></script>
+</body>
+</html>

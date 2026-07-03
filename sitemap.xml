@@ -60,4 +60,16 @@
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
+  <url>
+    <loc>https://midinari.com/hoja-de-ruta-financiera/</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://midinari.com/copiloto/</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
 </urlset>

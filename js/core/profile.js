@@ -90,6 +90,15 @@ const MidinariProfile = (function () {
     });
     const success = store.save(profileToSave);
     if (success) {
+      if (window.MidinariTimeline) {
+        window.MidinariTimeline.recordSnapshot(profileToSave);
+      }
+      if (window.MidinariMissions) {
+        window.MidinariMissions.evaluateMissions(profileToSave);
+      }
+      if (window.MidinariAchievements) {
+        window.MidinariAchievements.evaluateAchievements(profileToSave);
+      }
       showSaveToast();
     }
     return success;
@@ -103,8 +112,20 @@ const MidinariProfile = (function () {
       fechaActualizacion: new Date().toISOString()
     });
     const success = store.update(updates);
-    if (success && !silent) {
-      showSaveToast();
+    if (success) {
+      const currentProfile = getProfile();
+      if (window.MidinariTimeline) {
+        window.MidinariTimeline.recordSnapshot(currentProfile);
+      }
+      if (window.MidinariMissions) {
+        window.MidinariMissions.evaluateMissions(currentProfile);
+      }
+      if (window.MidinariAchievements) {
+        window.MidinariAchievements.evaluateAchievements(currentProfile);
+      }
+      if (!silent) {
+        showSaveToast();
+      }
     }
     return success;
   }
@@ -113,10 +134,20 @@ const MidinariProfile = (function () {
     const store = typeof window !== 'undefined' && window.MidinariStorage ? window.MidinariStorage : null;
     if (!store) return false;
     
-    const success = store.save(Object.assign({}, DEFAULT_PROFILE, {
+    const profileToSave = Object.assign({}, DEFAULT_PROFILE, {
       fechaActualizacion: new Date().toISOString()
-    }));
+    });
+    const success = store.save(profileToSave);
     if (success) {
+      if (window.MidinariTimeline) {
+        window.MidinariTimeline.recordSnapshot(profileToSave);
+      }
+      if (window.MidinariMissions) {
+        window.MidinariMissions.evaluateMissions(profileToSave);
+      }
+      if (window.MidinariAchievements) {
+        window.MidinariAchievements.evaluateAchievements(profileToSave);
+      }
       showSaveToast();
     }
     return success;
@@ -133,4 +164,34 @@ const MidinariProfile = (function () {
 // Registrar globalmente
 if (typeof window !== 'undefined') {
   window.MidinariProfile = MidinariProfile;
+}
+
+// Auto-cargar scripts del copiloto y advisors para garantizar sincronización en tiempo real
+if (typeof document !== 'undefined') {
+  (function() {
+    const currentScript = document.querySelector('script[src*="profile.js"]');
+    let basePath = '../js/core/';
+    if (currentScript) {
+      const src = currentScript.getAttribute('src');
+      basePath = src.substring(0, src.lastIndexOf('/') + 1);
+    }
+    
+    const scriptsToLoad = [
+      'rules.js',
+      'advisor.js',
+      'timeline.js',
+      'missions.js',
+      'achievements.js'
+    ];
+    
+    scriptsToLoad.forEach(scriptName => {
+      const alreadyLoaded = Array.from(document.querySelectorAll('script')).some(s => s.src && s.src.includes(scriptName));
+      if (!alreadyLoaded) {
+        const script = document.createElement('script');
+        script.src = basePath + scriptName;
+        script.defer = true;
+        document.head.appendChild(script);
+      }
+    });
+  })();
 }
