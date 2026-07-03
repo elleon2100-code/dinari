@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W986LMBCEN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W986LMBCEN');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3422421858882439"
+crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparador de Escenarios Financieros | Dinari</title>
+<meta name="description" content="Crea, edita, duplica y compara diferentes planes financieros. Evalúa cómo impacta el ahorro y el pago extra de deudas en tu salud financiera.">
+<link rel="canonical" href="https://midinari.com/comparador-escenarios/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/simulator.css">
+<link rel="manifest" href="../manifest.json">
+<style>
+  .comp-container {
+    margin-top: var(--sp-6);
+  }
+  .comp-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--sp-6);
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+  }
+  
+  /* Matrix comparison styles */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--cream-300);
+    background: var(--white);
+    margin-bottom: var(--sp-8);
+  }
+  .matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 800px;
+  }
+  .matrix-table th, .matrix-table td {
+    padding: var(--sp-4) var(--sp-5);
+    border-bottom: 1px solid var(--cream-200);
+    font-size: var(--text-sm);
+  }
+  .matrix-table th {
+    background: var(--cream-100);
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+  .matrix-table tr:last-child td {
+    border-bottom: none;
+  }
+  .matrix-table tr:hover td {
+    background: var(--cream-50);
+  }
+
+  /* Highlights badges */
+  .cell-highlight {
+    background: #e8f5e9 !important; /* Greenish success light */
+    font-weight: 700;
+    position: relative;
+  }
+  .highlight-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: var(--sp-2);
+    vertical-align: middle;
+  }
+  .badge-winner {
+    background: var(--success);
+    color: var(--white);
+  }
+
+  /* Scenario cards/controls in table headers */
+  .header-scenario-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  .header-actions {
+    display: flex;
+    gap: 4px;
+  }
+  .header-actions button {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+
+  /* Native Charts */
+  .chart-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+    margin-bottom: var(--sp-8);
+  }
+  @media (min-width: 768px) {
+    .chart-section {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .chart-card {
+    background: var(--white);
+    border: 1px solid var(--cream-300);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-6);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  }
+  .chart-bars-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    margin-top: var(--sp-4);
+  }
+  .chart-bar-row {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+  }
+  .chart-bar-label {
+    width: 120px;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--charcoal-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .chart-bar-outer {
+    flex-grow: 1;
+    height: 18px;
+    background: var(--cream-200);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .chart-bar-inner {
+    height: 100%;
+    background: var(--sage-500);
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+  .chart-bar-value {
+    width: 90px;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--charcoal);
+    text-align: right;
+  }
+
+  /* Modal Form */
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .modal-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-content {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    width: 95%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: var(--sp-6);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+  .modal-backdrop.open .modal-content {
+    transform: translateY(0);
+  }
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--cream-200);
+    padding-bottom: var(--sp-3);
+    margin-bottom: var(--sp-4);
+  }
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--sp-3);
+    border-top: 1px solid var(--cream-200);
+    padding-top: var(--sp-4);
+    margin-top: var(--sp-5);
+  }
+  .form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 480px) {
+    .form-grid-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="../" class="navbar__logo" aria-label="Dinari - Inicio">
+        <span class="navbar__logo-mark" aria-hidden="true">D</span>
+        Dinari
+      </a>
+      <ul class="navbar__nav" role="list">
+        <li><a href="../simulador-deudas/" class="navbar__link">Simulador</a></li>
+        <li><a href="../simulador-pago-minimo/" class="navbar__link">Pago Mínimo</a></li>
+        <li><a href="../calculadora-intereses/" class="navbar__link">Calculadora</a></li>
+        <li><a href="../guias/" class="navbar__link">Guías</a></li>
+        <li><a href="../mi-perfil/" class="navbar__link">Mi Perfil</a></li>
+      </ul>
+      <div class="navbar__cta">
+        <a href="../simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+  <a href="../" class="mobile-menu__link">Inicio</a>
+  <a href="../simulador-deudas/" class="mobile-menu__link">Simulador de Deudas</a>
+  <a href="../simulador-pago-minimo/" class="mobile-menu__link">Simulador de Pago Mínimo</a>
+  <a href="../calculadora-intereses/" class="mobile-menu__link">Calculadora de Intereses</a>
+  <a href="../calculadora-prestamos/" class="mobile-menu__link">Calculadora de Préstamos</a>
+  <a href="../calculadora-fondo-emergencia/" class="mobile-menu__link">Fondo de Emergencia</a>
+  <a href="../control-gastos/" class="mobile-menu__link">Control de Gastos</a>
+  <a href="../mi-perfil/" class="mobile-menu__link">Mi Perfil</a>
+  <a href="../copiloto/" class="mobile-menu__link">Copiloto</a>
+  <a href="../plan-financiero/" class="mobile-menu__link">Plan Financiero</a>
+  <a href="../comparador-escenarios/" class="mobile-menu__link">Comparador de Escenarios</a>
+  <a href="../hoja-de-ruta-financiera/" class="mobile-menu__link">Hoja de Ruta</a>
+  <a href="../guias/" class="mobile-menu__link">Guías</a>
+  <a href="../sobre-dinari/index.html" class="mobile-menu__link">Sobre Dinari</a>
+</div>
+</header>
+
+<main id="main-content" class="main-layout container" style="padding-top: calc(var(--navbar-h) + var(--sp-10));">
+  
+  <div class="section-header" style="text-align: left; margin-bottom: var(--sp-4);">
+    <nav class="page-hero__breadcrumb" aria-label="Ruta de navegación" style="margin-bottom:var(--sp-2);">
+      <a href="../">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <span>Comparador de Escenarios</span>
+    </nav>
+    <h1 class="heading-1">Comparador de Escenarios</h1>
+    <p class="body-lg" style="max-width: 750px; margin-inline: 0;">Crea múltiples versiones de tu presupuesto y plan de deudas. Compáralas lado a lado y activa la que mejor se adapte a tus metas.</p>
+  </div>
+
+  <div class="comp-container">
+    
+    <!-- ACCIONES DE GESTIÓN -->
+    <div class="comp-actions">
+      <div style="display:flex; gap: var(--sp-2);">
+        <button class="btn btn--sage btn--sm" id="btn-create-scenario">➕ Crear Escenario</button>
+      </div>
+      <p class="body-xs" style="color:var(--stone-400); margin:0;">Tus datos nunca salen de tu dispositivo y se guardan localmente en LocalStorage.</p>
+    </div>
+
+    <!-- TABLA COMPARATIVA -->
+    <div class="table-responsive">
+      <table class="matrix-table" id="matrix-table">
+        <thead>
+          <tr id="matrix-header-row">
+            <th>Métrica / Escenario</th>
+            <!-- Dinámico -->
+          </tr>
+        </thead>
+        <tbody id="matrix-body">
+          <!-- Dinámico -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECCIÓN DE GRÁFICOS -->
+    <div class="chart-section">
+      
+      <!-- Gráfico 1: Tiempo de Deudas -->
+      <div class="chart-card">
+        <h3 class="heading-4" style="margin-bottom: 4px;">Tiempo de Liquidación</h3>
+        <p class="body-xs" style="color:var(--stone-400); margin-bottom: var(--sp-4);">Proyección estimada de meses para pagar tus deudas.</p>
+        <div class="chart-bars-container" id="chart-months">
+          <!-- Dinámico -->
+        </div>
+      </div>
+
+      <!-- Gráfico 2: Costo en Intereses -->
+      <div class="chart-card">
+        <h3 class="heading-4" style="margin-bottom: 4px;">Intereses Totales a Pagar</h3>
+        <p class="body-xs" style="color:var(--stone-400); margin-bottom: var(--sp-4);">Costo total de intereses hasta liquidar deudas.</p>
+        <div class="chart-bars-container" id="chart-interest">
+          <!-- Dinámico -->
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MODAL PARA CREAR / EDITAR ESCENARIO -->
+  <div class="modal-backdrop" id="scenario-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="heading-4" id="modal-title">Crear Nuevo Escenario</h3>
+        <button class="btn btn--outline btn--xs" id="btn-close-modal" style="padding: 2px 6px;">✕</button>
+      </div>
+      <form id="scenario-form">
+        <input type="hidden" id="modal-scenario-id">
+        
+        <div class="field" style="margin-bottom: var(--sp-4);">
+          <label class="field__label" for="sc-name">Nombre del Escenario</label>
+          <input class="field__input" type="text" id="sc-name" required placeholder="Ej. Ahorro Agresivo">
+        </div>
+
+        <div class="form-grid-2">
+          
+          <div class="field">
+            <label class="field__label" for="sc-income">Ingresos Mensuales</label>
+            <div class="field__prefix-wrap">
+              <span class="field__prefix currency-symbol">$</span>
+              <input class="field__input field__input--prefixed" type="number" id="sc-income" min="0" required placeholder="0">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="sc-expenses">Gastos Mensuales</label>
+            <div class="field__prefix-wrap">
+              <span class="field__prefix currency-symbol">$</span>
+              <input class="field__input field__input--prefixed" type="number" id="sc-expenses" min="0" required placeholder="0">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="sc-savings">Ahorro Mensual</label>
+            <div class="field__prefix-wrap">
+              <span class="field__prefix currency-symbol">$</span>
+              <input class="field__input field__input--prefixed" type="number" id="sc-savings" min="0" required placeholder="0">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="sc-emergency">Fondo de Emergencia Actual</label>
+            <div class="field__prefix-wrap">
+              <span class="field__prefix currency-symbol">$</span>
+              <input class="field__input field__input--prefixed" type="number" id="sc-emergency" min="0" required placeholder="0">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="sc-debt">Deuda Total</label>
+            <div class="field__prefix-wrap">
+              <span class="field__prefix currency-symbol">$</span>
+              <input class="field__input field__input--prefixed" type="number" id="sc-debt" min="0" required placeholder="0">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="sc-debt-pay">Pago Mensual Deuda</label>
+            <div class="field__prefix-wrap">
+              <span class="field__prefix currency-symbol">$</span>
+              <input class="field__input field__input--prefixed" type="number" id="sc-debt-pay" min="0" required placeholder="0">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="sc-rate">Tasa de Interés Promedio (%)</label>
+            <input class="field__input" type="number" id="sc-rate" min="0" max="120" step="0.1" required placeholder="0">
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn--outline btn--sm" id="btn-cancel-modal">Cancelar</button>
+          <button type="submit" class="btn btn--sage btn--sm">Guardar Escenario</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer" role="contentinfo" style="margin-top: var(--sp-12);">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
+          Dinari
+        </div>
+        <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Herramientas</p>
+        <ul class="footer__links">
+          <li><a href="../simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="../simulador-pago-minimo/" class="footer__link">Simulador de Pago Mínimo</a></li>
+          <li><a href="../calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
+          <li><a href="../calculadora-prestamos/" class="footer__link">Calculadora de Préstamos</a></li>
+          <li><a href="../calculadora-fondo-emergencia/" class="footer__link">Fondo de Emergencia</a></li>
+          <li><a href="../control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
+          <li><a href="../mi-perfil/" class="footer__link">Mi Perfil</a></li>
+          <li><a href="../copiloto/" class="footer__link">Copiloto</a></li>
+          <li><a href="../plan-financiero/" class="footer__link">Plan Financiero</a></li>
+          <li><a href="../comparador-escenarios/" class="footer__link">Comparador de Escenarios</a></li>
+          <li><a href="../hoja-de-ruta-financiera/" class="footer__link">Hoja de Ruta</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__links">
+          <li><a href="../privacidad/index.html" class="footer__link">Privacidad</a></li>
+          <li><a href="../cookies/index.html" class="footer__link">Cookies</a></li>
+          <li><a href="../terminos/index.html" class="footer__link">Términos</a></li>
+          <li><a href="../contacto/index.html" class="footer__link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
+      <p>Los cálculos son orientativos. Consulta con un asesor financiero.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+<script src="../js/core/storage.js" defer></script>
+<script src="../js/core/profile.js" defer></script>
+<script src="../js/scenario-comparator.js" defer></script>
+</body>
+</html>
