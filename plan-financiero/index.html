@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W986LMBCEN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W986LMBCEN');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3422421858882439"
+crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Financiero Inteligente | Dinari</title>
+<meta name="description" content="Tu mapa de ruta financiero personalizado e interactivo. Simula escenarios de ahorro y deudas, y sigue las etapas hacia tu libertad financiera.">
+<link rel="canonical" href="https://midinari.com/plan-financiero/">
+<meta property="og:title" content="Plan Financiero Inteligente | Dinari">
+<meta property="og:description" content="Simula escenarios financieros, proyecta la liquidación de tus deudas y avanza por las etapas del Financial Journey de forma 100% segura y privada.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://midinari.com/plan-financiero/">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/simulator.css">
+<link rel="manifest" href="../manifest.json">
+<style>
+  .plan-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+    margin-top: var(--sp-6);
+  }
+  @media (min-width: 992px) {
+    .plan-grid {
+      grid-template-columns: 360px 1fr;
+    }
+  }
+
+  .p-card {
+    background: var(--white);
+    border: 1px solid var(--cream-300);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-6);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    margin-bottom: var(--sp-6);
+  }
+
+  /* Journey Timeline styling */
+  .journey-timeline {
+    position: relative;
+    padding-left: var(--sp-6);
+    margin-top: var(--sp-4);
+  }
+  .journey-timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background: var(--cream-300);
+  }
+  .journey-step {
+    position: relative;
+    margin-bottom: var(--sp-6);
+  }
+  .journey-step:last-child {
+    margin-bottom: 0;
+  }
+  .journey-dot {
+    position: absolute;
+    left: -23px;
+    top: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--cream-400);
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+  .journey-step--completed .journey-dot {
+    background: var(--sage-500);
+    border-color: var(--sage-600);
+  }
+  .journey-step--active .journey-dot {
+    background: var(--white);
+    border-color: var(--sage-500);
+    box-shadow: 0 0 0 4px rgba(122,158,126,0.15);
+  }
+  .journey-step__title {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin: 0 0 4px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .journey-step__desc {
+    font-size: 11px;
+    color: var(--stone-500);
+    margin: 0 0 var(--sp-2) 0;
+    line-height: 1.4;
+  }
+  .journey-progress {
+    height: 6px;
+    background: var(--cream-200);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .journey-progress-fill {
+    height: 100%;
+    background: var(--sage-500);
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+
+  /* Sliders and simulation card */
+  .sim-slider-group {
+    margin-bottom: var(--sp-5);
+  }
+  .sim-slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--sp-2);
+  }
+  .sim-slider-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--charcoal-soft);
+  }
+  .sim-slider-value {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--sage-700);
+  }
+  .sim-range {
+    width: 100%;
+    height: 6px;
+    background: var(--cream-300);
+    border-radius: 99px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .sim-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--sage-600);
+    cursor: pointer;
+    border: 2px solid var(--white);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.1s ease;
+  }
+  .sim-range::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+
+  /* Actions list */
+  .action-item {
+    display: flex;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+    background: var(--cream-100);
+    border: 1px solid var(--cream-200);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--sp-3);
+  }
+  .action-item__number {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--sage-600);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .action-item__body {
+    flex-grow: 1;
+  }
+  .action-item__title {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin: 0 0 2px 0;
+  }
+  .action-item__desc {
+    font-size: 12px;
+    color: var(--stone-500);
+    margin: 0 0 var(--sp-2) 0;
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="../" class="navbar__logo" aria-label="Dinari - Inicio">
+        <span class="navbar__logo-mark" aria-hidden="true">D</span>
+        Dinari
+      </a>
+      <ul class="navbar__nav" role="list">
+        <li><a href="../simulador-deudas/" class="navbar__link">Simulador</a></li>
+        <li><a href="../simulador-pago-minimo/" class="navbar__link">Pago Mínimo</a></li>
+        <li><a href="../calculadora-intereses/" class="navbar__link">Calculadora</a></li>
+        <li><a href="../guias/" class="navbar__link">Guías</a></li>
+        <li><a href="../mi-perfil/" class="navbar__link">Mi Perfil</a></li>
+      </ul>
+      <div class="navbar__cta">
+        <a href="../simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+  <a href="../" class="mobile-menu__link">Inicio</a>
+  <a href="../simulador-deudas/" class="mobile-menu__link">Simulador de Deudas</a>
+  <a href="../simulador-pago-minimo/" class="mobile-menu__link">Simulador de Pago Mínimo</a>
+  <a href="../calculadora-intereses/" class="mobile-menu__link">Calculadora de Intereses</a>
+  <a href="../calculadora-prestamos/" class="mobile-menu__link">Calculadora de Préstamos</a>
+  <a href="../calculadora-fondo-emergencia/" class="mobile-menu__link">Fondo de Emergencia</a>
+  <a href="../control-gastos/" class="mobile-menu__link">Control de Gastos</a>
+  <a href="../mi-perfil/" class="mobile-menu__link">Mi Perfil</a>
+  <a href="../copiloto/" class="mobile-menu__link">Copiloto</a>
+  <a href="../plan-financiero/" class="mobile-menu__link">Plan Financiero</a>
+  <a href="../hoja-de-ruta-financiera/" class="mobile-menu__link">Hoja de Ruta</a>
+  <a href="../guias/" class="mobile-menu__link">Guías</a>
+  <a href="../sobre-dinari/index.html" class="mobile-menu__link">Sobre Dinari</a>
+</div>
+</header>
+
+<main id="main-content" class="main-layout container" style="padding-top: calc(var(--navbar-h) + var(--sp-10));">
+  
+  <div class="section-header" style="text-align: left; margin-bottom: var(--sp-4);">
+    <nav class="page-hero__breadcrumb" aria-label="Ruta de navegación" style="margin-bottom:var(--sp-2);">
+      <a href="../">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <span>Plan Financiero Inteligente</span>
+    </nav>
+    <h1 class="heading-1">Plan Financiero Inteligente</h1>
+    <p class="body-lg" style="max-width: 750px; margin-inline: 0;">Unifica tu diagnóstico, simula cambios estratégicos de ahorro y deudas, y haz seguimiento a las etapas clave de tu salud financiera.</p>
+  </div>
+
+  <div class="plan-grid">
+    
+    <!-- COLUMNA IZQUIERDA: SCORE Y JOURNEY TIMELINE -->
+    <aside class="plan-aside">
+      
+      <!-- CARD 1: DIAGNÓSTICO SCORE -->
+      <div class="p-card" style="text-align: center;">
+        <h2 class="heading-4" style="margin-bottom: var(--sp-3);">Diagnóstico</h2>
+        <div style="font-size: 3rem; font-weight: 700; color: var(--sage-700); line-height: 1;" id="plan-score-val">0</div>
+        <p class="body-xs" style="color: var(--stone-400); margin-top: 4px; margin-bottom: var(--sp-3);">Score de Salud Financiera</p>
+        <span class="score-label score-label--bueno" id="plan-score-status" style="font-size: 11px; padding: 3px 10px;">CRÍTICO</span>
+      </div>
+
+      <!-- CARD 2: FINANCIAL JOURNEY -->
+      <div class="p-card">
+        <h2 class="heading-4" style="margin-bottom: var(--sp-1);">Mi Financial Journey</h2>
+        <p class="body-xs" style="color: var(--stone-400); margin-bottom: var(--sp-4);">Las 6 etapas de tu desarrollo financiero.</p>
+        
+        <div class="journey-timeline" id="journey-container">
+          <!-- Etapas dinámicas inyectadas -->
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- COLUMNA DERECHA: ESCENARIOS, PROYECCIONES Y ACCIONES -->
+    <section class="plan-main">
+      
+      <!-- CARD 3: ESCENARIOS "¿QUÉ PASA SI...?" -->
+      <div class="p-card">
+        <span class="badge badge--cream" style="margin-bottom: var(--sp-2);">⚡ Proyecciones Interactivas</span>
+        <h2 class="heading-3" style="margin-bottom: var(--sp-2);">Simulador de Escenarios</h2>
+        <p class="body-sm" style="color: var(--stone-500); margin-bottom: var(--sp-6);">Ajusta los controles deslizantes para proyectar de forma matemática el impacto de tus decisiones financieras.</p>
+        
+        <!-- Slider 1: Aumentar Ahorro -->
+        <div class="sim-slider-group">
+          <div class="sim-slider-header">
+            <span class="sim-slider-label">Ahorro Mensual Adicional</span>
+            <span class="sim-slider-value" id="val-extra-savings">$0</span>
+          </div>
+          <input type="range" class="sim-range" id="slide-extra-savings" min="0" max="50000" step="500" value="0" aria-label="Ahorro Mensual Adicional">
+        </div>
+
+        <!-- Slider 2: Reducir Gastos -->
+        <div class="sim-slider-group">
+          <div class="sim-slider-header">
+            <span class="sim-slider-label">Reducción de Gastos Mensuales</span>
+            <span class="sim-slider-value" id="val-reduced-expenses">$0</span>
+          </div>
+          <input type="range" class="sim-range" id="slide-reduced-expenses" min="0" max="30000" step="500" value="0" aria-label="Reducción de Gastos Mensuales">
+        </div>
+
+        <!-- Slider 3: Pago Extra Deudas -->
+        <div class="sim-slider-group">
+          <div class="sim-slider-header">
+            <span class="sim-slider-label">Abonar Pago Extra a Deudas</span>
+            <span class="sim-slider-value" id="val-extra-debt-pay">$0</span>
+          </div>
+          <input type="range" class="sim-range" id="slide-extra-debt-pay" min="0" max="30000" step="500" value="0" aria-label="Abonar Pago Extra a Deudas">
+        </div>
+
+        <!-- Slider 4: Refinanciación (Reducción de Tasa) -->
+        <div class="sim-slider-group">
+          <div class="sim-slider-header">
+            <span class="sim-slider-label">Reducir Tasa de Interés Promedio (Refinanciar)</span>
+            <span class="sim-slider-value" id="val-refinance-rate">0%</span>
+          </div>
+          <input type="range" class="sim-range" id="slide-refinance-rate" min="0" max="15" step="0.5" value="0" aria-label="Reducir Tasa de Interés Promedio">
+        </div>
+
+        <!-- RESULTADO DE LA SIMULACIÓN -->
+        <div style="background: var(--cream-100); border: 1px solid var(--cream-300); border-radius: var(--radius-md); padding: var(--sp-4); margin-top: var(--sp-6); border-left: 4px solid var(--sage-500);">
+          <h4 style="font-size: var(--text-sm); font-weight: 700; color: var(--charcoal); margin: 0 0 var(--sp-2) 0;">Proyección Futura del Plan:</h4>
+          <p class="body-sm" id="projection-summary" style="margin: 0; line-height: 1.5; color: var(--charcoal-soft);">
+            Cargando proyecciones de escenarios...
+          </p>
+        </div>
+      </div>
+
+      <!-- CARD 4: PRÓXIMAS ACCIONES Y ENLACES -->
+      <div class="p-card">
+        <h2 class="heading-4" style="margin-bottom: var(--sp-1);">Próximas Acciones Recomendadas</h2>
+        <p class="body-xs" style="color: var(--stone-400); margin-bottom: var(--sp-4);">Tu plan estructurado de acciones inmediatas según tu etapa actual.</p>
+        
+        <div id="actions-list">
+          <!-- Acciones dinámicas inyectadas -->
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer" role="contentinfo" style="margin-top: var(--sp-12);">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
+          Dinari
+        </div>
+        <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Herramientas</p>
+        <ul class="footer__links">
+          <li><a href="../simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="../simulador-pago-minimo/" class="footer__link">Simulador de Pago Mínimo</a></li>
+          <li><a href="../calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
+          <li><a href="../calculadora-prestamos/" class="footer__link">Calculadora de Préstamos</a></li>
+          <li><a href="../calculadora-fondo-emergencia/" class="footer__link">Fondo de Emergencia</a></li>
+          <li><a href="../control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
+          <li><a href="../mi-perfil/" class="footer__link">Mi Perfil</a></li>
+          <li><a href="../copiloto/" class="footer__link">Copiloto</a></li>
+          <li><a href="../plan-financiero/" class="footer__link">Plan Financiero</a></li>
+          <li><a href="../hoja-de-ruta-financiera/" class="footer__link">Hoja de Ruta</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__links">
+          <li><a href="../privacidad/index.html" class="footer__link">Privacidad</a></li>
+          <li><a href="../cookies/index.html" class="footer__link">Cookies</a></li>
+          <li><a href="../terminos/index.html" class="footer__link">Términos</a></li>
+          <li><a href="../contacto/index.html" class="footer__link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
+      <p>Los cálculos son orientativos. Consulta con un asesor financiero.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+<script src="../js/core/storage.js" defer></script>
+<script src="../js/core/profile.js" defer></script>
+<script src="../js/financial-plan.js" defer></script>
+</body>
+</html>
