@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W986LMBCEN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W986LMBCEN');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3422421858882439"
+crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe Financiero Profesional | Dinari</title>
+<meta name="description" content="Genera tu informe financiero profesional personalizado. Diagnóstico de salud, metas de ahorro, análisis de escenarios y plan de acción.">
+<link rel="canonical" href="https://midinari.com/informe/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/simulator.css">
+<link rel="manifest" href="../manifest.json">
+<style>
+  /* Page Layout styling */
+  .report-actions-bar {
+    background: var(--cream-100);
+    border: 1px solid var(--cream-300);
+    border-radius: var(--radius-md);
+    padding: var(--sp-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--sp-6);
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+  }
+  
+  .report-page-container {
+    background: var(--white);
+    border: 1px solid var(--cream-300);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+    padding: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--charcoal);
+  }
+
+  /* Section design */
+  .rep-section {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--cream-200);
+    padding-bottom: 1.5rem;
+  }
+  .rep-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .rep-title {
+    font-family: 'Lora', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--sage-700);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Portada */
+  .rep-cover {
+    text-align: center;
+    padding: 4rem 0 6rem 0;
+    border-bottom: 2px solid var(--sage-500);
+    margin-bottom: 3rem;
+  }
+  .rep-cover__logo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    margin-bottom: 2.5rem;
+  }
+  .rep-cover__logo-mark {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--sage-500), var(--sage-700));
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lora', serif;
+    border-radius: 12px;
+  }
+  .rep-score-ring {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto var(--sp-4) auto;
+  }
+
+  /* Foda Grid */
+  .foda-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 576px) {
+    .foda-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .foda-card {
+    background: var(--cream-50);
+    border: 1px solid var(--cream-200);
+    border-radius: var(--radius-md);
+    padding: var(--sp-4);
+  }
+  .foda-card__title {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    margin-bottom: var(--sp-2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .foda-card--fortaleza .foda-card__title { color: var(--success); }
+  .foda-card--debilidad .foda-card__title { color: var(--danger); }
+  .foda-card__list {
+    margin: 0;
+    padding-left: var(--sp-4);
+    font-size: var(--text-xs);
+    line-height: 1.5;
+    color: var(--stone-500);
+  }
+
+  /* Table styling inside report */
+  .rep-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--sp-4);
+  }
+  .rep-table th, .rep-table td {
+    padding: var(--sp-3) var(--sp-4);
+    border-bottom: 1px solid var(--cream-200);
+    font-size: var(--text-xs);
+  }
+  .rep-table th {
+    background: var(--cream-100);
+    font-weight: 700;
+    color: var(--charcoal);
+    text-align: left;
+  }
+
+  /* Donut SVG styling */
+  .rep-donut-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-6);
+    flex-wrap: wrap;
+    margin-top: var(--sp-4);
+  }
+  .rep-donut-legend {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  .rep-donut-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--text-xs);
+    color: var(--stone-500);
+  }
+  .rep-donut-color-box {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+
+  /* PRINT-OPTIMIZED STYLES */
+  @media print {
+    body {
+      background: var(--white) !important;
+      color: #000 !important;
+    }
+    .navbar, .footer, .report-actions-bar {
+      display: none !important;
+    }
+    .main-layout {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    .report-page-container {
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      max-width: 100% !important;
+    }
+    .page-break {
+      page-break-before: always;
+    }
+    @page {
+      margin: 1.8cm 1.5cm;
+      size: A4;
+    }
+    .rep-cover {
+      padding: 6rem 0 10rem 0 !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="../" class="navbar__logo" aria-label="Dinari - Inicio">
+        <span class="navbar__logo-mark" aria-hidden="true">D</span>
+        Dinari
+      </a>
+      <ul class="navbar__nav" role="list">
+        <li><a href="../simulador-deudas/" class="navbar__link">Simulador</a></li>
+        <li><a href="../simulador-pago-minimo/" class="navbar__link">Pago Mínimo</a></li>
+        <li><a href="../calculadora-intereses/" class="navbar__link">Calculadora</a></li>
+        <li><a href="../guias/" class="navbar__link">Guías</a></li>
+        <li><a href="../mi-perfil/" class="navbar__link">Mi Perfil</a></li>
+      </ul>
+      <div class="navbar__cta">
+        <a href="../simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+  <a href="../" class="mobile-menu__link">Inicio</a>
+  <a href="../simulador-deudas/" class="mobile-menu__link">Simulador de Deudas</a>
+  <a href="../simulador-pago-minimo/" class="mobile-menu__link">Simulador de Pago Mínimo</a>
+  <a href="../calculadora-intereses/" class="mobile-menu__link">Calculadora de Intereses</a>
+  <a href="../calculadora-prestamos/" class="mobile-menu__link">Calculadora de Préstamos</a>
+  <a href="../calculadora-fondo-emergencia/" class="mobile-menu__link">Fondo de Emergencia</a>
+  <a href="../control-gastos/" class="mobile-menu__link">Control de Gastos</a>
+  <a href="../mi-perfil/" class="mobile-menu__link">Mi Perfil</a>
+  <a href="../copiloto/" class="mobile-menu__link">Copiloto</a>
+  <a href="../plan-financiero/" class="mobile-menu__link">Plan Financiero</a>
+  <a href="../comparador-escenarios/" class="mobile-menu__link">Comparador de Escenarios</a>
+  <a href="../historial/" class="mobile-menu__link">Historial</a>
+  <a href="../informe/" class="mobile-menu__link">Informe</a>
+  <a href="../hoja-de-ruta-financiera/" class="mobile-menu__link">Hoja de Ruta</a>
+  <a href="../guias/" class="mobile-menu__link">Guías</a>
+  <a href="../sobre-dinari/index.html" class="mobile-menu__link">Sobre Dinari</a>
+</div>
+</header>
+
+<main id="main-content" class="main-layout container" style="padding-top: calc(var(--navbar-h) + var(--sp-10)); padding-bottom: var(--sp-12);">
+  
+  <!-- ACCIONES DE INFORME -->
+  <div class="report-actions-bar">
+    <div>
+      <h2 class="heading-4" style="margin:0 0 2px 0;">Informe Financiero Profesional</h2>
+      <p class="body-xs" style="color:var(--stone-400); margin:0;">Genera un archivo PDF o descarga la versión de tu informe en tu dispositivo.</p>
+    </div>
+    <div style="display:flex; gap:var(--sp-2);">
+      <button class="btn btn--sage btn--sm" id="btn-print-pdf">🖨️ Descargar PDF / Imprimir</button>
+      <button class="btn btn--outline btn--sm" id="btn-save-html">💾 Guardar archivo HTML</button>
+    </div>
+  </div>
+
+  <!-- CONTENEDOR DEL REPORTE -->
+  <div class="report-page-container" id="report-page">
+    
+    <!-- 1. PORTADA -->
+    <div class="rep-cover">
+      <div class="rep-cover__logo">
+        <span class="rep-cover__logo-mark">D</span>
+        Dinari
+      </div>
+      <h1 class="heading-2" style="font-family:'Lora', serif; font-weight:600; margin-bottom:var(--sp-1);">Reporte de Salud Financiera</h1>
+      <p class="body-sm" style="color:var(--stone-400); margin-bottom: 3.5rem;" id="rep-date">Fecha de generación: --/--/----</p>
+      
+      <!-- SCORE -->
+      <div class="rep-score-ring">
+        <svg viewBox="0 0 140 140" style="width:140px; height:140px;">
+          <circle cx="70" cy="70" r="62" fill="none" stroke="var(--cream-300)" stroke-width="10"></circle>
+          <circle id="rep-score-stroke" cx="70" cy="70" r="62" fill="none" stroke="var(--sage-600)" stroke-width="10" stroke-dasharray="389" stroke-dashoffset="389" transform="rotate(-90 70 70)" style="transition: stroke-dashoffset 0.6s ease;"></circle>
+        </svg>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 700; color: var(--charcoal); line-height: 1;" id="rep-score-val">0</div>
+          <div style="font-size: 9px; font-weight: 700; color: var(--stone-400); margin-top: 2px; text-transform: uppercase;">Score</div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--sp-4);">
+        <span class="score-label" id="rep-score-label" style="font-size:12px; padding:4px 12px;">INSUFICIENTE</span>
+      </div>
+    </div>
+
+    <!-- 2. RESUMEN FINANCIERO -->
+    <div class="rep-section">
+      <h2 class="rep-title">📊 Resumen Financiero</h2>
+      <div class="rep-donut-wrap">
+        <!-- SVG Donut Chart Nivel de Gastos/Ingresos -->
+        <svg viewBox="0 0 120 120" style="width:120px; height:120px;" id="rep-donut-svg">
+          <!-- Dinámico -->
+        </svg>
+        <div class="rep-donut-legend" id="rep-donut-legend">
+          <!-- Leyendas dinámicas -->
+        </div>
+      </div>
+      <table class="rep-table" style="margin-top:var(--sp-4);" id="rep-summary-table">
+        <!-- Dinámico -->
+      </table>
+    </div>
+
+    <!-- 3. DIAGNÓSTICO FODA -->
+    <div class="rep-section page-break">
+      <h2 class="rep-title">⚡ Diagnóstico Financiero (FODA)</h2>
+      <div class="foda-grid">
+        <div class="foda-card foda-card--fortaleza">
+          <div class="foda-card__title">✓ Fortalezas</div>
+          <ul class="foda-card__list" id="rep-foda-fortalezas">
+            <!-- Dinámico -->
+          </ul>
+        </div>
+        <div class="foda-card foda-card--debilidad">
+          <div class="foda-card__title">✗ Puntos de Atención</div>
+          <ul class="foda-card__list" id="rep-foda-debilidades">
+            <!-- Dinámico -->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. OBJETIVOS Y METAS -->
+    <div class="rep-section">
+      <h2 class="rep-title">🎯 Progreso de Objetivos</h2>
+      <div id="rep-objectives-container">
+        <!-- Dinámico -->
+      </div>
+    </div>
+
+    <!-- 5. ESCENARIO ACTIVO -->
+    <div class="rep-section page-break">
+      <h2 class="rep-title">⚙️ Escenario Financiero Activo</h2>
+      <p class="body-xs" style="color:var(--stone-500); margin-bottom:var(--sp-3);">Parámetros presupuestarios que rigen tu perfil en este momento:</p>
+      <table class="rep-table" id="rep-active-scenario-table">
+        <!-- Dinámico -->
+      </table>
+    </div>
+
+    <!-- 6. COMPARACIÓN CON OTROS ESCENARIOS -->
+    <div class="rep-section" id="rep-scenarios-compare-section" style="display:none;">
+      <h2 class="rep-title">⚖️ Comparativa de Escenarios Guardados</h2>
+      <table class="rep-table" id="rep-scenarios-compare-table">
+        <!-- Dinámico -->
+      </table>
+    </div>
+
+    <!-- 7. PROYECCIONES -->
+    <div class="rep-section">
+      <h2 class="rep-title">📈 Proyección y Camino de Deudas</h2>
+      <div id="rep-projection-block">
+        <!-- Dinámico -->
+      </div>
+    </div>
+
+    <!-- 8. RECOMENDACIONES -->
+    <div class="rep-section page-break">
+      <h2 class="rep-title">💡 Recomendaciones del Sistema Experto</h2>
+      <div id="rep-recommendations-list" style="font-size:var(--text-xs); line-height:1.6; color:var(--stone-500);">
+        <!-- Dinámico -->
+      </div>
+    </div>
+
+    <!-- 9. HISTORIAL RECIENTE -->
+    <div class="rep-section" id="rep-history-section" style="display:none;">
+      <h2 class="rep-title">📜 Historial de Simulaciones Guardadas</h2>
+      <table class="rep-table" id="rep-history-table">
+        <!-- Dinámico -->
+      </table>
+    </div>
+
+    <!-- 10. CONCLUSIÓN -->
+    <div class="rep-section" style="text-align: center; border-bottom: none; margin-top: 4rem;">
+      <p class="body-xs" style="color:var(--stone-400); max-width: 550px; margin: 0 auto 24px auto; line-height: 1.5;">
+        Los datos presentados en este informe son simulaciones de carácter informativo en base a los registros locales de este dispositivo. No constituyen un asesoramiento financiero formal.
+      </p>
+      <div style="border-top:1px solid var(--cream-300); width: 120px; margin: 0 auto 8px auto;"></div>
+      <p style="font-size:11px; font-weight:700; color:var(--charcoal); margin:0;">Midinari Core</p>
+      <p style="font-size:9px; color:var(--stone-400); margin:2px 0 0 0;">Reporte Automatizado Dinari</p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer" role="contentinfo" style="margin-top: var(--sp-12);">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
+          Dinari
+        </div>
+        <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Herramientas</p>
+        <ul class="footer__links">
+          <li><a href="../simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="../simulador-pago-minimo/" class="footer__link">Simulador de Pago Mínimo</a></li>
+          <li><a href="../calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
+          <li><a href="../calculadora-prestamos/" class="footer__link">Calculadora de Préstamos</a></li>
+          <li><a href="../calculadora-fondo-emergencia/" class="footer__link">Fondo de Emergencia</a></li>
+          <li><a href="../control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
+          <li><a href="../mi-perfil/" class="footer__link">Mi Perfil</a></li>
+          <li><a href="../copiloto/" class="footer__link">Copiloto</a></li>
+          <li><a href="../plan-financiero/" class="footer__link">Plan Financiero</a></li>
+          <li><a href="../comparador-escenarios/" class="footer__link">Comparador de Escenarios</a></li>
+          <li><a href="../historial/" class="footer__link">Historial</a></li>
+          <li><a href="../informe/" class="footer__link">Informe</a></li>
+          <li><a href="../hoja-de-ruta-financiera/" class="footer__link">Hoja de Ruta</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__links">
+          <li><a href="../privacidad/index.html" class="footer__link">Privacidad</a></li>
+          <li><a href="../cookies/index.html" class="footer__link">Cookies</a></li>
+          <li><a href="../terminos/index.html" class="footer__link">Términos</a></li>
+          <li><a href="../contacto/index.html" class="footer__link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
+      <p>Los cálculos son orientativos. Consulta con un asesor financiero.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+<script src="../js/core/storage.js" defer></script>
+<script src="../js/core/profile.js" defer></script>
+<script src="../js/report.js" defer></script>
+</body>
+</html>
