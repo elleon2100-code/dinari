@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W986LMBCEN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W986LMBCEN');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3422421858882439"
+crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Historial de Decisiones | Dinari</title>
+<meta name="description" content="Guarda, organiza y compara tus simulaciones y decisiones financieras. Analiza el impacto de cada cambio de forma 100% segura y local.">
+<link rel="canonical" href="https://midinari.com/historial/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/simulator.css">
+<link rel="manifest" href="../manifest.json">
+<style>
+  .hist-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--sp-6);
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+  }
+  .search-input-wrap {
+    position: relative;
+    max-width: 320px;
+    width: 100%;
+  }
+  .search-input {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--cream-300);
+    outline: none;
+    font-size: var(--text-sm);
+  }
+  .search-input:focus {
+    border-color: var(--sage-500);
+    box-shadow: 0 0 0 3px rgba(122,158,126,0.15);
+  }
+
+  /* Filters list */
+  .filter-tags {
+    display: flex;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-6);
+    flex-wrap: wrap;
+  }
+  .filter-tag {
+    padding: 6px 14px;
+    border-radius: 99px;
+    border: 1px solid var(--cream-300);
+    background: var(--white);
+    color: var(--charcoal-soft);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .filter-tag:hover {
+    border-color: var(--sage-400);
+    background: var(--cream-50);
+  }
+  .filter-tag.active {
+    background: var(--sage-600);
+    color: var(--white);
+    border-color: var(--sage-600);
+  }
+
+  /* History list */
+  .hist-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
+    margin-bottom: var(--sp-8);
+  }
+  @media (min-width: 768px) {
+    .hist-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .hist-card {
+    background: var(--white);
+    border: 1px solid var(--cream-300);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .hist-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  }
+  .hist-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--sp-3);
+  }
+  .hist-card__tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    background: rgba(122,158,126,0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .btn-fav {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--stone-300);
+    transition: color 0.2s ease;
+  }
+  .btn-fav.active {
+    color: #ffd54f; /* Golden yellow */
+  }
+  .hist-card__metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-2);
+    background: var(--cream-100);
+    padding: var(--sp-3);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--sp-4);
+  }
+  .hist-metric-item {
+    font-size: 11px;
+    color: var(--stone-500);
+  }
+  .hist-metric-item strong {
+    color: var(--charcoal);
+    font-size: 12px;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* Compare Bar */
+  .compare-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--charcoal);
+    color: var(--white);
+    padding: var(--sp-4) 0;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+    z-index: 900;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  .compare-bar.visible {
+    transform: translateY(0);
+  }
+  .compare-bar__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+  }
+
+  /* Compare modal table differences */
+  .diff-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--sp-4);
+  }
+  .diff-table th, .diff-table td {
+    padding: var(--sp-3) var(--sp-4);
+    border-bottom: 1px solid var(--cream-200);
+    font-size: var(--text-sm);
+  }
+  .diff-table th {
+    background: var(--cream-100);
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+  .diff-better {
+    background: #e8f5e9;
+    color: var(--success);
+    font-weight: 700;
+  }
+  .diff-worse {
+    background: #ffebee;
+    color: var(--danger);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="../" class="navbar__logo" aria-label="Dinari - Inicio">
+        <span class="navbar__logo-mark" aria-hidden="true">D</span>
+        Dinari
+      </a>
+      <ul class="navbar__nav" role="list">
+        <li><a href="../simulador-deudas/" class="navbar__link">Simulador</a></li>
+        <li><a href="../simulador-pago-minimo/" class="navbar__link">Pago Mínimo</a></li>
+        <li><a href="../calculadora-intereses/" class="navbar__link">Calculadora</a></li>
+        <li><a href="../guias/" class="navbar__link">Guías</a></li>
+        <li><a href="../mi-perfil/" class="navbar__link">Mi Perfil</a></li>
+      </ul>
+      <div class="navbar__cta">
+        <a href="../simulador-deudas/" class="btn btn--sage btn--sm">Calcular mi deuda</a>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+  <a href="../" class="mobile-menu__link">Inicio</a>
+  <a href="../simulador-deudas/" class="mobile-menu__link">Simulador de Deudas</a>
+  <a href="../simulador-pago-minimo/" class="mobile-menu__link">Simulador de Pago Mínimo</a>
+  <a href="../calculadora-intereses/" class="mobile-menu__link">Calculadora de Intereses</a>
+  <a href="../calculadora-prestamos/" class="mobile-menu__link">Calculadora de Préstamos</a>
+  <a href="../calculadora-fondo-emergencia/" class="mobile-menu__link">Fondo de Emergencia</a>
+  <a href="../control-gastos/" class="mobile-menu__link">Control de Gastos</a>
+  <a href="../mi-perfil/" class="mobile-menu__link">Mi Perfil</a>
+  <a href="../copiloto/" class="mobile-menu__link">Copiloto</a>
+  <a href="../plan-financiero/" class="mobile-menu__link">Plan Financiero</a>
+  <a href="../comparador-escenarios/" class="mobile-menu__link">Comparador de Escenarios</a>
+  <a href="../historial/" class="mobile-menu__link">Historial</a>
+  <a href="../hoja-de-ruta-financiera/" class="mobile-menu__link">Hoja de Ruta</a>
+  <a href="../guias/" class="mobile-menu__link">Guías</a>
+  <a href="../sobre-dinari/index.html" class="mobile-menu__link">Sobre Dinari</a>
+</div>
+</header>
+
+<main id="main-content" class="main-layout container" style="padding-top: calc(var(--navbar-h) + var(--sp-10)); padding-bottom: 100px;">
+  
+  <div class="section-header" style="text-align: left; margin-bottom: var(--sp-4);">
+    <nav class="page-hero__breadcrumb" aria-label="Ruta de navegación" style="margin-bottom:var(--sp-2);">
+      <a href="../">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <span>Historial de Decisiones</span>
+    </nav>
+    <h1 class="heading-1">Historial de Decisiones</h1>
+    <p class="body-lg" style="max-width: 750px; margin-inline: 0;">Tu bitácora financiera personal. Guarda los cálculos de tus herramientas, compáralos side-by-side y analiza la evolución de tu dinero.</p>
+  </div>
+
+  <!-- CONTROL DE BÚSQUEDA Y NAVEGACIÓN -->
+  <div class="hist-controls">
+    <div class="search-input-wrap">
+      <input type="text" class="search-input" id="search-input" placeholder="🔍 Buscar por nombre...">
+    </div>
+    <div style="font-size: var(--text-xs); color: var(--stone-400);">
+      Datos guardados de forma 100% privada en tu navegador.
+    </div>
+  </div>
+
+  <!-- FILTROS POR CATEGORÍA -->
+  <div class="filter-tags" id="filter-container">
+    <button class="filter-tag active" data-filter="all">Todas</button>
+    <button class="filter-tag" data-filter="deudas">Deudas</button>
+    <button class="filter-tag" data-filter="prestamos">Préstamos</button>
+    <button class="filter-tag" data-filter="emergencia">Fondo de Emergencia</button>
+    <button class="filter-tag" data-filter="ahorro">Ahorro</button>
+    <button class="filter-tag" data-filter="comparador">Comparador</button>
+    <button class="filter-tag" data-filter="favs">⭐️ Favoritos</button>
+  </div>
+
+  <!-- LISTADO DE SIMULACIONES -->
+  <div class="hist-grid" id="history-grid">
+    <!-- Dinámico -->
+  </div>
+
+  <!-- COMPARACIÓN FLOATING BAR -->
+  <div class="compare-bar" id="compare-bar">
+    <div class="container">
+      <div class="compare-bar__inner">
+        <div>
+          <span style="font-weight:700;">Comparador de Registros:</span>
+          <span id="compare-selection-text" style="color:var(--cream-400); margin-left:var(--sp-2);">Selecciona 2 registros para comparar.</span>
+        </div>
+        <button class="btn btn--sage btn--sm" id="btn-run-compare" disabled>⚖️ Comparar Ahora</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL EDITAR NOMBRE Y NOTAS -->
+  <div class="modal-backdrop" id="edit-modal">
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="heading-4">Editar Registro</h3>
+        <button class="btn btn--outline btn--xs" id="btn-close-edit-modal" style="padding: 2px 6px;">✕</button>
+      </div>
+      <form id="edit-form">
+        <input type="hidden" id="edit-id">
+        <div class="field" style="margin-bottom: var(--sp-4);">
+          <label class="field__label" for="edit-name">Nombre del Registro</label>
+          <input class="field__input" type="text" id="edit-name" required placeholder="Nombre de la simulación">
+        </div>
+        <div class="field" style="margin-bottom: var(--sp-4);">
+          <label class="field__label" for="edit-notes">Notas / Observaciones Personales</label>
+          <textarea class="field__input" id="edit-notes" rows="4" placeholder="Agrega notas sobre esta simulación..." style="font-family:inherit; resize:vertical;"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn--outline btn--sm" id="btn-cancel-edit">Cancelar</button>
+          <button type="submit" class="btn btn--sage btn--sm">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL COMPARACIÓN DETALLADA LADO A LADO -->
+  <div class="modal-backdrop" id="compare-modal">
+    <div class="modal-content" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 class="heading-4">Comparación Lado a Lado</h3>
+        <button class="btn btn--outline btn--xs" id="btn-close-compare-modal" style="padding: 2px 6px;">✕</button>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="diff-table">
+          <thead>
+            <tr>
+              <th>Métrica</th>
+              <th id="compare-header-a">Registro A</th>
+              <th id="compare-header-b">Registro B</th>
+              <th>Diferencia / Impacto</th>
+            </tr>
+          </thead>
+          <tbody id="compare-results-body">
+            <!-- Dinámico -->
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn--sage btn--sm" id="btn-close-compare-ok">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer" role="contentinfo" style="margin-top: var(--sp-12);">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span style="width:28px;height:28px;background:linear-gradient(135deg,var(--sage-500),var(--sage-700));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);color:#fff;font-size:1rem;">D</span>
+          Dinari
+        </div>
+        <p class="footer__description">Herramientas financieras gratuitas para ayudarte a organizar tus deudas y tomar control de tu dinero.</p>
+      </div>
+      <div>
+        <p class="footer__heading">Herramientas</p>
+        <ul class="footer__links">
+          <li><a href="../simulador-deudas/index.html" class="footer__link">Simulador de Deudas</a></li>
+          <li><a href="../simulador-pago-minimo/" class="footer__link">Simulador de Pago Mínimo</a></li>
+          <li><a href="../calculadora-intereses/index.html" class="footer__link">Calculadora de Intereses</a></li>
+          <li><a href="../calculadora-prestamos/" class="footer__link">Calculadora de Préstamos</a></li>
+          <li><a href="../calculadora-fondo-emergencia/" class="footer__link">Fondo de Emergencia</a></li>
+          <li><a href="../control-gastos/index.html" class="footer__link">Control de Gastos</a></li>
+          <li><a href="../mi-perfil/" class="footer__link">Mi Perfil</a></li>
+          <li><a href="../copiloto/" class="footer__link">Copiloto</a></li>
+          <li><a href="../plan-financiero/" class="footer__link">Plan Financiero</a></li>
+          <li><a href="../comparador-escenarios/" class="footer__link">Comparador de Escenarios</a></li>
+          <li><a href="../historial/" class="footer__link">Historial</a></li>
+          <li><a href="../hoja-de-ruta-financiera/" class="footer__link">Hoja de Ruta</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__heading">Legal</p>
+        <ul class="footer__links">
+          <li><a href="../privacidad/index.html" class="footer__link">Privacidad</a></li>
+          <li><a href="../cookies/index.html" class="footer__link">Cookies</a></li>
+          <li><a href="../terminos/index.html" class="footer__link">Términos</a></li>
+          <li><a href="../contacto/index.html" class="footer__link">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Dinari. Todos los derechos reservados.</p>
+      <p>Los cálculos son orientativos. Consulta con un asesor financiero.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+<script src="../js/core/storage.js" defer></script>
+<script src="../js/core/profile.js" defer></script>
+<script src="../js/history.js" defer></script>
+</body>
+</html>
